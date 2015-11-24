@@ -114,7 +114,11 @@
       <li class="item <?js= plugins.length > 1 ? 'multiple' : '' ?>" data-name="<?js= pluginName ?>">
         <?js if (plugins.length > 1) { ?>
           <span class="title group-title extensible">
-            <a class="link-header" href="#"><?js= pluginName ?></a>
+            <a class="link-header" href="#"><?js= pluginName ?>
+              <?js if (plugins[0].isPro) { ?>
+              <sup>PRO</sup>
+              <?js } ?>
+            </a>
           </span>
         <?js } ?>
 

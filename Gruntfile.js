@@ -32,13 +32,6 @@ module.exports = function (grunt) {
     HOT_PRO_REPO = 'https://github.com/handsontable/handsontable-pro.git',
     querystring = require('querystring');
 
-
-  function getHotBranch() {
-    var hotVersion = argv['hot-version'];
-
-    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : gitHelper.getLocalInfo().branch;
-  }
-
   function getHotProBranch() {
     var hotProVersion = argv['hot-pro-version'];
 
@@ -66,8 +59,8 @@ module.exports = function (grunt) {
           // Pro package
           HOT_PRO_SRC_PATH + '/src/**/*.js',
           '!' + HOT_PRO_SRC_PATH + '/src/**/*.spec.js',
-          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
-          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
+          '!' + HOT_PRO_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
+          '!' + HOT_PRO_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {

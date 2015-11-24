@@ -26,7 +26,10 @@ module.exports = function (grunt) {
     DOCS_PATH = 'generated',
     HOT_SRC_PATH = 'src/handsontable',
     HOT_DEFAULT_BRANCH = 'master',
+    HOT_PRO_SRC_PATH = 'src/handsontable-pro',
+    HOT_PRO_DEFAULT_BRANCH = 'master',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
+    HOT_PRO_REPO = 'https://github.com/handsontable/handsontable-pro.git',
     querystring = require('querystring');
 
 
@@ -36,32 +39,35 @@ module.exports = function (grunt) {
     return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : gitHelper.getLocalInfo().branch;
   }
 
+  function getHotProBranch() {
+    var hotProVersion = argv['hot-pro-version'];
+
+    return hotProVersion ? (hotProVersion === 'latest' ? HOT_PRO_DEFAULT_BRANCH : hotProVersion) : gitHelper.getLocalInfo().branch;
+  }
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
       dist: [DOCS_PATH],
-      source: [HOT_SRC_PATH]
+      source: [HOT_SRC_PATH],
+      sourcePro: [HOT_PRO_SRC_PATH]
     },
 
     jsdoc: {
       docs: {
         src: [
           HOT_SRC_PATH + '/src/**/*.js',
-          'tutorials/INDEX.md',
           '!' + HOT_SRC_PATH + '/src/**/*.spec.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
           '!' + HOT_SRC_PATH + '/src/intro.js',
           '!' + HOT_SRC_PATH + '/src/outro.js',
-          // temp fix for file using arrow function - waiting for jsdoc support
-          '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/columnSorting/columnSorting.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/multipleSelectionHandles/multipleSelectionHandles.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
-          '!' + HOT_SRC_PATH + '/src/renderers/checkboxRenderer.js',
-          '!' + HOT_SRC_PATH + '/src/editors/dateEditor.js',
-          '!' + HOT_SRC_PATH + '/src/eventManager.js'
+          // Pro package
+          HOT_PRO_SRC_PATH + '/src/**/*.js',
+          '!' + HOT_PRO_SRC_PATH + '/src/**/*.spec.js',
+          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
+          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {
@@ -188,6 +194,14 @@ module.exports = function (grunt) {
           directory: HOT_SRC_PATH,
           verbose: true
         }
+      },
+      handsontablePro: {
+        options: {
+          branch: HOT_PRO_DEFAULT_BRANCH,
+          repository: HOT_PRO_REPO,
+          directory: HOT_PRO_SRC_PATH,
+          verbose: true
+        }
       }
     }
   });
@@ -202,12 +216,14 @@ module.exports = function (grunt) {
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var timer;
 
+    grunt.task.run('update-hot-pro');
     grunt.task.run('update-hot');
 
     timer = setInterval(function() {
-      if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
+      if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json') || !grunt.file.isFile(HOT_PRO_SRC_PATH + '/package.json')) {
         return;
       }
+
       clearInterval(timer);
       grunt.task.run('generate-doc-versions');
       grunt.task.run('build');
@@ -215,14 +231,26 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
-    grunt.config.set('gitclone.handsontable.options.branch', getHotBranch());
-    grunt.log.write('Cloning Handsontable v' + getHotBranch());
+    var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');;
+
+    grunt.config.set('gitclone.handsontable.options.branch', hotPackage.compatibleHotVersion);
+    grunt.log.write('Cloning Handsontable v.' + hotPackage.compatibleHotVersion);
 
     grunt.task.run('clean:source');
-    grunt.task.run('gitclone');
+    grunt.task.run('gitclone:handsontable');
   });
 
-  grunt.registerTask('generate-doc-versions', 'Generate documentation for Handsontable', function () {
+  grunt.registerTask('update-hot-pro', 'Update Handsontable Pro repository', function () {
+    var hotProBranch = getHotProBranch(); // not sure if right
+
+    grunt.config.set('gitclone.handsontablePro.options.branch', hotProBranch);
+    grunt.log.write('Cloning Handsontable Pro v.' + hotProBranch);
+
+    grunt.task.run('clean:sourcePro');
+    grunt.task.run('gitclone:handsontablePro');
+  });
+
+  grunt.registerTask('generate-doc-versions', 'Generate version list for Handsontable Pro', function () {
     var done = this.async();
 
     gitHelper.getDocsVersions().then(function(branches) {
@@ -233,14 +261,14 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
+  grunt.registerTask('build', 'Generate documentation for Handsontable and Handsontable Pro', function () {
     var done = this.async();
     var hotPackage;
 
     gitHelper.getHotLatestRelease().then(function(info) {
       grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
 
-      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+      hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
         version: hotPackage.version,
         latestVersion: info.tag_name

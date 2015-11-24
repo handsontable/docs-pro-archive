@@ -264,6 +264,7 @@ function buildNav(members) {
       push({
         isPlugin: v.plugin ? 1 : 0,
         plugin: v.plugin,
+        isPro: v.pro ? 1 : 0,
         isUtil: v.util ? 1 : 0,
         type: 'class',
         longname: v.longname,

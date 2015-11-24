@@ -13,6 +13,11 @@ var github = new GitHubApi({
   }
 });
 
+github.authenticate({
+  type: 'oauth',
+  token: '{TOKEN}'
+});
+
 /**
  * Get information about local repository.
  *
@@ -32,7 +37,7 @@ exports.getHotLatestRelease = function getHotLatestRelease(range) {
   return new Promise(function(resolve, reject) {
     github.releases.listReleases({
       owner: 'handsontable',
-      repo: 'handsontable',
+      repo: 'handsontable-pro',
       page: 1,
       per_page: 100
     }, function(err, resp) {
@@ -58,7 +63,7 @@ exports.getDocsVersions = function getDocsVersions() {
   return new Promise(function(resolve, reject) {
     github.repos.getBranches({
       user: 'handsontable',
-      repo: 'docs',
+      repo: 'docs-pro',
       per_page: 100
     }, function(err, resp) {
       if (err) {

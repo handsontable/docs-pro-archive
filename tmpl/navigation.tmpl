@@ -125,7 +125,11 @@
         <?js } else { ?>
           <span class="title extensible" data-list-id="<?js= item.longname ?>">
         <?js } ?>
-          <a class="link-header" href="#"><?js= item.longname ?></a>
+          <a class="link-header" href="#"><?js= item.longname ?>
+          <?js if (item.isPro) { ?>
+            <sup>PRO</sup>
+          <?js } ?>
+          </a>
           <?js if (item.type === 'namespace') { ?>
             <span class="static">static</span>
           <?js } ?>

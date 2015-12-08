@@ -264,6 +264,9 @@
           },
           "backbonejs": {
             "title": "Backbone.js"
+          },
+          "column-summary": {
+            "title": "Column Summary"
           }
         }
       }

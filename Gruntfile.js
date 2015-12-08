@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     HOT_PRO_SRC_PATH = 'src/handsontable-pro',
     HOT_PRO_DEFAULT_BRANCH = 'master',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
-    HOT_PRO_REPO = 'https://github.com/handsontable/handsontable-pro.git',
+    HOT_PRO_REPO = 'https://git.handsontable.com/handsontable/handsontable-pro.git',
     querystring = require('querystring');
 
   function getHotProBranch() {
@@ -109,7 +109,7 @@ module.exports = function (grunt) {
           'jquery.cookie': 'jquery.cookie',
           'jquery-placeholder': 'jquery-placeholder',
           'modernizr': 'modernizr',
-          'handsontable': 'handsontable',
+          'handsontable-pro': 'handsontable-pro',
           'zeroclipboard': 'zeroclipboard',
           'pikaday': 'pikaday',
           "moment": "moment",
@@ -264,7 +264,7 @@ module.exports = function (grunt) {
       hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
         version: hotPackage.version,
-        latestVersion: info.tag_name
+        latestVersion: info.name
       }));
 
       grunt.task.run('jsdoc');

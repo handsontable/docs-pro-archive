@@ -1,9 +1,20 @@
 
 var getRepoInfo = require('git-repo-info');
+var GitlabApi = require('gitlab');
 var GitHubApi = require('github');
 var Promise = require('bluebird');
 var fs = require('fs');
 var semver = require('semver');
+
+var TOKENS = {
+  github: '[GITHUB_TOKEN]',
+  gitlab: '[GITLAB_TOKEN]'
+};
+
+var gitlab = new GitlabApi({
+  url: 'https://git.handsontable.com/',
+  token: TOKENS.gitlab
+});
 
 var github = new GitHubApi({
   version: '3.0.0',
@@ -15,7 +26,7 @@ var github = new GitHubApi({
 
 github.authenticate({
   type: 'oauth',
-  token: '{TOKEN}'
+  token: TOKENS.github
 });
 
 /**
@@ -35,21 +46,21 @@ exports.getLocalInfo = function getLocalInfo() {
  */
 exports.getHotLatestRelease = function getHotLatestRelease(range) {
   return new Promise(function(resolve, reject) {
-    github.releases.listReleases({
-      owner: 'handsontable',
-      repo: 'handsontable-pro',
-      page: 1,
-      per_page: 100
-    }, function(err, resp) {
-      if (err) {
-        return reject(err);
-      }
-      if (range) {
-        resp = resp.filter(function(release) {
-          return semver.satisfies(release.tag_name, range);
-        });
-      }
-      resolve(resp.length ? resp[0] : null);
+
+    gitlab.projects.show('handsontable/handsontable-pro', function(project) {
+      gitlab.projects.listTags(project, function(tagList) {
+        if (tagList && tagList.length > 0) {
+          if (range) {
+            tagList = tagList.filter(function(release) {
+              return semver.satisfies(release.name, range);
+            });
+          }
+          resolve(tagList.length ? tagList[0] : null);
+
+        } else {
+          reject();
+        }
+      });
     });
   });
 };

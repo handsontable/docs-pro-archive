@@ -5,29 +5,33 @@ var GitHubApi = require('github');
 var Promise = require('bluebird');
 var fs = require('fs');
 var semver = require('semver');
+var github, gitlab;
 
-var TOKENS = {
-  github: '[GITHUB_TOKEN]',
-  gitlab: '[GITLAB_TOKEN]'
+/**
+ * Setup the Github and Gitlab API helper objects and authenticate them.
+ *
+ * @param {String} github_token The Github access token.
+ * @param {String} gitlab_token The Gitlab access token.
+ */
+exports.setupGitApi = function setupGitApi(github_token, gitlab_token) {
+  gitlab = new GitlabApi({
+    url: 'https://git.handsontable.com/',
+    token: gitlab_token
+  });
+
+  github = new GitHubApi({
+    version: '3.0.0',
+    timeout: 5000,
+    headers: {
+      'user-agent': 'Handsontable'
+    }
+  });
+
+  github.authenticate({
+    type: 'oauth',
+    token: github_token
+  });
 };
-
-var gitlab = new GitlabApi({
-  url: 'https://git.handsontable.com/',
-  token: TOKENS.gitlab
-});
-
-var github = new GitHubApi({
-  version: '3.0.0',
-  timeout: 5000,
-  headers: {
-    'user-agent': 'Handsontable'
-  }
-});
-
-github.authenticate({
-  type: 'oauth',
-  token: TOKENS.github
-});
 
 /**
  * Get information about local repository.

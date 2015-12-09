@@ -17,8 +17,8 @@
 
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
-var gitHelper = require('./git-helper');
 var path = require('path');
+var gitHelper = require('./git-helper');
 
 
 module.exports = function (grunt) {
@@ -196,6 +196,12 @@ module.exports = function (grunt) {
           verbose: true
         }
       }
+    },
+
+    env: {
+      build: {
+        src : '.env.json'
+      }
     }
   });
 
@@ -208,6 +214,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var timer;
+
+    grunt.task.run('env:build');
+
+    setTimeout(function() {
+      gitHelper.setupGitApi(process.env.GITHUB_TOKEN, process.env.GITLAB_TOKEN);
+    }, 5);
 
     grunt.task.run('update-hot-pro');
     grunt.task.run('update-hot');
@@ -285,4 +297,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-robots-txt');
   grunt.loadNpmTasks('grunt-sitemap');
+  grunt.loadNpmTasks('grunt-env');
 };

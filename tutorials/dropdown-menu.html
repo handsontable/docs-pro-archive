@@ -1,0 +1,103 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/dropdown-menu.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Quick setup</a></li>
+      <li><a href="#config">Plugin configuration</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+    <p>
+      The <i>Dropdown Menu</i> plugin allows adding a configurable dropdown menu to the table's column headers.<br>
+      The dropdown menu acts like the <i>Context Menu</i>, but is triggered by clicking the indicator in the header.
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+    <p>
+      To enable the plugin, simply set the <code>dropdownMenu</code> property to <code>true</code>, when initializing Handsontable.
+    </p>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: Handsontable.helper.createSpreadsheetData(3, 7),
+          colHeaders: true,
+          dropdownMenu: true
+        });
+      </script>
+
+    </div>
+
+    <hr>
+
+    <h4 id="config">Plugin configuration</h4>
+    <p>
+      You can use the default dropdown contents by setting it to <code>true</code>, but if you'd like to customize it a little
+      you can set it to use a custom list of actions, for example:
+    </p>
+
+    <div data-jsfiddle="example2">
+      <div>
+        <div id="example2" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var example2 = document.getElementById('example2');
+
+        var hot2 = new Handsontable(example2, {
+          data: Handsontable.helper.createSpreadsheetData(3, 7),
+          colHeaders: true,
+          dropdownMenu: ['remove_col', 'make_read_only', 'alignment']
+        });
+      </script>
+
+    </div>
+    <p>For the entry options reference, see the <a href="/demo-context-menu.html#page-specific">Context Menu demo page</a>.</p>
+
+  </div>
+</div>
+

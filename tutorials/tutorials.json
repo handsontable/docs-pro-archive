@@ -267,7 +267,17 @@
           },
           "column-summary": {
             "title": "Column Summary"
+          },
+          "bind-rows-with-headers": {
+            "title": "Bind rows with headers"
+          },
+          "dropdown-menu": {
+            "title": "Dropdown menu"
+          },
+          "export-file": {
+            "title": "Export to file"
           }
+
         }
       }
     }

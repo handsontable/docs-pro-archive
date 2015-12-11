@@ -276,6 +276,9 @@
           },
           "export-file": {
             "title": "Export to file"
+          },
+          "filtering": {
+            "title": "Filtering"
           }
 
         }

@@ -1,0 +1,85 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/filters.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Quick setup</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+
+    <p>
+      The <i>Filters</i> plugin allows filtering the data in the table's columns using a range of pre-defined conditions.
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+
+    <p>
+      To enable the plugin you need to set the <code>filters</code> property to <code>true</code> and enable the filters dependency,
+      the <a href="/demo-dropdown-menu.html">dropdownMenu</a> plugin.
+    </p>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="common" data-dont-display="true">
+        var dataObj = [
+          ['Lorem', 'ipsum', 'dolor', 'sit', '12/1/2015', 23],
+          ['adipiscing', 'elit', 'Ut', 'imperdiet', '5/12/2015', 6],
+          ['Pellentesque', 'vulputate', 'leo', 'semper', '10/23/2015', 26],
+          ['diam', 'et', 'malesuada', 'libero', '12/1/2014', 98],
+          ['orci', 'et', 'dignissim', 'hendrerit', '12/1/2016', 8.5]
+        ];
+      </script>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: dataObj,
+          columns: [
+            {type: 'text'},
+            {type: 'text'},
+            {type: 'text'},
+            {type: 'text'},
+            {type: 'date'},
+            {type: 'numeric'}
+          ],
+          colHeaders: true,
+          rowHeaders: true,
+          dropdownMenu: true,
+          filters: true
+        });
+
+      </script>
+
+    </div>
+
+  </div>
+</div>
+

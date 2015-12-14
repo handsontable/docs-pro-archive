@@ -285,6 +285,12 @@
           },
           "header-tooltips": {
             "title": "Header tooltips"
+          },
+          "hidden-columns": {
+            "title": "Hidden columns"
+          },
+          "hidden-rows": {
+            "title": "Hidden rows"
           }
 
         }

@@ -1,0 +1,79 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/hidden-rows.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#options">Additional options</a></li>
+      <li><a href="#examples">Example</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+    <p>
+      The <i>Hidden Rows</i> plugin allows hiding specific rows from the table. (Note, that these rows are still being rendered - the plugin
+      just hides them using CSS).
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+    <p>
+      The <code>hiddenRows</code> parameter accepts an object. To provide the rows to hide, you need to specify the <code>rows</code> property for the object -
+      it should be defined as an array of numbers, which represent the indexes of rows that need to be hidden.
+      <br><br> See <a href="#examples">the examples section</a> for more details.
+    </p>
+
+    <h3 id="options">Additional options</h3>
+    <p>
+      The plugin allows displaying hidden row indicators in the headers, to notify the user which rows have been hidden.<br>
+      To enable them, set the <code>indicators</code> property in the plugin's configuration object to <code>true</code>.
+      <br><br> See <a href="#examples">the examples section</a> for more details.
+    </p>
+
+    <h3 id="examples">Example</h3>
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: Handsontable.helper.createSpreadsheetData(12,5),
+          colHeaders: true,
+          rowHeaders: true,
+          hiddenRows: {
+            rows: [3, 5, 9],
+            indicators: true
+          }
+        });
+
+      </script>
+    </div>
+
+  </div>
+</div>
+

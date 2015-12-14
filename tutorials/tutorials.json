@@ -279,6 +279,9 @@
           },
           "filtering": {
             "title": "Filtering"
+          },
+          "gantt-chart": {
+            "title": "Gantt Chart"
           }
 
         }

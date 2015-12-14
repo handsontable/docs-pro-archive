@@ -1,0 +1,116 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/header-tooltips.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Quick setup</a></li>
+      <li><a href="#options">Available options</a></li>
+      <li><a href="#examples">Live examples</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+    <p>
+      The <i>headerTooltips</i> plugin allows adding tooltips to the table headers. These tooltips contain the header's label.
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+    <p>
+      To enable the plugin, you simply need to set the <code>headerTooltips</code> property to <code>true</code> in Handsontable configuration. This will
+      enable the the tooltips for both rows and columns.
+    </p>
+
+    <h3 id="options">Available options</h3>
+    <p>Instead of setting the <code>headerTooltips</code> property to <code>true</code>, you can define it as an object containing these options:</p>
+    <ul>
+      <li>the <code>rows</code> property defines if tooltips should be added to row headers,</li>
+      <li>the <code>columns</code> property defines if tooltips should be added to column headers,</li>
+      <li>the <code>onlyTrimmed</code> property defines if tooltips should be added only to headers, which content is trimmed by the header itself (the content being wider then the header).</li>
+    </ul>
+    <p>
+      See the examples for a live preview.
+    </p>
+
+    <h3 id="examples">Live examples</h3>
+    <h4>Tooltips displayed for both row and column headers</h4>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: Handsontable.helper.createSpreadsheetData(5,10),
+          colHeaders: true,
+          rowHeaders: true,
+          headerTooltips: true
+        });
+
+      </script>
+    </div>
+
+    <h4>Tooltips displayed only for column headers, and only if their content's width exceeds the header width</h4>
+    <div data-jsfiddle="example2">
+      <div>
+        <div id="example2" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var example2 = document.getElementById('example2');
+
+        var hot2 = new Handsontable(example2, {
+          data: Handsontable.helper.createSpreadsheetData(4,7),
+          rowHeaders: true,
+          colHeaders: ['A', 'B', 'Long column header label', 'D', 'Another long label', 'E', 'F'],
+          colWidths: [null, null, 40, null, 50],
+          headerTooltips: {
+            rows: false,
+            columns: true,
+            onlyTrimmed: true
+          }
+        });
+      </script>
+    </div>
+
+  </div>
+</div>
+

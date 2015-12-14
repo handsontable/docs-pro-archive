@@ -282,6 +282,9 @@
           },
           "gantt-chart": {
             "title": "Gantt Chart"
+          },
+          "header-tooltips": {
+            "title": "Header tooltips"
           }
 
         }

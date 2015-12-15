@@ -294,6 +294,12 @@
           },
           "nested-headers": {
             "title": "Nested headers"
+          },
+          "collapsible-columns": {
+            "title": "Collapsible Columns"
+          },
+          "trim-rows": {
+            "title": "Trim rows"
           }
 
         }

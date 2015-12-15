@@ -291,6 +291,9 @@
           },
           "hidden-rows": {
             "title": "Hidden rows"
+          },
+          "nested-headers": {
+            "title": "Nested headers"
           }
 
         }

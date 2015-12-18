@@ -26,8 +26,7 @@
     },
     "meta": {
       "title": "Handsontable",
-      "description": "JavaScript data grid editor. Excel-like grid editing with HTML & JavaScript",
-      "keyword": "data grid"
+      "description": "JavaScript data grid editor. Excel-like grid editing with HTML & JavaScript"
     },
     "linenums": true
   },

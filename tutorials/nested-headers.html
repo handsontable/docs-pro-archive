@@ -1,0 +1,80 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/nested-headers.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#example">Example</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+    <p>
+      The <i>Nested Rows</i> plugin allows creating a nested header structure, using the HTML's <code>colspan</code> attribute.
+      <br><br>
+      <strong>Note:</strong> the plugin supports a <i>nested</i> structure, which means any header cannot be wider than its "parent". In other words, headers cannot overlap each other.
+    </p>
+
+    <h3 id="setup">Setup</h3>
+    <p>
+      To make any header wider (covering multiple table columns), it's corresponding configuration array element should be provided as an object with <code>label</code> and <code>colspan</code> properties.
+      The <code>label</code> property defines the header's label, while the <code>colspan</code> property defines a number of columns that the header should cover.<br><br>
+      For example:
+    </p>
+    <pre><code class="js">nestedHeaders: [
+  ['A', {label: 'B', colspan: 8}, 'C'],
+  ['D', {label: 'E', colspan: 4}, {label: 'F', colspan: 4}, 'G'],
+  ['H', {label: 'I', colspan: 2}, {label: 'J', colspan: 2}, {label: 'K', colspan: 2}, {label: 'L', colspan: 2}, 'M'],
+  ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W']
+]</code></pre>
+
+    <h3 id="example">Example</h3>
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: Handsontable.helper.createSpreadsheetData(5,10),
+          colHeaders: true,
+          rowHeaders: true,
+          nestedHeaders: [
+            ['A', {label: 'B', colspan: 8}, 'C'],
+            ['D', {label: 'E', colspan: 4}, {label: 'F', colspan: 4}, 'G'],
+            ['H', {label: 'I', colspan: 2}, {label: 'J', colspan: 2}, {label: 'K', colspan: 2}, {label: 'L', colspan: 2}, 'M'],
+            ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W']
+          ]
+        });
+
+      </script>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,93 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/bind-rows-with-headers.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Quick setup</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+    <p>
+      The <i>Bind rows with headers</i> plugin allows, as it's name suggests, binding the table rows with their headers.<br>
+      If the plugin is enabled, the table row headers will "stick" to the rows. For example, if you move a row, the header content will move with it.
+      Basically, if at the initialization row <code>0</code> has a header titled <code>"A"</code>, it will be attached to it, no matter what you do with the table.
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+    <p>
+      To enable the plugin, simply set the <code>bindRowsWithHeaders</code> property to <code>true</code>, when initializing Handsontable.<br>
+      Try moving the rows in the example below, to see what this plugin actually does.
+    </p>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="common" data-dont-display="true">
+        var generateDataObj = function(rows, columns) {
+          var data = [];
+          var number = 0;
+
+          if (!rows) {
+            rows = 3;
+          }
+          if (!columns) {
+            columns = 7;
+          }
+
+          for (var i = 0; i < rows; i++) {
+            data[i] = [];
+            for (var j = 0; j < columns; j++) {
+              data[i][j] = number++;
+            }
+          }
+
+          for (i = 0; i < 2; i++) {
+            data.push([]);
+          }
+
+          return data;
+        };
+      </script>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: generateDataObj(),
+          colHeaders: true,
+          rowHeaders: true,
+          manualRowMove: true,
+          bindRowsWithHeaders: true
+        });
+      </script>
+
+    </div>
+
+  </div>
+</div>
+

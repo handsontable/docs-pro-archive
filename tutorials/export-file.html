@@ -1,0 +1,148 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/export-file.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Quick setup</a></li>
+      <li><a href="#options">Export options</a></li>
+      <li><a href="#examples">Live examples</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+
+    <p>
+      The <i>Export file</i> plugin allows exporting the table content to a <code>csv</code> file or a
+      <code>string</code>.<br>
+      The plugin provides an <code>API</code> to do that, but doesn't force you to use a specific UI.
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+
+    <p>
+      The plugin is enabled by default, so there is no additional configuration involved.
+    </p>
+
+    <h3 id="options">Export options</h3>
+
+    <p>
+      The plugin allows you to export the file as:
+    </p>
+    <ul>
+      <li>A <code>String</code>: <code>exportPlugin.exportAsString('csv');</code></li>
+      <li>A blob object: <code>exportPlugin.exportAsBlob('csv');</code></li>
+      <li>A downloadable <code>.csv</code> file: <code>exportPlugin.downloadFile('csv', {filename: 'MyFile'});</code>
+      </li>
+      <li>A <code>String</code> with specified data range: <pre><code class="javascript">exportPlugin.exportAsString('csv',
+        {
+        exportHiddenRows: true, // default false
+        exportHiddenColumns: true, // default false
+        columnHeaders: true, // default false
+        rowHeaders: true, // default false
+        columnDelimiter: ';', // default ','
+        range: [1, 1, 6, 6] // [startRow, endRow, startColumn, endColumn]
+        });</code></pre>
+      </li>
+    </ul>
+
+    <h3 id="examples">Live examples</h3>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+      <br>
+      <button id="export-string" class="intext-btn">
+        Export as a String
+      </button>
+      <button id="export-string-range" class="intext-btn">
+        Export as a String with a specified range
+      </button>
+      <button id="export-blob" class="intext-btn">
+        Export as a blob
+      </button>
+      <button id="export-file" class="intext-btn">
+        Export as a file
+      </button>
+
+      <p>
+        Result <small>(Also displayed in the browser console)</small>:
+        <textarea id="result" style="height: 100px;"></textarea>
+      </p>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: Handsontable.helper.createSpreadsheetData(3, 7),
+          colHeaders: true,
+          rowHeaders: true
+        });
+
+        var buttons = {
+          string: document.getElementById('export-string'),
+          stringRange: document.getElementById('export-string-range'),
+          blob: document.getElementById('export-blob'),
+          file: document.getElementById('export-file')
+        };
+
+        var exportPlugin = hot.getPlugin('exportFile');
+        var resultTextarea = document.getElementById('result');
+
+        buttons.string.addEventListener('click', function() {
+          resultTextarea.value = exportPlugin.exportAsString('csv');
+          console.log(resultTextarea.value);
+        });
+
+        buttons.stringRange.addEventListener('click', function() {
+          resultTextarea.value = exportPlugin.exportAsString('csv', {
+            exportHiddenRows: true,     // default false, exports the hidden rows
+            exportHiddenColumns: true,  // default false, exports the hidden columns
+            columnHeaders: true,        // default false, exports the column headers
+            rowHeaders: true,           // default false, exports the row headers
+            columnDelimiter: ';',       // default ',', the data delimiter
+            range: [1, 1, 3, 3]         // data range in format: [startRow, endRow, startColumn, endColumn]
+          });
+          console.log(resultTextarea.value);
+        });
+
+        buttons.blob.addEventListener('click', function() {
+          var blob = exportPlugin.exportAsBlob('csv');
+          resultTextarea.value = blob;
+          console.log(blob);
+        });
+
+        buttons.file.addEventListener('click', function() {
+          exportPlugin.downloadFile('csv', {filename: 'MyFile.csv'});
+        });
+
+      </script>
+
+    </div>
+
+  </div>
+</div>
+

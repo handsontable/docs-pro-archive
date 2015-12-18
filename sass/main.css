@@ -2369,7 +2369,7 @@ header {
   background: #FFF;
   z-index: 10000;
   /* [ styles only for desktop ] */
-  /* [ burger icon trigger 'show menu ] */ }
+  /* [ burger icon trigger 'show menu' ] */ }
   @media only screen and (min-width: 64.0625em) {
     header {
       padding: 32px 0 8px; } }
@@ -2727,6 +2727,11 @@ footer {
 
 /* context menu */
 .htContextMenu table tbody tr td {
+  font-size: 12px;
+  font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif; }
+
+/* dropdown menu */
+.htDropdownMenu {
   font-size: 12px;
   font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif; }
 

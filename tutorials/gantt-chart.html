@@ -1,0 +1,222 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/ganttChart.html"
+       class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>
+      <strong>On this page:</strong>
+    </p>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Plugin setup</a></li>
+      <li><a href="#options">Additional options</a></li>
+      <li><a href="#examples">Live examples</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="overview">Overview</h3>
+
+    <p>
+      The <i>ganttChart</i> plugin allows creating a Gantt Chart using a Handsontable instance. You can feed it with either a data array or
+      another Handsontable instance.
+      Time in the chart is divided into weeks and months. You can easily set the displayed year using the plugin's API.
+    </p>
+
+    <h3 id="setup">Plugin setup</h3>
+
+    <p>
+      Before setting up the chart plugin, you must first enable it's dependencies: <code>Hidden Columns</code> and <code>Column Headers</code><br>
+      To enable the plugin you need to set the <code>ganttChart</code> property to an object containing the configuration for the plugin.
+    </p>
+    <pre><code class="js">ganttChart: {
+  dataSource: data, // an object, containing information about the data source (see below)
+  firstWeekDay: 'monday', // sets the first day of the week to either 'monday' or 'sunday'
+  startYear: 2015 // sets the displayed year to the provided value
+}</code></pre>
+
+    <p>
+      The <code>data</code> object, in this example can be either:
+    </p>
+    <ul>
+      <li>An object containing the data for the chart, defined in this format:
+      <pre><code class="js">var data = [
+  {
+    startDate: '1/5/2015',
+    endDate: '1/20/2015',
+    additionalData: {label: 'Example label.', quantity: 'Four packs.'}
+  },
+  {
+    startDate: '1/11/2015',
+    endDate: '1/29/2015',
+    additionalData: {label: 'Another label.', quantity: 'One pack.'}
+  }
+];</code></pre>
+        As you can see, the data object in this case is represented as an <code>Array</code> of <code>Objects</code>.<br>
+        Each object represents a single "bar" of the chart. As the chart itself is date-related (it creates a calendar of some kind), all the
+        information is also based on dates. <br><br>
+        The object should consist of these properties:
+        <ul>
+          <li><code>startDate</code>: the date the "bar" should begin at.</li>
+          <li><code>endDate</code>: the date the "bar" should begin at.</li>
+          <li><code>additionalData</code>: additional data passed to the "bar". It could be any information you'd like to be connected with the specified time range.</li>
+        </ul>
+      </li>
+      <li>
+        An object containing binding configuration for another Handsontable instance:
+        <pre><code class="js">var data = {
+  instance: source, // reference to another Handsontable instance
+  startDateColumn: 4, // index of a column, which contains information about start dates of data ranges
+  endDateColumn: 5, // index of a column, which contains information about end dates of data ranges
+  additionalData: { // information about additional data passed to the chart, in this example:
+    label: 0, // labels are stored in the first column
+    quantity: 1 // quantity information is stored in the second column
+  }
+}</code></pre>
+      </li>
+    </ul>
+
+    <h3 id="options">Additional options</h3>
+    <p>
+      You can add custom colors to the chart-enabled table rows, by calling:
+      <pre><code class="js">hot.getPlugin('ganttChart').setRangeBarColors({
+  // shades by row:
+  0: ['#000', '#fff'], // first array element is the color of the full week, the second is the color of the partial week
+  2: ['#000', '#fff']
+});</code></pre>
+    </p>
+    <h3 id="examples">Live Examples</h3>
+    <h4>Object as data source</h4>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot" style="overflow: hidden;"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+        var dataObj = [
+          {
+            startDate: '1/5/2015',
+            endDate: '1/20/2015',
+            additionalData: {label: 'Label 1'}
+          },
+          {
+            startDate: '1/11/2015',
+            endDate: '1/29/2015',
+            additionalData: {label: 'Label 2'}
+          },
+          {
+            startDate: '2/1/2015',
+            endDate: '2/26/2015',
+            additionalData: {label: 'Label 3'}
+          },
+          {
+            startDate: '2/15/2015',
+            endDate: '3/26/2015',
+            additionalData: {label: 'Label 4'}
+          }
+        ];
+
+        var hot = new Handsontable(example1, {
+          data: [],
+          hiddenColumns: true,
+          colHeaders: true,
+          ganttChart: {
+            dataSource: dataObj,
+            firstWeekDay: 'monday',
+            startYear: 2015
+          },
+          width: 600,
+          height: 165
+        });
+
+      </script>
+    </div>
+
+    <h4>Another instance as data source</h4>
+
+    <div data-jsfiddle="example2">
+      <div>
+        <div id="example2-source" class="hot"></div><br>
+        <div id="example2" class="hot" style="overflow: hidden;"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var example2 = document.getElementById('example2');
+        var sourceHot = document.getElementById('example2-source');
+
+        var hotSource = new Handsontable(sourceHot, {
+          data: [
+            ['Label 1', '01/12/2015', '01/20/2016'],
+            ['Label 2', '01/11/2015', '01/29/2015'],
+            ['Label 3', '01/15/2015', '02/20/2015'],
+            ['Label 4', '01/03/2015', '03/29/2015'],
+            ['Label 5', '04/05/2015', '04/20/2015'],
+            ['Label 6', '02/11/2015', '05/29/2015'],
+            ['Label 7', '02/15/2015', '03/20/2015'],
+            ['Label 8', '03/02/2015', '04/12/2015']
+          ],
+          columns: [
+            {title: 'Label', type: 'text'},
+            {title: 'Start Date', type: 'date', dateFormat: 'MM/DD/YYYY', correctFormat: true},
+            {title: 'End Date', type: 'date', dateFormat: 'MM/DD/YYYY', correctFormat: true}
+          ]
+        });
+
+        var hot2 = new Handsontable(example2, {
+          data: [],
+          hiddenColumns: true,
+          colHeaders: true,
+          ganttChart: {
+            dataSource: {
+              instance: hotSource,
+              startDateColumn: 1,
+              endDateColumn: 2,
+              additionalData: {
+                label: 0
+              }
+            },
+            firstWeekDay: 'monday',
+            startYear: 2015
+          },
+          width: 600,
+          height: 255
+        });
+
+      </script>
+    </div>
+
+  </div>
+</div>
+

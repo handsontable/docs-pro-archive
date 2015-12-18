@@ -147,8 +147,8 @@
           "moving": {
             "title": "Moving"
           },
-          "hiding": {
-            "title": "Hiding"
+          "header-tooltips": {
+            "title": "Header tooltips"
           }
         }
       },
@@ -162,8 +162,14 @@
           "freezing-bottom": {
             "title": "Freezing at the bottom"
           },
-          "trimming": {
+          "hidden-rows": {
+            "title": "Hiding rows"
+          },
+          "trimming-rows": {
             "title": "Trimming"
+          },
+          "bind-rows-headers": {
+            "title": "Bind rows with headers"
           }
         }
       },
@@ -177,11 +183,14 @@
           "freezing": {
             "title": "Freezing"
           },
-          "nested-headers": {
-            "title": "Nested headers"
+          "hiding-columns": {
+            "title": "Hiding"
+          },
+          "collapsing-columns": {
+            "title": "Collapsing"
           },
           "nested-headers": {
-            "title": "Collapsing headers"
+            "title": "Nested headers"
           },
           "dropdown-menu": {
             "title": "Dropdown menu"
@@ -308,6 +317,9 @@
           },
           "export-file": {
             "title": "Export to file"
+          },
+          "gantt-chart": {
+            "title": "Gantt Chart"
           }
         }
       },

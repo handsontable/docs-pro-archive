@@ -75,9 +75,6 @@
           "testing": {
             "title": "Testing"
           },
-          "contributing": {
-            "title": "Contributing"
-          },
           "performance-tips": {
             "title": "Performance tips"
           },
@@ -162,8 +159,8 @@
           "freezing-bottom": {
             "title": "Freezing at the bottom"
           },
-          "hidden-rows": {
-            "title": "Hiding rows"
+          "hiding-rows": {
+            "title": "Hiding"
           },
           "trimming-rows": {
             "title": "Trimming"
@@ -218,30 +215,6 @@
           },
           "summary-calculations": {
             "title": "Summary calculations"
-          }
-        }
-      },
-      "cell-features-demos": {
-        "title": "Cell features",
-        "demo": true,
-        "children": {
-          "data-validation": {
-            "title": "Data validation"
-          },
-          "drag-down": {
-            "title": "Drag down"
-          },
-          "merged-cells": {
-            "title": "Merged cells"
-          },
-          "alignment": {
-            "title": "Alignment"
-          },
-          "read-only": {
-            "title": "Read-only"
-          },
-          "disabled-editing": {
-            "title": "Disabled editing"
           }
         }
       },

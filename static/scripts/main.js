@@ -141,9 +141,9 @@ function onSearchKeyUp() {
 
   if (value) {
     regexp = new RegExp(value, 'i');
-    $el.find('li, .itemMembers, .subheader, .sublist, .title.inner').hide();
+    $el.find('.list li, .itemMembers, .subheader, .sublist, .title.inner').hide();
 
-    $el.find('li').each(function (i, v) {
+    $el.find('.list li').each(function (i, v) {
       var $item = $(v);
 
       if ($item.data('name') && !$item.hasClass('multiple') && regexp.test($item.find("a").first().text())) {
@@ -239,7 +239,7 @@ function buildBreadcrumbs() {
   // links
   docsLink = document.createElement('a');
   docsLink.href = '/';
-  docsLink.text = 'Documentation';
+  docsLink.text = 'Docs';
 
   if ($('.source').size() > 0 || !$activeLink.length) {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');

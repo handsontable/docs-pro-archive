@@ -2730,6 +2730,11 @@ footer {
   font-size: 12px;
   font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif; }
 
+/* dropdown menu */
+.htDropdownMenu {
+  font-size: 12px;
+  font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif; }
+
 /* datepicker */
 .htDatepickerHolder button {
   transition: none; }
@@ -2866,12 +2871,40 @@ body {
   .navigation .version {
     font-size: 10px;
     color: #454545; }
-  .navigation .search input {
-    border: 1px solid #C5C5C5;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px 12px;
+  .navigation .search {
     font-size: 13px; }
+    .navigation .search > ul {
+      border: 1px solid #C5C5C5;
+      width: 25%;
+      float: right;
+      background-color: #F5F5F5;
+      border-radius: 0 3px 3px 0;
+      font-weight: 600; }
+      .navigation .search > ul > li {
+        padding: 9px 7px 9px 10px; }
+      .navigation .search > ul ul {
+        border: 1px solid #C5C5C5;
+        top: 35px;
+        right: 0;
+        box-shadow: none;
+        background: #fff; }
+        .navigation .search > ul ul a {
+          display: block;
+          padding: 0 31px 0 10px;
+          text-decoration: none; }
+        .navigation .search > ul ul:before, .navigation .search > ul ul:after {
+          display: none; }
+    .navigation .search svg {
+      width: 8px;
+      height: 8px;
+      margin-left: 12px; }
+    .navigation .search input {
+      border: 1px solid #C5C5C5;
+      width: 75%;
+      padding: 8px 12px;
+      border-right: none;
+      margin-bottom: 10px;
+      border-radius: 3px 0 0 3px; }
   .navigation .app-name {
     margin: 0;
     padding: 0 12px 6px;
@@ -3002,13 +3035,6 @@ body {
   .main h4 {
     font-weight: bold;
     font-size: 1em; }
-  .main h3::before,
-  .main h4::before {
-    display: block;
-    content: " ";
-    margin-top: -6rem;
-    height: 6rem;
-    visibility: hidden; }
   .main h5 {
     font-weight: bold;
     font-size: 14px; }
@@ -3380,7 +3406,9 @@ nav, .breadcrumbs {
     margin: 0;
     content: ""; }
   .breadcrumbs select.hot-chooser {
-    border: 1px solid #CFCFCF;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    border-bottom-style: dotted;
     height: 25px;
     padding: 0 0 0 5px;
     display: inline;
@@ -3394,7 +3422,7 @@ section .heading hr {
 .static-content {
   position: relative; }
   .static-content h3 {
-    margin: 1rem 0;
+    margin: 1.5rem 0 1rem;
     font-weight: 600;
     font-size: 18px; }
   .static-content .head-gap {
@@ -3415,10 +3443,10 @@ section .heading hr {
   .static-content .buttons {
     margin-bottom: 0.3rem;
     position: absolute;
-    top: 6px;
+    top: 4px;
     right: 6px; }
   .static-content .buttons button, .static-content button.intext-btn {
-    padding: .4rem .5rem;
+    padding: .3rem .5rem .31rem;
     color: #fff;
     font-size: 12px;
     border: none;
@@ -3438,10 +3466,9 @@ section .heading hr {
   .static-content .index-list {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd; }
+    border-bottom: 1px solid #E3E3E3; }
     .static-content .index-list ul > li {
-      margin-left: 0;
-      list-style: none; }
+      margin-left: 3rem; }
   .static-content code {
     margin: 0 2px;
     padding: 0.2rem 0.3rem;

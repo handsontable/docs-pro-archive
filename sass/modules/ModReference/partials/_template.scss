@@ -39,13 +39,44 @@ body {
   }
 
   .search {
+    font-size: 13px;
+    & > ul {
+      @include border ($middleGray);
+      width: 25%;
+      float: right;
+      background-color: #F5F5F5;
+      border-radius: 0 3px 3px 0;
+      font-weight: 600;
+      > li {
+        padding: 9px 7px 9px 10px;
+      }
+      ul {
+        @include border ($middleGray);
+        top: 35px;
+        right: 0;
+        box-shadow: none;
+        background: #fff;
+        a {
+          display: block;
+          padding: 0 31px 0 10px;
+          text-decoration: none;
+        }
+        &:before, &:after {
+          display: none;
+        }
+      }
+    }
+    svg {
+      @include rectangle (8px, 8px);
+      margin-left: 12px;
+    }
     input {
       @include border ($middleGray);
-      width: 100%;
-      margin-bottom: 10px;
+      width: 75%;
       padding: 8px 12px;
-      font-size: 13px;
-
+      border-right: none;
+      margin-bottom: 10px;
+      border-radius: 3px 0 0 3px;
     }
   }
   .app-name {
@@ -228,16 +259,6 @@ body {
   h4 {
     font-weight: bold;
     font-size: 1em;
-  }
-
-  //compensate the hashtag links scrolling
-  h3::before,
-  h4::before {
-    display: block;
-    content: " ";
-    margin-top: -6rem;
-    height: 6rem;
-    visibility: hidden;
   }
 
   h5 {

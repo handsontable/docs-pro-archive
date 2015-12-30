@@ -320,6 +320,7 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.layout = 'layout.tmpl';
 
   extendTutorialsObj(tutorials, "external");
+  extendTutorialsObj(tutorials, "pro");
   extendTutorialsObj(tutorials, "demo");
   extendTutorialsObj(tutorials, "since");
 

@@ -138,9 +138,6 @@
           "fixing": {
             "title": "Fixing"
           },
-          "fixing-bottom": {
-            "title": "Fixing bottom rows"
-          },
           "resizing": {
             "title": "Resizing"
           },
@@ -148,7 +145,8 @@
             "title": "Moving"
           },
           "header-tooltips": {
-            "title": "Header tooltips"
+            "title": "Header tooltips",
+            "pro": true
           }
         }
       },
@@ -159,17 +157,21 @@
           "pre-populating": {
             "title": "Pre-populating"
           },
-          "freezing-bottom": {
-            "title": "Freezing at the bottom"
+          "fixing-bottom": {
+            "title": "Fixing bottom rows",
+            "pro": true
           },
           "hiding-rows": {
-            "title": "Hiding"
+            "title": "Hiding",
+            "pro": true
           },
           "trimming-rows": {
-            "title": "Trimming"
+            "title": "Trimming",
+            "pro": true
           },
           "bind-rows-headers": {
-            "title": "Bind rows with headers"
+            "title": "Bind rows with headers",
+            "pro": true
           }
         }
       },
@@ -184,16 +186,20 @@
             "title": "Freezing"
           },
           "hiding-columns": {
-            "title": "Hiding"
+            "title": "Hiding",
+            "pro": true
           },
           "collapsing-columns": {
-            "title": "Collapsing"
+            "title": "Collapsing",
+            "pro": true
           },
           "nested-headers": {
-            "title": "Nested headers"
+            "title": "Nested headers",
+            "pro": true
           },
           "dropdown-menu": {
-            "title": "Dropdown menu"
+            "title": "Dropdown menu",
+            "pro": true
           }
         }
       },
@@ -211,13 +217,15 @@
             "title": "Searching"
           },
           "filtering": {
-            "title": "Filtering"
+            "title": "Filtering",
+            "pro": true
           },
           "formula-support": {
             "title": "Formula support"
           },
           "summary-calculations": {
-            "title": "Summary calculations"
+            "title": "Summary calculations",
+            "pro": true
           }
         }
       },
@@ -292,10 +300,12 @@
             "title": "Comments"
           },
           "export-file": {
-            "title": "Export to file"
+            "title": "Export to file",
+            "pro": true
           },
           "gantt-chart": {
-            "title": "Gantt Chart"
+            "title": "Gantt Chart",
+            "pro": true
           }
         }
       },

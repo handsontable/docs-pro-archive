@@ -138,6 +138,9 @@
           "fixing": {
             "title": "Fixing"
           },
+          "fixing-bottom": {
+            "title": "Fixing bottom rows"
+          },
           "resizing": {
             "title": "Resizing"
           },

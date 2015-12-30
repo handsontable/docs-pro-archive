@@ -1,0 +1,45 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/fixed-rows-and-columns.html" class="edit-doc" target="_blank">
+      Edit this page
+    </a>
+    <p>You can <i>freeze</i> (or <i>fix</i>) the bottom rows of the table, by using the <code>fixedRowsBottom</code> config option. This way, when you're scrolling the table,
+    the fixed rows will stay at the bottom edge of the table's container.</p>
+    <p>Example below shows a table with two bottom rows fixed.</p>
+
+    <strong id="positions"></strong>
+
+    <div data-jsfiddle="example" class="scroll-container fixed-container">
+      <div id="example" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example">
+        var
+        myData = Handsontable.helper.createSpreadsheetData(100, 50),
+        container = document.getElementById('example'),
+        hot;
+
+        hot = new Handsontable(container, {
+          data: myData,
+          rowHeaders: true,
+          colHeaders: true,
+          fixedRowsBottom: 2
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

@@ -15,11 +15,9 @@
     <h3 id="testing-in-browser">Testing in browser</h3>
     <p>To run the Jasmine tests in your browser, go to the following pages:</p>
     <ul>
-      <li><a href="http://localhost/handsontable/test/jasmine/SpecRunner.html">http://localhost/handsontable/test/jasmine/SpecRunner.html</a>
-        - (Handsontable main test suite)
-      </li>
-      <li><a href="http://localhost/handsontable/src/3rdparty/walkontable/test/jasmine/SpecRunner.html">http://localhost/handsontable/src/3rdparty/walkontable/test/jasmine/SpecRunner.html</a>
-        - (Walkontable test suite)
+      <li><a href="http://localhost/handsontable/test/jasmine/SpecRunner.html">http://localhost/handsontablePro/test/jasmine/SpecRunner.html</a>
+        - Runs the tests in the browser. Note, that it runs only the Pro test suite, unless <code>grunt test-free</code> was run before (in that case, the Handsontable Free tests will be processed), as running the tests
+        in the CLI generates the SpecRunner template.
       </li>
     </ul>
   </div>
@@ -29,10 +27,10 @@
       on page <a href="/<?js= version ?>/tutorial-custom-build.html">Building</a>).</p>
     <p>Useful commands:</p>
     <ul>
-      <li><code>grunt test</code> - runs all test cases (Handsotnable and Walkontable)</li>
-      <li><code>grunt test:handsontable</code> - runs only Handsontable tests</li>
-      <li><code>grunt test:walkontable</code> - runs only Walkontable tests</li>
-      <li><code>grunt test --filter autocomplete</code> - runs only tests and suites matching the name &quot;autocomplete&quot;
+      <li><code>grunt test</code> - runs all test cases (Handsotnable Free and Handsontable Pro)</li>
+      <li><code>grunt test-free</code> - runs only Handsontable Free tests</li>
+      <li><code>grunt test-pro</code> - runs only Handsontable Pro tests</li>
+      <li><code>grunt test --filter CollapsibleColumns</code> - runs only tests and suites matching the name &quot;CollapsibleColumns&quot;
       </li>
     </ul>
   </div>

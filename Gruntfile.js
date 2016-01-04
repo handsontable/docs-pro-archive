@@ -258,8 +258,8 @@ module.exports = function (grunt) {
       }
 
       clearInterval(timer);
-      grunt.task.run('generate-doc-versions');
       grunt.task.run('build');
+      grunt.task.run('generate-doc-versions');
 
       done();
     }, 50);

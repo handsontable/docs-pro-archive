@@ -1,7 +1,9 @@
 
 var copyObject = require('copy-object');
 var gitHelper = require('./git-helper');
+var fs = require('fs');
 
+var env = JSON.parse(fs.readFileSync('.env.json'));
 
 module.exports = function (shipit) {
   require('shipit-deploy')(shipit);
@@ -55,7 +57,7 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && grunt --hot-pro-version=' + gitInfo.branch);
 
     }).then(function() {
-      gitHelper.setupGitApi(process.env.GITHUB_TOKEN, process.env.GITLAB_TOKEN);
+      gitHelper.setupGitApi(env.GITHUB_TOKEN, env.GITLAB_TOKEN);
 
       return gitHelper.getHotLatestRelease();
 

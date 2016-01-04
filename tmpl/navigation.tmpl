@@ -142,7 +142,7 @@
           <span class="title extensible" data-list-id="<?js= item.longname ?>">
         <?js } ?>
           <a class="link-header" href="#"><?js= item.longname ?>
-          <?js if (item.isPro) { ?>
+          <?js if (plugins.length === 1 && item.isPro) { ?>
             <sup>PRO</sup>
           <?js } ?>
           </a>

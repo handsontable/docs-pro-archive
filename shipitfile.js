@@ -55,13 +55,7 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && bower install --config.interactive=false -F');
 
     }).then(function() {
-      return shipit.remote('cd ' + path + ' && grunt update-hot --hot-version=' + gitInfo.branch);
-
-    }).then(function() {
-      return shipit.remote('cd ' + path + ' && grunt build --force');
-
-    }).then(function() {
-      return shipit.remote('cd ' + path + ' && grunt generate-doc-versions');
+      return shipit.remote('cd ' + path + ' && grunt --hot-pro-version=' + gitInfo.branch);
 
     }).then(function() {
       return gitHelper.getHotLatestRelease();

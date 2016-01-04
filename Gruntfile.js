@@ -29,7 +29,7 @@ module.exports = function (grunt) {
       HOT_PRO_SRC_PATH = 'src/handsontable-pro',
       HOT_PRO_DEFAULT_BRANCH = 'master',
       HOT_REPO = 'https://github.com/handsontable/handsontable.git',
-      HOT_PRO_REPO = 'https://git.handsontable.com/handsontable/handsontable-pro.git',
+      HOT_PRO_REPO = 'git@git.handsontable.com:handsontable/handsontable-pro.git',
       querystring = require('querystring');
 
   function getHotProBranch() {

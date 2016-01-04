@@ -62,8 +62,6 @@ module.exports = function (shipit) {
       return gitHelper.getHotLatestRelease();
 
     }).then(function(objectInfo) {
-      console.log(objectInfo);
-
       if (!objectInfo) {
         console.warn('Error retrieving the latest hot version from github.');
 

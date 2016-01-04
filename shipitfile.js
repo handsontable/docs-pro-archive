@@ -55,9 +55,13 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && grunt --hot-pro-version=' + gitInfo.branch);
 
     }).then(function() {
+      gitHelper.setupGitApi(process.env.GITHUB_TOKEN, process.env.GITLAB_TOKEN);
+
       return gitHelper.getHotLatestRelease();
 
     }).then(function(objectInfo) {
+      console.log(objectInfo);
+
       if (!objectInfo) {
         console.warn('Error retrieving the latest hot version from github.');
 

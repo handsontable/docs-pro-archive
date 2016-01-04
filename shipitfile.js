@@ -10,8 +10,8 @@ module.exports = function (shipit) {
     gitInfo = gitHelper.getLocalInfo(),
     config = {
       servers: 'deploy@142.4.202.189:22022',
-      workspace: '/tmp/docs.handsontable.com/' + gitInfo.branch,
-      repositoryUrl: 'https://github.com/handsontable/docs.git',
+      workspace: '/tmp/docs-pro.handsontable.com/' + gitInfo.branch,
+      repositoryUrl: 'https://github.com/handsontable/docs-pro.git',
       branch: gitInfo.branch,
       ignores: ['.git', 'node_modules'],
       rsync: ['--force', '--delete', '--delete-excluded', '-I', '--stats', '--chmod=ug=rwX'],
@@ -20,15 +20,15 @@ module.exports = function (shipit) {
     };
 
   shipit.initConfig({
-    production: (function() {
-      config = copyObject(config);
-      config.deployTo = '/home/httpd/docs.handsontable.com/' + gitInfo.branch;
-
-      return config;
-    }()),
+    //production: (function() {
+    //  config = copyObject(config);
+    //  config.deployTo = '/home/httpd/docs-pro.handsontable.com/' + gitInfo.branch;
+    //
+    //  return config;
+    //}()),
     development: (function() {
       config = copyObject(config);
-      config.deployTo = '/home/httpd/dev-docs.handsontable.com/' + gitInfo.branch;
+      config.deployTo = '/home/httpd/dev-docs-pro.handsontable.com/' + gitInfo.branch;
       config.keepReleases = 1;
 
       return config;

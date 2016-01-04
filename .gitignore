@@ -1,6 +1,7 @@
 .idea/
 .env.json
 .sass-cache
-bower_components
-node_modules
-generated
+bower_components/
+node_modules/
+generated/
+src/

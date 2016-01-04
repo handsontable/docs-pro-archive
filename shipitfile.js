@@ -11,7 +11,7 @@ module.exports = function (shipit) {
     config = {
       servers: 'deploy@142.4.202.189:22022',
       workspace: '/tmp/docs-pro.handsontable.com/' + gitInfo.branch,
-      repositoryUrl: 'https://github.com/handsontable/docs-pro.git',
+      repositoryUrl: 'git@github.com:handsontable/docs-pro.git',
       branch: gitInfo.branch,
       ignores: ['.git', 'node_modules'],
       rsync: ['--force', '--delete', '--delete-excluded', '-I', '--stats', '--chmod=ug=rwX'],
@@ -50,9 +50,6 @@ module.exports = function (shipit) {
 
     shipit.remote('cd ' + path + ' && npm install --production').then(function() {
       return shipit.remote('cd ' + path + ' && cp ../../../web.env .env.json');
-
-    }).then(function() {
-      return shipit.remote('cd ' + path + ' && bower install --config.interactive=false -F');
 
     }).then(function() {
       return shipit.remote('cd ' + path + ' && grunt --hot-pro-version=' + gitInfo.branch);

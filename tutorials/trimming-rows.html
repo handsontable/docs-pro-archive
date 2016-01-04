@@ -49,15 +49,14 @@
                 </button>
             </div>
             <script data-jsfiddle="example1">
-                var example1 = document.getElementById('example1');
+            var example1 = document.getElementById('example1');
 
-                var hot = new Handsontable(example1, {
-                    data: Handsontable.helper.createSpreadsheetData(10, 4),
-                    colHeaders: true,
-                    rowHeaders: true,
-                    trimRows: [1, 2, 5]
-                });
-
+            var hot = new Handsontable(example1, {
+                data: Handsontable.helper.createSpreadsheetData(10, 4),
+                colHeaders: true,
+                rowHeaders: true,
+                trimRows: [1, 2, 5]
+            });
             </script>
         </div>
 
@@ -75,8 +74,8 @@
             to the <code>trimRows</code> method:
         </p>
     <pre><code class="js">plugin.trimRow(0, 4, 6);
-        // or
-        plugin.trimRows([0, 4, 6]);</code></pre>
+// or
+plugin.trimRows([0, 4, 6]);</code></pre>
 
         <p>To restore the trimmed row(s), use the following methods:</p>
         <pre><code class="js">plugin.untrimRow(4);</code></pre><br>

@@ -39,15 +39,14 @@
       <li>A <a href="https://developer.mozilla.org/pl/docs/Web/API/Blob">blob</a> object: <code>exportPlugin.exportAsBlob('csv');</code></li>
       <li>A downloadable <code>.csv</code> file: <code>exportPlugin.downloadFile('csv', {filename: 'MyFile'});</code>
       </li>
-      <li>A <code>String</code> with specified data range: <pre><code class="javascript">exportPlugin.exportAsString('csv',
-        {
-        exportHiddenRows: true, // default false
-        exportHiddenColumns: true, // default false
-        columnHeaders: true, // default false
-        rowHeaders: true, // default false
-        columnDelimiter: ';', // default ','
-        range: [1, 1, 6, 6] // [startRow, endRow, startColumn, endColumn]
-        });</code></pre>
+      <li>A <code>String</code> with specified data range: <pre><code class="javascript">exportPlugin.exportAsString('csv', {
+  exportHiddenRows: true, // default false
+  exportHiddenColumns: true, // default false
+  columnHeaders: true, // default false
+  rowHeaders: true, // default false
+  columnDelimiter: ';', // default ','
+  range: [1, 1, 6, 6] // [startRow, endRow, startColumn, endColumn]
+});</code></pre>
       </li>
     </ul>
 

@@ -58,7 +58,9 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/outro.js',
           // Pro package
           HOT_PRO_SRC_PATH + '/src/**/*.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
           '!' + HOT_PRO_SRC_PATH + '/src/**/*.spec.js',
+          '!' + HOT_PRO_SRC_PATH + '/src/plugins/ganttChart/dateCalculator.js',
           '!' + HOT_PRO_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
           '!' + HOT_PRO_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
         ],

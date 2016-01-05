@@ -22,12 +22,12 @@ module.exports = function (shipit) {
     };
 
   shipit.initConfig({
-    //production: (function() {
-    //  config = copyObject(config);
-    //  config.deployTo = '/home/httpd/docs-pro.handsontable.com/' + gitInfo.branch;
-    //
-    //  return config;
-    //}()),
+    production: (function() {
+      config = copyObject(config);
+      config.deployTo = '/home/httpd/docs-pro.handsontable.com/' + gitInfo.branch;
+
+      return config;
+    }()),
     development: (function() {
       config = copyObject(config);
       config.deployTo = '/home/httpd/dev-docs-pro.handsontable.com/' + gitInfo.branch;

@@ -35,8 +35,9 @@ $(function () {
   $('.pro-switch').on('click', function(event) {
     event.preventDefault();
   });
-  $('.free-switch').on('click', function() {
+  $('.free-switch').on('click', function(event) {
     goTo(getDocUrl('latest'));
+    event.preventDefault();
   });
 
   updateNav(true);

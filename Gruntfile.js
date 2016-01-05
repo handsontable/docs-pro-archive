@@ -213,15 +213,9 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('default', ['set-env', 'authenticate-git', 'update-hot-pro', 'update-hot', 'generate-docs']);
+  grunt.registerTask('default', ['env:build', 'authenticate-git', 'update-hot-pro', 'update-hot', 'generate-docs']);
 
-  grunt.registerTask('build', ['set-env', 'authenticate-git', 'build-docs']);
-
-  grunt.registerTask('set-env', 'Set the needed environmental variables', function () {
-    if (!process.env.GITHUB_TOKEN || process.env.GITLAB_TOKEN) {
-      grunt.task.run('env:build');
-    }
-  });
+  grunt.registerTask('build', ['env:build', 'authenticate-git', 'build-docs']);
 
   grunt.registerTask('authenticate-git', 'Authenticate Github and Gitlab', function () {
     if (!gitHelper.gitlab || !gitHelper.github) {

@@ -36,7 +36,11 @@ $(function () {
     event.preventDefault();
   });
   $('.free-switch').on('click', function(event) {
-    goTo(getDocUrl('latest'));
+    if (config.isProFeature) {
+      goTo(getDocUrl('latest').replace(/(latest\/)(.*)/, '$1tutorial-introduction.html'));
+    } else {
+      goTo(getDocUrl('latest'));
+    }
     event.preventDefault();
   });
 

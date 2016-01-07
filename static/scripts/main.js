@@ -232,7 +232,7 @@ function buildBreadcrumbs() {
 
   // links
   docsLink = document.createElement('a');
-  docsLink.href = '/';
+  docsLink.href = '/pro';
   docsLink.text = 'Docs';
 
   if ($('.source').size() > 0 || !$activeLink.length) {

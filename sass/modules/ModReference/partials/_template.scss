@@ -269,6 +269,15 @@ body {
     font-size: 14px;
   }
 
+  h3::before,
+  h4::before {
+    display: block;
+    content: " ";
+    margin-top: -6rem;
+    height: 6rem;
+    visibility: hidden;
+  }
+
   dd {
     font-size: 13px;
     margin-left: 20px;

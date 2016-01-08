@@ -123,19 +123,19 @@
 
             <pre>
     <code class="javascript">columnSummary: [
-      {
-      destinationRow: 2,
-      destinationColumn: 2,
-      type: 'min',
-      // other options...
-      },
-      {
-      destinationRow: 3,
-      destinationColumn: 3,
-      type: 'max',
-      // other options...
-      }
-      ]</code></pre>
+  {
+    destinationRow: 2,
+    destinationColumn: 2,
+    type: 'min',
+    // other options...
+  },
+  {
+    destinationRow: 3,
+    destinationColumn: 3,
+    type: 'max',
+    // other options...
+  }
+]</code></pre>
     </p>
 
 
@@ -305,7 +305,7 @@
               columnSummary: [
                 {
                   ranges: [
-                    [0,4],[6],[8,9]
+                    [0, 4], [6], [8, 9]
                   ],
                   destinationRow: 0,
                   destinationColumn: 0,
@@ -387,61 +387,61 @@
     <p>Calculates a sum of values in the specified column and row range.<br><br>
       Usage:</p>
     <pre><code class="javascript">columnSummary: [
-      {
-      // ...
-      type: 'sum'
-      }
-      ]</code></pre>
+  {
+    // ...
+    type: 'sum'
+  }
+]</code></pre>
 
     <h3 id="min">Min</h3>
     <p>Finds the lowest value in the specified column and row range.</p>
     <pre><code class="javascript">columnSummary: [
-      {
-      // ...
-      type: 'min'
-      }
-      ]</code></pre>
+  {
+    // ...
+    type: 'min'
+  }
+]</code></pre>
 
     <h3 id="max">Max</h3>
     <p>Finds the highest value in the specified column and row range.</p>
     <pre><code class="javascript">columnSummary: [
-      {
-      // ...
-      type: 'max'
-      }
-      ]</code></pre>
+  {
+    // ...
+    type: 'max'
+  }
+]</code></pre>
 
     <h3 id="count">Count</h3>
     <p>Counts the non-empty values in the specified column and row range.</p>
     <pre><code class="javascript">columnSummary: [
-      {
-      // ...
-      type: 'count'
-      }
-      ]</code></pre>
+  {
+    // ...
+    type: 'count'
+  }
+]</code></pre>
 
     <h3 id="average">Average</h3>
     <p>Counts the average from the values in the specified column and row range.</p>
     <pre><code class="javascript">columnSummary: [
-      {
-      // ...
-      type: 'average'
-      }
-      ]</code></pre>
+  {
+    // ...
+    type: 'average'
+  }
+]</code></pre>
 
     <h3 id="custom">Custom</h3>
     <p>Takes a custom function and applies ot to the values in the specified column and row range.</p>
     <pre><code class="javascript">columnSummary: [
-      {
-      // ...
-      type: 'custom',
-      customFunction: function (endpoint) {
+  {
+    // ...
+    type: 'custom',
+    customFunction: function(endpoint) {
       // endpoint is an object containing the endpoint data
 
       // your function
-      }
-      }
-      ]</code></pre>
+    }
+  }
+]</code></pre>
 
     <h3>Example:</h3>
 
@@ -587,7 +587,7 @@
           data: [
             [0, 1, 2],
             ['3c', '4', 5],
-            [],[]
+            [], []
           ],
           colHeaders: true,
           rowHeaders: true,
@@ -621,11 +621,11 @@
       By default, <code>suppressDataTypeErrors</code> is set to <code>true</code>.
     </p>
         <pre><code class="javascript">columnSummary: [
-          {
-          // ...
-          suppressDataTypeErrors: false
-          }
-          ]</code></pre>
+  {
+    // ...
+    suppressDataTypeErrors: false
+  }
+]</code></pre>
 
     <h3 id="read-only">Making the endpoint cells read-only</h3>
     <p>

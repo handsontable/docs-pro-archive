@@ -72,7 +72,7 @@ $(function () {
 
 function updateNav(scroll) {
   // Show an item related a current documentation automatically
-  var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
+  var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '').replace(/_$/, '');
   var $currentItem = $('.navigation .item[data-name="' + filename + '"]:not(.multiple):eq(0), .navigation .item .extensible[data-name="' + filename + '"]:eq(0)');
   var $currentSubItem = $('.navigation .sub-item[data-name="' + filename + '"]:eq(0)');
   var $current;

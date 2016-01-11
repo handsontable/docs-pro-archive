@@ -224,7 +224,7 @@ function buildBreadcrumbs() {
     options.push('</optgroup>');
 
     return '<span>' +
-      '<select class="hot-chooser" onchange="goTo(getDocUrl(this.value))" selected="' + hotVersion + '">' +
+      '<select class="hot-chooser" onchange="goTo(getDocUrl(\'pro/\' + this.value))" selected="' + hotVersion + '">' +
       options.join('') +
       '</select>' +
       '</span>';

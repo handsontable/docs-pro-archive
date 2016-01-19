@@ -82,7 +82,11 @@
           <?js if (item.members.length) { ?>
             <span class="subtitle">Members</span>
             <?js item.members.forEach(function (v) { ?>
-              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?>
+                <?js if (v.pro) { ?>
+                <sup>PRO</sup>
+                <?js } ?>
+              </li>
             <?js }); ?>
           <?js } ?>
         </ul>

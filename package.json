@@ -4,11 +4,11 @@
   "homepage": "http://docs.handsontable.com/",
   "private": true,
   "bugs": {
-    "url": "https://github.com/handsontable/docs/issues"
+    "url": "https://github.com/handsontable/docs-pro/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/handsontable/docs.git"
+    "url": "git://github.com/handsontable/docs-pro.git"
   },
   "author": "Handsoncode sp. z o.o. <hello@handsontable.com>",
   "version": "0.1.0",

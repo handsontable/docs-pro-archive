@@ -290,6 +290,15 @@ function buildNav(members) {
     });
   }
 
+  var plugins = nav.plugins;
+
+  nav.plugins = {};
+
+  // Sort plugins alphabetically
+  Object.keys(plugins).sort().forEach(function(pluginName) {
+    nav.plugins[pluginName] = plugins[pluginName];
+  });
+
   return nav;
 }
 

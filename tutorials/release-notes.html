@@ -14,9 +14,7 @@
                     The <code>afterValidate</code> hook will not provide the *visual* row indexes, instead of the *logical* ones. For example, if the first row becomes the seventh row after sorting the table, the <code>afterValidate</code> hook will provide <code>6</code> as the row index.
 
                     To translate the *visual* row to the *logical* row, you can use the <code>translateRow</code> method of the <code>columnSorting</code> plugin.
-                    ```js
-                    var logicalRow = hotInstance.getPlugin('columnSorting').translateRow(row);
-                    ```
+                    <pre><code class="lang-js">var logicalRow = hotInstance.getPlugin('columnSorting').translateRow(row);</code></pre>
                     Related issue: <a href="https://github.com/handsontable/handsontable/issues/3132" target="_blank">Handosntable Open Source issue 3132</a>
                 </li>
                 <li>Fix problem, where pasting a dataset which row count exceeds the number of rows in the table nothing happened. (<a href="https://github.com/handsontable/handsontable/issues/18" target="_blank">18</a>)</li>

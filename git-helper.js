@@ -54,6 +54,17 @@ exports.getHotLatestRelease = function getHotLatestRelease(range) {
     gitlab.projects.show('handsontable/handsontable-pro', function(project) {
       gitlab.projects.listTags(project, function(tagList) {
         if (tagList && tagList.length > 0) {
+          tagList = tagList.sort(function(a, b) {
+            if (semver.lt(a.name, b.name)) {
+              return 1;
+            }
+            if (semver.gt(a.name, b.name)) {
+              return -1;
+            }
+
+            return 0;
+          });
+
           if (range) {
             tagList = tagList.filter(function(release) {
               return semver.satisfies(release.name, range);

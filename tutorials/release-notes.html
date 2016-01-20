@@ -11,7 +11,7 @@
                 <li>
                     <strong>Backward incompatible change</strong>
                     <br>
-                    The <code>afterValidate</code> hook will not provide the <i>visual</i> row indexes, instead of the <i>logical</i> ones. For example, if the first row becomes the seventh row after sorting the table, the <code>afterValidate</code> hook will provide <code>6</code> as the row index.
+                    The <code>afterValidate</code> hook will provide the <i>visual</i> row indexes, instead of the <i>logical</i> ones. For example, if the first row becomes the seventh row after sorting the table, the <code>afterValidate</code> hook will provide <code>6</code> as the row index.
 
                     To translate the <i>visual</i> row to the <i>logical</i> row, you can use the <code>translateRow</code> method of the <code>columnSorting</code> plugin (<a href="https://github.com/handsontable/handsontable/issues/3132" target="_blank">#3132</a>).
                     <pre><code class="lang-js">var logicalRow = hotInstance.getPlugin('columnSorting').translateRow(row);</code></pre>

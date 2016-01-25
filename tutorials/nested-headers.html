@@ -16,15 +16,17 @@
 
     <h3 id="overview">Overview</h3>
     <p>
-      The <i>Nested Rows</i> plugin allows creating a nested header structure, using the HTML's <code>colspan</code> attribute.
+      The <i>Nested Rows</i> plugin allows creating a nested header structure, using the <code>colspan</code> attribute.
       <br><br>
-      <strong>Note:</strong> the plugin supports a <i>nested</i> structure, which means any header cannot be wider than its "parent". In other words, headers cannot overlap each other.
+      <strong>Note:</strong> the plugin supports a <i>nested</i> structure, which means that a header cannot be wider than its "parent" element. In other words, headers cannot overlap each other.
     </p>
 
     <h3 id="setup">Setup</h3>
     <p>
-      To make any header wider (covering multiple table columns), it's corresponding configuration array element should be provided as an object with <code>label</code> and <code>colspan</code> properties.
-      The <code>label</code> property defines the header's label, while the <code>colspan</code> property defines a number of columns that the header should cover.<br><br>
+      To make a header wider (covering multiple columns), its corresponding configuration array element should
+      be provided as an object with <code>label</code> and <code>colspan</code> properties.
+      The <code>label</code> property defines the header's label, while the <code>colspan</code> property defines
+      the number of columns that the header should cover.<br><br>
       For example:
     </p>
     <pre><code class="js">nestedHeaders: [

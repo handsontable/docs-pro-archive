@@ -325,6 +325,9 @@ body {
       margin-left: 3px;
       background-color: transparent!important;
       color: gray!important;
+      a {
+        color: $brandBlue;
+      }
     }
   }
   h5 {
@@ -431,7 +434,7 @@ body {
     margin-top: 20px;
     padding-top: 5px;
     border-top: 1px solid #e1e1e1;
-    z-index: -1;
+    z-index: 1;
 
     .inherited {
       display: inline-block;

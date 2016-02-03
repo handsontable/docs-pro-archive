@@ -276,16 +276,27 @@ module.exports = function (grunt) {
     var done = this.async();
     var hotPackage;
 
-    gitHelper.getHotLatestRelease().then(function(info) {
-      hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
+    if (argv['hot-pro-version']) {
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-        version: hotPackage.version,
-        latestVersion: info.name
+        version: getHotProBranch(),
+        latestVersion: getHotProBranch()
       }));
 
       grunt.task.run('sass', 'copy', 'bowercopy', 'robotstxt', 'jsdoc', 'sitemap');
       done();
-    });
+
+    } else {
+      gitHelper.getHotLatestRelease().then(function(info) {
+        hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
+        grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
+          version: hotPackage.version,
+          latestVersion: info.name
+        }));
+
+        grunt.task.run('sass', 'copy', 'bowercopy', 'robotstxt', 'jsdoc', 'sitemap');
+        done();
+      });
+    }
   });
 
   grunt.loadNpmTasks('grunt-bowercopy');

@@ -267,6 +267,9 @@
           "date": {
             "title": "Date"
           },
+          "time": {
+            "title": "Time"
+          },
           "checkbox": {
             "title": "Checkbox"
           },

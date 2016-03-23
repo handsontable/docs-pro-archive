@@ -13,7 +13,7 @@ module.exports = function (shipit) {
     config = {
       servers: 'deploy@142.4.202.189:22022',
       workspace: '/tmp/docs-pro.handsontable.com/' + gitInfo.branch,
-      repositoryUrl: 'git@github.com:handsontable/docs-pro.git',
+      repositoryUrl: 'https://github.com/handsontable/docs-pro.git',
       branch: gitInfo.branch,
       ignores: ['.git', 'node_modules'],
       rsync: ['--force', '--delete', '--delete-excluded', '-I', '--stats', '--chmod=ug=rwX'],

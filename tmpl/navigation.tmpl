@@ -110,7 +110,12 @@
           <?js if (item.events.length) { ?>
             <span class="subtitle">Events</span>
             <?js item.events.forEach(function (v) { ?>
-              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+              <li data-name="<?js= v.longname ?>">
+                <?js= self.linkto(v.longname, v.name) ?>
+                <?js if (v.pro) { ?>
+                  <sup>PRO</sup>
+                <?js } ?>
+              </li>
             <?js }); ?>
           <?js } ?>
         </ul>

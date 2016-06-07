@@ -106,6 +106,7 @@ module.exports = function (grunt) {
           destPrefix: 'generated/bower_components'
         },
         files: {
+          'axios': 'axios/dist/axios.min.js',
           'jquery/jquery.min.js': 'jquery/dist/jquery.min.js',
           'fastclick': 'fastclick',
           'jquery.cookie': 'jquery.cookie',

@@ -48,7 +48,10 @@ body {
       border-radius: 0 3px 3px 0;
       font-weight: 600;
       > li {
-        padding: 9px 7px 9px 10px;
+        padding: 10px 7px 7px 10px;
+        @media only screen and (min-width: $largeWidth) {
+          padding-bottom: 9px;
+        }
       }
       ul {
         @include border ($middleGray);
@@ -68,7 +71,7 @@ body {
     }
     svg {
       @include rectangle (8px, 8px);
-      margin-left: 12px;
+      margin-left: 6px;
     }
     input {
       @include border ($middleGray);
@@ -128,11 +131,6 @@ body {
         margin-left: 1.4rem;
       }
     }
-
-    sup {
-      color: $brandRed;
-    }
-
     .title {
       cursor: pointer;
       position: relative;
@@ -148,7 +146,9 @@ body {
         top: -3px;
         right: 4px;
       }
-
+      sup {
+        color: $brandRed;
+      }
       a {
         padding-bottom: 6px;
         display: block;
@@ -325,9 +325,6 @@ body {
       margin-left: 3px;
       background-color: transparent!important;
       color: gray!important;
-      a {
-        color: $brandBlue;
-      }
     }
   }
   h5 {
@@ -435,7 +432,7 @@ body {
     margin-top: 20px;
     padding-top: 5px;
     border-top: 1px solid #e1e1e1;
-    z-index: 1;
+    z-index: -1;
 
     .inherited {
       display: inline-block;
@@ -492,7 +489,7 @@ body {
     width: 100%;
     margin-bottom: 15px;
     &.params th,
-    &.params td, {
+    &.params td {
       border: 1px solid #e1e1e1;
     }
     th {

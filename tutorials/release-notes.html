@@ -5,6 +5,23 @@
             Edit this page
         </a>
         <div class="example-container clearfix">
+            <h3>1.6.0</h3>
+            <p>Released on 2nd of September, 2016</p>
+            <strong>Breaking changes</strong>
+            <br>
+            <ul>
+                <li>We've refactored the Manual Row Move plugin to allow the user to move multiple rows at once. This made some backward-incompatible changes.
+                    For example the `beforeRowMove` and `afterRowMove` hooks had their arguments changed. After updating to this version, please check if any changes need to made in your implementation.</li>
+                <li>We've added an additional default column/row header styling - now the column and row header corresponding to the selected cell will be rendered with a darker background. Please have that in mind when styling your Handsontable implementations.</li>
+            </ul>
+            <strong>Changes</strong>
+            <ul>
+                <li>Fixed some performance problems connected with using both Dropdown Menu and Filters together.</li>
+                <li>Added support for the refactored Manual Row Move plugin in the Hidden Rows plugin.</li>
+                <li>Updated Handsontable to the latest version, which is 0.27.0. (<a href="https://github.com/handsontable/handsontable/releases/tag/0.27.0" target="_blank">See changes</a>).</li>
+            </ul>
+        </div>
+        <div class="example-container clearfix">
             <h3>1.5.1</h3>
             <p>Released on 27th of July, 2016</p>
             <strong>Changes</strong>

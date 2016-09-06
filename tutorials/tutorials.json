@@ -222,7 +222,8 @@
             "pro": true
           },
           "formula-support": {
-            "title": "Formula support"
+            "title": "Formula support",
+            "pro": true
           },
           "summary-calculations": {
             "title": "Summary calculations",

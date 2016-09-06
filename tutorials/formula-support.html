@@ -1,26 +1,218 @@
 <div class="static-content">
 
+  <div class="index-list">
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#setup">Quick setup</a></li>
+      <li><a href="#custom-variables">Custom variables</a></li>
+      <li><a href="#advanced-example">Advanced example</a></li>
+    </ul>
+  </div>
+
   <div class="example-container clearfix">
     <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/formula-support.html" class="edit-doc" target="_blank">
       Edit this page
     </a>
     <div data-alert class="alert-box secondary">
-      <strong>This plugin is still under development and should be considered an experimental feature.</strong>
+      <strong>This plugin is marked as ALPHA version and its API is not stable yet.</strong>
     </div>
-    <p>A formula parser for Handsontable is based on RuleJS library which takes most of functions from
-      <a href="https://github.com/sutoiku/formula.js/" target="_blank">Formula.js</a>.</p>
-    <p><strong>Find the list of features below:</strong></p>
-    <ul>
-      <li>math functions: <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>^</code></li>
-      <li>logical functions: <code>=</code> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>&lt;&gt;</code> <code>NOT</code></li>
-      <li>error handling: <code>#DIV/0!</code> <code>#ERROR</code> <code>#VALUE!</code> <code>#REF!</code> <code>#NAME?</code> <code>#N/A</code></li>
-      <li>parser for formulas (<a href="http://handsontable.github.io/ruleJS/">list of supported formulas</a>)</li>
-      <li>absolute cell references: <code>$A$1</code> <code>$A1</code> <code>A$1</code></li>
-      <li>nested functions</li>
-      <li>basic auto-fill</li>
-      <li>dynamic updates</li>
-    </ul>
-    <p><a href="http://handsontable.github.io/handsontable-ruleJS" target="_blank">Go to demo</a> to see it live</p>
+
+    <h3 id="overview">Overview</h3>
+    <p>
+      The <i>Formulas</i> plugin allows Handsontable to process formula expressions defined in the provided data.
+
+      This plugin uses a <a href="https://github.com/handsontable/formula-parser">formula-parser</a> library which takes most of functions from
+      <a href="https://github.com/handsontable/formula.js">formula.js</a>.
+
+      <p><strong>Features:</strong></p>
+      <ul>
+        <li>Any numbers, negative and positive as float or integer;</li>
+        <li>Arithmetic operations like: <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>, <code>%</code>, <code>^</code>;</li>
+        <li>Logical operations like: <code>AND()</code>, <code>OR()</code>, <code>NOT()</code>, <code>XOR()</code>;</li>
+        <li>Comparison operations like: <code>=</code>, <code>></code>, <code>>=</code>, <code><</code>, <code><=</code>, <code><></code>;</li>
+        <li>All JavaScript Math constants like: <code>PI()</code>, <code>E()</code>, <code>LN10()</code>, <code>LN2()</code>, <code>LOG10E()</code>, <code>LOG2E()</code>, <code>SQRT1_2()</code>, <code>SQRT2()</code>;</li>
+        <li>Error handling: <code>#DIV/0!</code>, <code>#ERROR!</code>, <code>#VALUE!</code>, <code>#REF!</code>, <code>#NAME?</code>, <code>#N/A</code>, <code>#NUM!</code>;</li>
+        <li>String operations like: <code>&</code> (concatenation eq. <code>=-(2&5)</code> will return <code>-25</code>);</li>
+        <li>All excel formulas defined in <a href="https://github.com/handsontable/formula.js">formula.js</a>;</li>
+        <li>Relative and absolute cell coordinates like: <code>A1</code>, <code>$A1</code>, <code>A$1</code>, <code>$A$1</code>;</li>
+        <li>Build-in variables like: <code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>;</li>
+        <li>Custom variables;</li>
+        <li>Nested functions;</li>
+        <li>Dynamic updates.</li>
+      </ul>
+      <p><strong>Known limitations:</strong></p>
+      <ul>
+        <li>Not working with filtering and column sorting;</li>
+        <li>Not working with trimming rows.</li>
+      </ul>
+    </p>
+
+    <h3 id="setup">Quick setup</h3>
+    <p>
+      To enable the plugin you need to set the <code>formulas</code> property to <code>true</code>. Cells that are dependent of the edited value will be dynamically recalculated.
+    </p>
+
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot1"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1" data-dont-display="true">
+        var data = [
+          ['=$B$2', "Maserati", "Mazda", "Mercedes", "Mini", "=A$1"],
+          [2009, 0, 2941, 4303, 354, 5814],
+          [2010, 5, 2905, 2867, '=SUM(A4,2,3)', '=$B1'],
+          [2011, 4, 2517, 4822, 552, 6127],
+          [2012, '=SUM(A2:A5)', '=SUM(B5,E3)', '=A2/B2', 12, 4151]
+        ];
+      </script>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot1 = new Handsontable(example1, {
+          data: data,
+          colHeaders: true,
+          rowHeaders: true,
+          contextMenu: true,
+          formulas: true
+        });
+
+      </script>
+    </div>
+
+    <h3 id="custom-variables">Custom variables</h3>
+    <p>
+      You can pass your custom variables which can be ready to use in your formula expressions. To set custom variables pass
+      an object with key:value pairs to the <code>formulas</code> property.
+    </p>
+
+    <div data-jsfiddle="example2">
+      <div>
+        <div id="example2" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2" data-dont-display="true">
+        var data = [
+          ['Anderson', '92', '=IF(B1<RANGE_F, "F", IF(B1<RANGE_D, "D", IF(B1<RANGE_C, "C", IF(B1<RANGE_B, "B", "A"))))', '', '', '0-63', 'F'],
+          ['Bautista', '85', '=IF(B2<RANGE_F, "F", IF(B2<RANGE_D, "D", IF(B2<RANGE_C, "C", IF(B2<RANGE_B, "B", "A"))))', '', '', '64-72', 'D'],
+          ['Block', '96', '=IF(B3<RANGE_F, "F", IF(B3<RANGE_D, "D", IF(B3<RANGE_C, "C", IF(B3<RANGE_B, "B", "A"))))', '', '', '73-84', 'C'],
+          ['Burrows', '79', '=IF(B4<RANGE_F, "F", IF(B4<RANGE_D, "D", IF(B4<RANGE_C, "C", IF(B4<RANGE_B, "B", "A"))))', '', '', '85-94', 'B'],
+          ['Chandler', '82', '=IF(B5<RANGE_F, "F", IF(B5<RANGE_D, "D", IF(B5<RANGE_C, "C", IF(B5<RANGE_B, "B", "A"))))', '', '', '95-100', 'A'],
+          ['Colby', '95', '=IF(B6<RANGE_F, "F", IF(B6<RANGE_D, "D", IF(B6<RANGE_C, "C", IF(B6<RANGE_B, "B", "A"))))', '', '', '', ''],
+          ['Crosby', '90', '=IF(B7<RANGE_F, "F", IF(B7<RANGE_D, "D", IF(B7<RANGE_C, "C", IF(B7<RANGE_B, "B", "A"))))', '', '', '', ''],
+          ['Dove', '65', '=IF(B8<RANGE_F, "F", IF(B8<RANGE_D, "D", IF(B8<RANGE_C, "C", IF(B8<RANGE_B, "B", "A"))))', '', '', '', ''],
+        ];
+      </script>
+      <script data-jsfiddle="example2">
+        var example2 = document.getElementById('example2');
+
+        var hot2 = new Handsontable(example2, {
+          data: data,
+          colHeaders: true,
+          rowHeaders: true,
+          contextMenu: true,
+          formulas: {
+            variables: {
+              RANGE_F: 64,
+              RANGE_D: 73,
+              RANGE_C: 85,
+              RANGE_B: 95,
+            }
+          },
+        });
+
+      </script>
+    </div>
+
+    <h3 id="advanced-example">Advanced example</h3>
+
+    <div data-jsfiddle="example3">
+      <div>
+        <div id="example3" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example3">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example3" data-instance="hot3"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example3" data-dont-display="true">
+        var data = [
+          ['Example #1 (looking for occurrences of words in a sentence)', '', '', '', '', '', '', ''],
+          ['Text', 'yellow', 'red', 'blue', 'green', 'pink', 'gray'],
+          ['Yellow dog on green grass', "=IF(ISNUMBER(SEARCH(B2, A3)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A3)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A3)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A3)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A3)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A3)), G2, '')"],
+          ['Gray sweater with blue stripes', "=IF(ISNUMBER(SEARCH(B2, A4)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A4)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A4)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A4)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A4)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A4)), G2, '')"],
+          ['A red sun on a pink horizon', "=IF(ISNUMBER(SEARCH(B2, A5)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A5)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A5)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A5)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A5)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A5)), G2, '')"],
+          ['Blue neon signs everywhere', "=IF(ISNUMBER(SEARCH(B2, A6)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A6)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A6)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A6)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A6)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A6)), G2, '')"],
+          ['Waves of blue and green', "=IF(ISNUMBER(SEARCH(B2, A7)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A7)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A7)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A7)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A7)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A7)), G2, '')"],
+          ['Hot pink socks and gray socks', "=IF(ISNUMBER(SEARCH(B2, A8)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A8)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A8)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A8)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A8)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A8)), G2, '')"],
+          ['Deep blue eyes', "=IF(ISNUMBER(SEARCH(B2, A9)), B2, '')", "=IF(ISNUMBER(SEARCH(C2, A9)), C2, '')", "=IF(ISNUMBER(SEARCH(D2, A9)), D2, '')", "=IF(ISNUMBER(SEARCH(E2, A9)), E2, '')", "=IF(ISNUMBER(SEARCH(F2, A9)), F2, '')", "=IF(ISNUMBER(SEARCH(G2, A9)), G2, '')"],
+          ['Count of colors', '=COUNTIF(B3:B9, B2)', '=COUNTIF(C3:C9, C2)', '=COUNTIF(D3:D9, D2)', '=COUNTIF(E3:E9, E2)', '=COUNTIF(F3:F9, F2)', '=COUNTIF(G3:G9, G2)', '="SUM: "&SUM(B10:G10)'],
+          ['', '', '', '', '', '', ''],
+          ['Example #2 (extracting domain from emails)', '', '', '', '', '', ''],
+          ['Name', 'Email', 'Email domain', '', '', ''],
+          ['Ann Chang', 'achang@maaker.com', '=RIGHT(B14, LEN(B14) - FIND(EMAIL_SPLITTER, B14))', '', '', '', ''],
+          ['Jan Siuk', 'jan@yahoo.com', '=RIGHT(B15, LEN(B15) - FIND(EMAIL_SPLITTER, B15))', '', '', '', ''],
+          ['Ken Siuk', 'ken@gmail.com', '=RIGHT(B16, LEN(B16) - FIND(EMAIL_SPLITTER, B16))', '', '', '', ''],
+          ['Marcin Kowalski', 'ken@syndex.pl', '=RIGHT(B17, LEN(B17) - FIND(EMAIL_SPLITTER, B17))', '', '', '', ''],
+        ];
+      </script>
+      <script data-jsfiddle="example3">
+        var example3 = document.getElementById('example3');
+
+        var hot3 = new Handsontable(example3, {
+          data: data,
+          colHeaders: true,
+          rowHeaders: true,
+          contextMenu: true,
+          formulas: {
+            variables: {
+              EMAIL_SPLITTER: '@',
+            }
+          },
+          mergeCells: [
+            {row: 0, col: 0, rowspan: 1, colspan: 8},
+            {row: 11, col: 0, rowspan: 1, colspan: 8},
+          ],
+        });
+
+      </script>
+    </div>
+
   </div>
 </div>
 

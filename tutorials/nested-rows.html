@@ -1,0 +1,227 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/fixing.html" class="edit-doc" target="_blank">
+      Edit this page
+    </a>
+    <div class="notification warning dark-text"><strong>Please note: </strong> this feature is in an early development stage. It may not work with some of the plugins and core features.
+    It's not ready for production use.</div>
+
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#quick-setup">Quick setup</a></li>
+      <li><a href="#data-source">Preparing the data source</a></li>
+      <li><a href="#ui">User interface</a></li>
+      <!--<li><a href="#configuration">Additional plugin configuration</a></li>-->
+    </ul>
+
+    <h3 id="overview">Overview</h3>
+    <p>The <strong><i>Nested Rows</i></strong> plugin extends Handsontable with a new functionality - displaying nested structures in a two-dimensional data table.</p>
+
+    <h3 id="quick-setup">Quick Setup</h3>
+    <p>To enable the plugin, simply set the <code>nestedRows</code> property to <code>true</code>.</p>
+
+    <pre><code>
+hot = new Handsontable(container, {
+  data: sourceDataObject,
+  rowHeaders: true,
+  nestedRows: true,
+  contextMenu: true
+});
+    </code></pre>
+
+    <p>
+      Note that using all the functionalities provided by the plugin requires setting <code>rowHeaders</code> (enables the row headers)
+      and <code>contextMenu</code> (enables the Handsontable’s context menu) to <code>true</code>, as the <i>collapse</i> / <i>expand</i> buttons are located in the row headers and row modification options (<i>add row</i>, <i>insert child</i> etc.) are in the Context Menu.
+    </p>
+
+    <h3 id="data-source">Preparing the data source</h3>
+    <p>
+      The data source has to have a certain structure to be used with the <i>Nested Rows</i> plugin.
+    </p>
+    <p>
+      The plugin requires the data source to be an <strong>array of objects.</strong>. Each object in the array represents a single <i>0-level</i> entry. By <i>0-level</i> I mean an entry which is not a child to any other entry.<br>
+      If an entry has any child entries, we need to declare them (again) as an <i>array of objects</i>. To assign them to a row, we need to create a <code>__children</code> property in the parent element.
+      <br><br>
+      Take a look at this example:
+    </p>
+
+    <div data-jsfiddle="example1" class="scroll-container fixed-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var sourceDataObject = [
+                  {
+                    category: 'Best Rock Performance',
+                    artist: null,
+                    title: null,
+                    label: null,
+                    __children: [
+                      {
+                        title: 'Don\'t Wanna Fight',
+                        artist: 'Alabama Shakes',
+                        label: 'ATO Records'
+                      }, {
+                        title: 'What Kind Of Man',
+                        artist: 'Florence & The Machine',
+                        label: 'Republic'
+                      }, {
+                        title: 'Something From Nothing',
+                        artist: 'Foo Fighters',
+                        label: 'RCA Records'
+                      }, {
+                        title: 'Ex\'s & Oh\'s',
+                        artist: 'Elle King',
+                        label: 'RCA Records'
+                      }, {
+                        title: 'Moaning Lisa Smile',
+                        artist: 'Wolf Alice',
+                        label: 'RCA Records/Dirty Hit'
+                      }
+
+                    ]
+                  }, {
+                    category: 'Best Metal Performance',
+                    __children: [
+                      {
+                        title: 'Cirice',
+                        artist: 'Ghost',
+                        label: 'Loma Vista Recordings'
+                      }, {
+                        title: 'Identity',
+                        artist: 'August Burns Red',
+                        label: 'Fearless Records'
+                      }, {
+                        title: '512',
+                        artist: 'Lamb Of God',
+                        label: 'Epic Records'
+                      }, {
+                        title: 'Thank You',
+                        artist: 'Sevendust',
+                        label: '7Bros Records'
+                      }, {
+                        title: 'Custer',
+                        artist: 'Slipknot',
+                        label: 'Roadrunner Records'
+                      },]
+                  }, {
+                    category: 'Best Rock Song',
+                    __children: [
+                      {
+                        title: 'Don\'t Wanna Fight',
+                        artist: 'Alabama Shakes',
+                        label: 'ATO Records',
+                      }, {
+                        title: 'Ex\'s & Oh\'s',
+                        artist: 'Elle King',
+                        label: 'RCA Records',
+                      }, {
+                        title: 'Hold Back The River',
+                        artist: 'James Bay',
+                        label: 'Republic',
+                      }, {
+                        title: 'Lydia',
+                        artist: 'Highly Suspect',
+                        label: '300 Entertainment',
+                      }, {
+                        title: 'What Kind Of Man',
+                        artist: 'Florence & The Machine',
+                        label: 'Republic',
+                      }
+                    ]
+                  }, {
+                    category: 'Best Rock Album',
+                    __children: [
+                      {
+                        title: 'Drones',
+                        artist: 'Muse',
+                        label: 'Warner Bros. Records',
+                      }, {
+                        title: 'Chaos And The Calm',
+                        artist: 'James Bay',
+                        label: 'Republic',
+                      }, {
+                        title: 'Kintsugi',
+                        artist: 'Death Cab For Cutie',
+                        label: 'Atlantic',
+                      }, {
+                        title: 'Mister Asylum',
+                        artist: 'Highly Suspect',
+                        label: '300 Entertainment',
+                      }, {
+                        title: '.5: The Gray Chapter',
+                        artist: 'Slipknot',
+                        label: 'Roadrunner Records',
+                      }
+                    ]
+                  }],
+          container = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(container, {
+          data: sourceDataObject,
+          rowHeaders: true,
+          colHeaders: ['Category', 'Artist', 'Title', 'Album', 'Label'],
+          nestedRows: true,
+          contextMenu: true,
+        });
+      </script>
+    </div>
+
+    <p>
+      In the example above we’ve created a data object consisting of 2016’s Grammy nominees of the “Rock” genre. As you can see, each <i>0-level</i> entry declares a category, while their children declare nominees - they’re assigned under the <code>__children</code> properties.
+      <br><br>
+      Another thing to mention - the <b>first</b> 0-level object in the array needs to have all columns defined to display the table properly. They can be declared as <code>null</code> or <code>''</code> (an empty string), but they need to be defined. This is optional for the other objects.
+    </p>
+
+    <h3 id="ui">User interface</h3>
+
+    <p>The <i>Nested Rows</i> plugin user interface is placed in the row headers and the Handsontable’s context menu.</p>
+
+    <h4>Row headers</h4>
+    <p>
+      Each <i>parent</i> row header contains a <code>+</code>/<code>-</code> button. It is used to collapse or expand its child rows. <br><br>
+
+      Moreover, the child rows’ headers had been given a bigger indentation, so the user can clearly recognize the child and parent elements.
+    </p>
+
+    <h4>Context Menu</h4>
+    <p>
+      The context menu has been extended with a few Nested Rows-related options, such as:
+    </p>
+    <ul>
+      <li>Insert child row</li>
+      <li>Detach from parent</li>
+    </ul>
+    <p>
+    Moreover, the “Insert row above” and “Insert row below” options were modified to work properly with the nested data structure.
+    </p>
+
+    <!--<h3 id="configuration">Additional plugin configuration examples</h3>-->
+    <!--<h4>Marking the <i>parents</i></h4>-->
+    <!--To mark the parents (for example, with a different colors) we’ll need to apply some css styling to the table.<br>-->
+    <!--The css class responsible for styling the parents is <code>.ht_nestingParent</code>. It’s added to every <code>TH</code> element which represents the row header of the parent entry.-->
+    <!--<br><br>-->
+    <!--For example - if we want to mark all the cells in the parent row light grey, we can assign this style to the table:-->
+    <!--<pre><code>-->
+  <!--.handsontable .ht_nestingParent ~ TD {-->
+      <!--background-color: #f7f5f5;-->
+  <!--}-->
+    <!--</code></pre>-->
+    <!--You can see the effect in this example: <a href="http://jsfiddle.net/js_ziggle/fr86eLnL/2/">http://jsfiddle.net/js_ziggle/fr86eLnL/2/</a>.-->
+  </div>
+</div>
+

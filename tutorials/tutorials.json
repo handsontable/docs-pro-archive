@@ -173,6 +173,10 @@
           "bind-rows-headers": {
             "title": "Bind rows with headers",
             "pro": true
+          },
+          "nested-rows": {
+            "title": "Nested Rows",
+            "pro": true
           }
         }
       },

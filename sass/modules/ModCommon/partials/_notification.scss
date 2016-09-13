@@ -8,7 +8,7 @@
     padding: 15px;
     margin: 20px 0;
     color: #FFF;
-    
+
     &.error {
         background: $errorColor;
     }
@@ -23,5 +23,9 @@
 
     &.warning {
         background: $warningColor;
+    }
+
+    &.dark-text {
+        color: #474747;
     }
  }

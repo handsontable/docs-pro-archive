@@ -5,6 +5,26 @@
             Edit this page
         </a>
         <div class="example-container clearfix">
+            <h3>1.7.0</h3>
+            <p>Released on 15th of September, 2016</p>
+            <strong>Breaking changes</strong>
+            <br>
+            <ul>
+                <li>This release introduces a new feature - Formulas (currently in alpha stage, may not be stable). This required us to make some breaking changes, for example,
+                    the <code>afterCreateRow</code> and <code>afterCreateCol</code> changes their argument types (the third argument used to be <code>boolean</code>, now it has to be <code>string</code>). You can find more about the plugin in our docs: <a href="http://docs.handsontable.com/pro/demo-formula-support.html">http://docs.handsontable.com/pro/demo-formula-support.html</a>.</li>
+                <li>We've refactored the Manual Column Move plugin to allow the user to move multiple columns at once. This made some backward-incompatible changes.
+                    For example the <code>beforeColumnMove</code> and <code>afterColumnMove</code> hooks had their arguments changed.</li>
+            </ul>
+            <p>After updating to this version, please check if any changes need to made in your implementation.</p>
+            <strong>Changes</strong>
+            <ul>
+                <li>New plugin - Nested Rows. It's currently in alpha stage and may not be stable. It allows providing Handsontable with nested data structures and operating on data within the groups.
+                    You can find more information in our docs: <a href="http://docs.handsontable.com/pro/demo-nested-rows.html">http://docs.handsontable.com/pro/demo-nested-rows.html</a>.</li>
+                <li>Added missing dependencies to <code>bower.json</code>.</li>
+                <li>Updated to the latest Handsontable version (<code>0.28.0</code>).</li>
+            </ul>
+        </div>
+        <div class="example-container clearfix">
             <h3>1.6.0</h3>
             <p>Released on 2nd of September, 2016</p>
             <strong>Breaking changes</strong>

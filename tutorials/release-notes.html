@@ -5,6 +5,26 @@
             Edit this page
         </a>
         <div class="example-container clearfix">
+            <h3>1.8.0</h3>
+            <p>Released on 8th of November, 2016</p>
+            <strong>Breaking changes</strong>
+            <ul>
+                <li>We've added a new cell property: <code>allowHtml</code>. If you set it to <code>true</code>, the <code>autocomplete</code> and <code>dropdown</code> cells will be able to render HTML elements correctly (as it was before).
+                    However, if you set it to <code>false</code>, no HTML will be rendered. This change is meant to decrease Handsontable's XSS vulnerability.</li>
+                <li>We've refactored the Comments plugin, which caused some API and visual changes. Please see our documentation and check if you need to make some changes in your implementation.
+                    The <code>allowHtml</code> property defaults to **false**, so please make sure if you have to specify it in your implementation!</li>
+            </ul>
+
+            <strong>Changes</strong>
+            <ul>
+                <li>Fixed problems with tests on macOS Sierra.</li>
+                <li>Fixed a problem when typing <code>=</code> in a cell caused an error to be thrown.</li>
+                <li>Tweaked invalid characters validation for the formulas.</li>
+                <li>Fixed a problem with updating the <code>fixedRowsBottom</code> option.</li>
+            </ul>
+        </div>
+
+        <div class="example-container clearfix">
             <h3>1.7.4</h3>
             <p>Released on 13th of October, 2016</p>
             <strong>Changes</strong>
@@ -12,7 +32,6 @@
                 <li>Updated Handsontable to the latest version. (<code>0.28.4</code>).</li>
             </ul>
         </div>
-
         <div class="example-container clearfix">
             <h3>1.7.3</h3>
             <p>Released on 5th of October, 2016</p>

@@ -16,6 +16,7 @@
     <ol>
       <li><a href="#destination">Setting the destination cell</a></li>
       <li><a href="#calculation-range">Setting the calculation range</a></li>
+      <li><a href="#function-config">Providing the settings as a function</a></li>
     </ol>
 
     <h4>Available calculations:</h4>
@@ -55,7 +56,11 @@
         </button>
       </div>
       <script data-jsfiddle="common" data-dont-display="true">
-        var generateDataObj = function(rows, columns) {
+        var generateDataObj = function(rows, columns, additionalRows) {
+          if (additionalRows === void 0) {
+            additionalRows = true;
+          }
+
           var data = [];
           var number = 0;
 
@@ -73,8 +78,10 @@
             }
           }
 
-          for (i = 0; i < 2; i++) {
-            data.push([]);
+          if (additionalRows) {
+            for (i = 0; i < 2; i++) {
+              data.push([]);
+            }
           }
 
           return data;
@@ -146,23 +153,6 @@
       to display the calculations results in.
       <br><br>To do that, you need to set two properties in the Handsontable config object:
     </p>
-
-    <!-- --------- EXAMPLE START ---------- -->
-
-
-    <!--<div class="codeLayout">-->
-    <!--<div class="buttons">-->
-    <!--<button class="jsFiddleLink" data-runfiddle="example1">-->
-    <!--<i class="fa fa-jsfiddle"></i>-->
-    <!--Edit-->
-    <!--</button>-->
-    <!--<button class="dump" name="dump" data-dump="#example1" data-instance="hot"-->
-    <!--title="Print current data source to console">-->
-    <!--<i class="fa fa-terminal"></i>-->
-    <!--Dump data to console-->
-    <!--</button>-->
-    <!--</div>-->
-    <!--<script data-jsfiddle="example1">-->
 
     <div data-jsfiddle="example-destination">
       <div>
@@ -252,16 +242,6 @@
         });
       </script>
     </div>
-    <!-- ----------- EXAMPLE END ------------- -->
-
-    <!--<pre><code class="javascript">columnSummary: [-->
-    <!--{-->
-    <!--destinationRow: 2,-->
-    <!--destinationColumn: 4,-->
-    <!--reversedRowCoords: true-->
-    <!--// ...-->
-    <!--}-->
-    <!--]</code></pre>-->
 
     <h3 id="calculation-range">Setting the calculation range</h3>
     <p>
@@ -317,17 +297,7 @@
             });
           </script>
         </div>
-        <!-- ----------- EXAMPLE END ------------- -->
 
-        <!--<pre><code class="javascript">columnSummary: [-->
-        <!--{-->
-        <!--// ...-->
-        <!--ranges: [-->
-        <!--[0,4],[6],[8,9]-->
-        <!--]-->
-        <!--// ...-->
-        <!--}-->
-        <!--]</code></pre>-->
       </li><br>
       <li>
         <code><b>sourceColumn</b></code> option specifies the column to work on. <br><br>
@@ -371,16 +341,153 @@
             });
           </script>
         </div>
-        <!-- ----------- EXAMPLE END ------------- -->
-
-        <!--<pre><code class="javascript">columnSummary: [-->
-        <!--{-->
-        <!--// ...-->
-        <!--sourceColumn: 2-->
-        <!--}-->
-        <!--]</code></pre>-->
       </li>
     </ol>
+
+    <h3 id="function-config">Providing the settings as a function</h3>
+    <p>
+      Since version <code>1.8.1</code>, you can provide a function instead of an array as the config item. The function has to return
+      an array of objects, similarly to a traditional setup method.
+    </p>
+    <p>Take a look at the example below:</p>
+    <!-- --------- EXAMPLE START ---------- -->
+    <div data-jsfiddle="example-functionConfig">
+      <div>
+        <div id="example-functionConfig" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-functionConfig">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-functionConfig" data-instance="hot7"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-functionConfig">
+        var container = document.getElementById('example-functionConfig');
+
+        var hot7 = new Handsontable(container, {
+          data: generateDataObj(5, 5, false),
+          rowHeaders: true,
+          colHeaders: ['sum', 'min', 'max', 'count', 'average'],
+          columnSummary: function() {
+            var configArray = [];
+            var summaryTypes = ['sum', 'min', 'max', 'count', 'average'];
+            for (var i = 0; i < 5; i++) {
+              configArray.push({
+                sourceColumn: i,
+                destinationRow: 0,
+                destinationColumn: i,
+                type: summaryTypes[i],
+                forceNumeric: true
+              });
+            }
+
+            return configArray;
+          }
+        });
+      </script>
+    </div>
+    <!-- --------- EXAMPLE END ---------- -->
+
+    <p>This allows many possible usages: for example, you can easily calculate a total for a group in a group parent
+    combining this plugin with the <a href="/demo-nested-rows.html">Nested Rows plugin</a>.</p>
+    <p>Take a look at this simple demo:</p>
+
+    <!-- --------- EXAMPLE START ---------- -->
+    <div data-jsfiddle="example-nestedRows">
+      <div>
+        <div id="example-nestedRows" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-nestedRows">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-nestedRows" data-instance="hot8"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-nestedRows">
+        var container = document.getElementById('example-nestedRows');
+
+        var hot8 = new Handsontable(container, {
+          data: [
+            {
+              value: null,
+              __children: [
+                {value: 5},
+                {value: 6},
+                {value: 7},
+              ]
+            },
+            {
+              __children: [
+                {value: 15},
+                {value: 16},
+                {value: 17},
+              ]
+            }
+          ],
+          columns: [
+            {data: 'value'}
+          ],
+          nestedRows: true,
+          rowHeaders: true,
+          colHeaders: ['sum', 'min', 'max', 'count', 'average'],
+          columnSummary: function() {
+            var endpoints = [];
+            var nestedRowsPlugin = this.hot.getPlugin('nestedRows');
+            var getRowIndex = nestedRowsPlugin.dataManager.getRowIndex.bind(nestedRowsPlugin.dataManager);
+            var nestedRowsCache = null;
+            var tempEndpoint = null;
+            var resultColumn = 0;
+
+            if (nestedRowsPlugin.isEnabled()) {
+              nestedRowsCache = this.hot.getPlugin('nestedRows').dataManager.cache;
+            } else {
+              return;
+            }
+
+            for (var i = 0; i < nestedRowsCache.levels[0].length; i++) {
+              tempEndpoint = {};
+
+              if (!nestedRowsCache.levels[0][i].__children || nestedRowsCache.levels[0][i].__children.length === 0) {
+                continue;
+              }
+
+              tempEndpoint.destinationColumn = resultColumn;
+              tempEndpoint.destinationRow = getRowIndex(nestedRowsCache.levels[0][i]);
+              tempEndpoint.type = 'sum';
+              tempEndpoint.forceNumeric = true;
+              tempEndpoint.ranges = [];
+
+              tempEndpoint.ranges.push([
+                getRowIndex(nestedRowsCache.levels[0][i].__children[0]),
+                getRowIndex(nestedRowsCache.levels[0][i].__children[nestedRowsCache.levels[0][i].__children.length - 1])
+              ]);
+
+              endpoints.push(tempEndpoint);
+              tempEndpoint = null;
+            }
+
+
+            return endpoints;
+          }
+        });
+      </script>
+    </div>
+    <!-- --------- EXAMPLE END ---------- -->
+
     <hr>
     <h2>Available calculations</h2>
     <h3 id="sum">Sum</h3>

@@ -5,6 +5,24 @@
             Edit this page
         </a>
         <div class="example-container clearfix">
+            <h3>1.9.0</h3>
+            <p>Released on 11th of January, 2017</p>
+            <strong>Breaking Changes</strong>
+            <ul>
+                <li>The <b>AutoFill</b> plugin was refactored, thus introducing some breaking changes into the API. If your implementation uses the previous <code>autoFill</code> structure, please check if it everything works as expected. (<a href="https://github.com/handsontable/handsontable/issues/3257" target="_blank">#3257</a>)</li>
+                <li>The <code>setCellMeta</code> method was changed to work on <i>visual</i> row and column indexes, analogously to the <code>getCellMeta</code> method. If your implementation utilizes it, please check if you need to tweak it (it may cause issues especially when using it with the <code>columnSorting</code>, <code>manualRowMove</code> and <code>manualColumnMove</code> plugins).</li>
+            </ul>
+            <strong>Changes</strong>
+            <ul>
+                <li>Fixed issues with manipulating the data structure with the <code>columnSummary</code> plugin enabled.</li>
+                <li>Added tests for the Pro version concerning the maxRows option.</li>
+                <li>Fixed a problem with building the Pro version with a different Handsontable branch than <code>master</code></li>
+                <li>Updated Handsontable to version <code>0.29.0</code>.</li>
+            </ul>
+        </div>
+
+
+        <div class="example-container clearfix">
             <h3>1.8.2</h3>
             <p>Released on 21st of December, 2016</p>
             <strong>Changes</strong>

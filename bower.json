@@ -24,7 +24,7 @@
     "moment": "^2.13.0",
     "pikaday": "^1.4.0",
     "zeroclipboard": "^2.2.0",
-    "handsontable-pro": "git@git.handsontable.com:handsontable/handsontable-pro.git#1.9.0",
+    "handsontable-pro": "git@git.handsontable.com:handsontable/handsontable-pro.git#1.9.1",
     "modernizr": "^2.8.3",
     "jquery-placeholder": "^2.1.1",
     "jquery.cookie": "^1.4.1",

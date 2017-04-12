@@ -4,7 +4,7 @@
 
     <ul>
       <li><a href="#testing-in-browser">Testing in browser</a></li>
-      <li><a href="#testing-with-grunt-cli">Testing with Grunt (CLI)</a></li>
+      <li><a href="#testing-with-npm-cli">Testing with NPM (CLI)</a></li>
     </ul>
   </div>
 
@@ -15,23 +15,33 @@
     <h3 id="testing-in-browser">Testing in browser</h3>
     <p>To run the Jasmine tests in your browser, go to the following pages:</p>
     <ul>
-      <li><strong>http://localhost/handsontablePro/test/jasmine/SpecRunner.html</strong>
-        - Runs the tests in the browser. Note, that it runs only the Pro test suite, unless <code>grunt test-free</code> was run before (in that case, the Handsontable Free tests will be processed), as running the tests
-        in the CLI generates the SpecRunner template.
+      <li><strong>http://localhost/handsontablePro/test/UnitRunner.html</strong>
+        - Runs the unit tests in the browser.
+      </li>
+      <li><strong>http://localhost/handsontablePro/test/E2ERunner.html</strong>
+        - Runs the end-to-end tests in the browser. Note, that it runs only the Pro test suite, unless <code>npm run test:handsontable</code> was run before (in that case, the Handsontable Free tests will be processed), as running the tests
+        in the CLI generates the E2ERunner template.
       </li>
     </ul>
   </div>
   <div class="example-container clearfix">
-    <h3 id="testing-with-grunt-cli">Testing with Grunt (CLI)</h3>
-    <p>To run Jasmine tests in your command line (using PhantomJS), first install Grunt (based on the instructions provided
-      on page <a href="/pro/<?js= version ?>/tutorial-custom-build.html">Building</a>).</p>
+    <h3 id="testing-with-npm-cli">Testing with NPM (CLI)</h3>
+    <p>
+      To run Jasmine tests in your command line (using PhantomJS), first install all necessary dependencies by executing <code>npm install</code>.
+      After the <code>NPM</code> finishes fetching required modules your workspace is ready to test.
+    </p>
     <p>Useful commands:</p>
     <ul>
-      <li><code>grunt test</code> - runs all test cases (Handsotnable Free and Handsontable Pro)</li>
-      <li><code>grunt test-free</code> - runs only Handsontable Free tests</li>
-      <li><code>grunt test-pro</code> - runs only Handsontable Pro tests</li>
-      <li><code>grunt test --filter CollapsibleColumns</code> - runs only tests and suites matching the name &quot;CollapsibleColumns&quot;
-      </li>
+      <li><code>npm test</code> - runs all test cases (Handsotnable and Handsontable PRO).</li>
+      <li><code>npm test:e2e</code> - runs only Handsontable PRO end-to-end tests.</li>
+      <li><code>npm test:unit</code> - runs only Handsontable PRO unit tests.</li>
+      <li><code>npm test:handsontable</code> - runs only Handsontable CE end-to-end tests.</li>
+      <li><code>npm run test:e2e --testPathPattern=selection</code> - runs only end-to-end tests and suites matching the filename &quot;selection&quot;.</li>
+      <li><code>npm run test:unit --testPathPattern=array</code> - runs only end-to-end tests and suites matching the filename &quot;array&quot;.</li>
+      <li><code>npm run test:e2e.dump</code> - generates the <code>test/E2ERunner.html</code> file which can by executed in the browser environment (Chrome, PhantomJS etc.) to check if tests passes.</li>
+      <li><code>npm run test:unit.dump</code> - generates the <code>test/UnitRunner.html</code> file which can by executed in the browser environment (Chrome, PhantomJS etc.) to check if tests passes.</li>
+      <li><code>npm run test:e2e.dump -- --watch</code> - generates the <code>E2ERunner.html</code> file on every change detected in test files. It can be helpful for debugging proposes.</li>
+      <li><code>npm run test:unit.dump -- --watch</code> - generates the <code>UnitRunner.html</code> file on every change detected in test files. It can be helpful for debugging proposes.</li>
     </ul>
   </div>
 </div>

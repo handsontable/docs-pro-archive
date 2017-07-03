@@ -260,6 +260,9 @@
           },
           "disabled-editing": {
             "title": "Disabled editing"
+          },
+          "copy-paste": {
+            "title": "Copy & Paste"
           }
         }
       },

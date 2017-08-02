@@ -1,6 +1,27 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>1.13.0</h3>
+    <p>Released on 2nd of August, 2017</p>
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>We've unified the types of coordinates passed to these plugin hooks: <code>beforeGetCellMeta</code>, <code>afterGetCellMeta</code>, <code>afterSetCellMeta</code>. Now they'll be operating on <b>visual</b> table coordinates (so do the <code>getCellMeta</code> and <code>setCellMeta</code> methods). Please make sure you update your hook callbacks to use them properly. (<a href="https://github.com/handsontable/handsontable/issues/4409" target="_blank">#4409</a>)</li>
+    </ul>
+
+    <strong>Changes:</strong>
+    <ul>
+      <li>Updated the Filters documentation.</li>
+      <li>Fixed a problem where the Filters plugin threw an error when there was a condition with too many arguments applied.</li>
+      <li>Added support for the <code>EXP</code> formula in the Filters plugin.</li>
+      <li>Changed the text in the warning message thrown when the amount of conditions exceeded the capacity of the dropdownMenu.</li>
+      <li>Fixed the alignment of the checkboxes in the Filters dropdown menu.</li>
+      <li>Fixed a problem where the Filters plugin threw an error when adding a condition with an improper name.</li>
+      <li>Fixed a problem where the Filters plugin threw an error when using the <code>disablePlugin</code> method while the Dropdown Menu plugin was not enabled.</li>
+    </ul>
+    <p>The corresponding Handsontable CE version is <code>0.34.0</code>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>1.12.0</h3>
     <p>Released on 11th of July, 2017</p>
     <strong>Breaking changes:</strong>

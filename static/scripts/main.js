@@ -1,5 +1,46 @@
+(function() {
+  var tracking = location.hash !== '' && location.hash !== '#';
+  var block = false;
+
+  if (tracking) {
+    $(window).on('scroll', function() {
+      if (!block) {
+        block = true;
+
+        var rect = document.getElementById(location.hash.replace('#', '')).getBoundingClientRect();
+
+        window.scrollTo(0, window.scrollY + rect.top - 120);
+      }
+    });
+  }
+}())
+
 $(function () {
   jQuery.fx.off = true;
+  
+  // Anchor fix
+  $(window).on('popstate', function(event) {
+    var hash = (event.originalEvent.state || {}).previousHash;
+
+    if (hash) {
+      var rect = document.getElementById(hash.replace('#', '')).getBoundingClientRect();
+
+      window.scrollTo(0, window.scrollY + rect.top - 120);
+    }
+  });
+
+  $(document.body).on('click', 'a[href*="#"]', function(event) {
+    if (location.pathname === event.target.pathname) {
+      event.preventDefault();
+
+      var rect = document.getElementById(event.target.hash.replace('#', '')).getBoundingClientRect();
+
+      history.pushState({previousHash: event.target.hash}, '', event.target.pathname + event.target.hash);
+
+      window.scrollTo(0, window.scrollY + rect.top - 120);
+    }
+  });
+  // END: Anchor fix
 
   // Search Items
   $('#search').on('keyup', onSearchKeyUp);
@@ -32,17 +73,6 @@ $(function () {
   $('.navigation a:not(.link-header)').on('click', function() {
     setTimeout(updateNav, 100);
   });
-  $('.pro-switch').on('click', function(event) {
-    event.preventDefault();
-  });
-  $('.free-switch').on('click', function(event) {
-    if (config.isProFeature) {
-      goTo(getDocUrl('latest').replace(/(latest\/)(.*)/, '$1tutorial-introduction.html'));
-    } else {
-      goTo(getDocUrl('latest'));
-    }
-    event.preventDefault();
-  });
 
   updateNav(true);
 
@@ -68,6 +98,75 @@ $(function () {
       document.getElementsByTagName('BODY')[0].appendChild(s);
     });
   }
+  
+  // mobile hamburger
+  $('#mobile-nav-menu').on('ontouchstart' in window ? 'touchstart' : 'click', function(event) {
+    var element = $('#mobile-nav-menu').parent();
+
+    element.toggleClass('mobile-active');
+    element.toggleClass('mobile-inactive');
+  });
+  // end
+
+  // dynamic stats
+  function updateElements(data) {
+    var elements = document.querySelectorAll('[data-bind]');
+
+    for (var i = 0, len = elements.length; i < len; i++) {
+      var prop = elements[i].dataset.bind;
+
+      if (data[prop] !== void 0) {
+        elements[i].innerText = data[prop];
+      }
+    }
+  }
+
+  function updateVariables(callback) {
+    axios({
+      url: 'https://stats.handsontable.com/stats'
+    }).then(function(resp) {
+      var data = resp.data;
+
+      data.lastUpdate = Date.now();
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      callback(data);
+    });
+  }
+  
+  var STORAGE_KEY = 'dynamic-variables';
+  var variables = localStorage.getItem(STORAGE_KEY);
+
+  if (typeof variables === 'string' && variables) {
+    var data = null;
+
+    try {
+      data = JSON.parse(variables);
+    } catch(ex) {}
+
+    if (data === null) { // JSON is broken - get data from backend.
+      localStorage.removeItem(STORAGE_KEY);
+
+      updateVariables(function(data) {
+        updateElements(data);
+      });
+
+    } else if (Date.now() - data.lastUpdate > 3600 * 8 * 1000) { // Cached data are to old - get data from backend
+      updateVariables(function(data) {
+        updateElements(data);
+      });
+
+    } else { // Update elements based on cached values
+      updateElements(data);
+    }
+
+  } else {
+    // Variables are not exist in the cached - get data from backend.
+    updateVariables(function(data) {
+      updateElements(data);
+    });
+  }
+  // end
 });
 
 function updateNav(scroll) {
@@ -116,7 +215,7 @@ function updateNav(scroll) {
   }
 
   // Scroll to the currently selected element
-  if (scroll && $current) {
+  if (scroll && $current && $current.text().trim() !== 'Introduction') {
     setTimeout(function() {
       var scrollableNav = $('.navigation').find('ul.list').first();
 
@@ -139,6 +238,10 @@ function onSearchKeyUp() {
 
     $el.find('.list li').each(function (i, v) {
       var $item = $(v);
+      
+      if ($item.hasClass('tutorial')) {
+        return;
+      }
 
       if ($item.data('name') && !$item.hasClass('multiple') && regexp.test($item.find("a").first().text())) {
         $item.show();
@@ -233,7 +336,7 @@ function buildBreadcrumbs() {
   // links
   docsLink = document.createElement('a');
   docsLink.href = '/pro';
-  docsLink.text = 'Docs';
+  docsLink.text = 'Handsontable PRO';
 
   if ($('.source').size() > 0 || !$activeLink.length) {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
@@ -268,6 +371,8 @@ function buildBreadcrumbs() {
       + makeSpan($item.text())
       + makeSpan($activeLink.text());
   }
+  
+  breadcrumbs += '<span class="right switcher"><a href="//docs.handsontable.com/latest">Switch to CE</a></span>';
 
   return breadcrumbs;
 }

@@ -151,6 +151,14 @@ function ajax(url, method, params, callback) {
         if (!runfiddle) {
           throw new Error("Edit in jsFiddle button does not contain runfiddle data");
         }
+        var link = element.getAttribute('data-link');
+        
+        if (link) {
+          window.open(link);
+          
+          return;
+        }
+        
         keys.push(runfiddle);
 
         var baseUrl = location.protocol + '//' + location.host;

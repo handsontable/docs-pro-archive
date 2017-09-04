@@ -11,17 +11,17 @@
           "features": {
             "title": "Features"
           },
-          "principles": {
-            "title": "Principles"
-          },
-          "licensing": {
-            "title": "Licensing"
-          },
           "compatibility": {
             "title": "Compatibility"
           },
+          "principles": {
+            "title": "Principles"
+          },
           "known-limitations": {
             "title": "Known limitations"
+          },
+          "licensing": {
+            "title": "Licensing"
           }
         }
       },
@@ -80,56 +80,30 @@
           },
           "good-practices": {
             "title": "Good practices"
-          }
-        }
-      },
-      "releasing": {
-        "title": "Releasing",
-        "children": {
-          "roadmap": {
-            "title": "Roadmap",
-            "external": "https://trello.com/b/PztR4hpj/handsontable-roadmap-2016"
           },
           "release-notes": {
             "title": "Release notes"
+          },
+          "roadmap": {
+            "title": "Roadmap",
+            "external": "//trello.com/b/PztR4hpj"
           }
         }
       },
       "community": {
         "title": "Community",
         "children": {
-          "forum": {
-            "title": "Forum",
-            "external": "https://forum.handsontable.com"
-          },
           "github": {
             "title": "GitHub",
             "external": "https://github.com/handsontable/handsontable"
           },
+          "forum": {
+            "title": "Forum",
+            "external": "https://forum.handsontable.com"
+          },
           "stackoverflow": {
             "title": "Stack Overflow",
             "external": "http://stackoverflow.com/tags/handsontable"
-          },
-          "google-group": {
-            "title": "Google group",
-            "external": "https://groups.google.com/forum/#!forum/handsontable"
-          }
-        }
-      },
-      "subprojects": {
-        "title": "Sub-projects",
-        "children": {
-          "ngHandsontable": {
-            "title": "ngHandsontable",
-            "external": "https://github.com/handsontable/ngHandsontable"
-          },
-          "hot-table": {
-            "title": "hot-table",
-            "external": "https://github.com/handsontable/hot-table"
-          },
-          "react-handsontable": {
-            "title": "react-handsontable",
-            "external": "https://github.com/handsontable/react-handsontable"
           }
         }
       },
@@ -152,54 +126,42 @@
           "header-tooltips": {
             "title": "Header tooltips",
             "pro": true
-          }
-        }
-      },
-      "rows-only-demos": {
-        "title": "Rows only",
-        "demo": true,
-        "children": {
+          },
           "pre-populating": {
-            "title": "Pre-populating"
+            "title": "Pre-populating rows"
+          },
+          "stretching": {
+            "title": "Stretching columns"
+          },
+          "freezing": {
+            "title": "Freezing columns"
           },
           "fixing-bottom": {
             "title": "Fixing bottom rows",
             "pro": true
           },
           "hiding-rows": {
-            "title": "Hiding",
+            "title": "Hiding rows",
+            "pro": true
+          },
+          "hiding-columns": {
+            "title": "Hiding columns",
             "pro": true
           },
           "trimming-rows": {
-            "title": "Trimming",
+            "title": "Trimming rows",
             "pro": true
           },
           "bind-rows-headers": {
             "title": "Bind rows with headers",
             "pro": true
           },
-          "nested-rows": {
-            "title": "Nested Rows",
-            "pro": true
-          }
-        }
-      },
-      "columns-only-demos": {
-        "title": "Columns only",
-        "demo": true,
-        "children": {
-          "stretching": {
-            "title": "Stretching"
-          },
-          "freezing": {
-            "title": "Freezing"
-          },
-          "hiding-columns": {
-            "title": "Hiding",
-            "pro": true
-          },
           "collapsing-columns": {
-            "title": "Collapsing",
+            "title": "Collapsing columns",
+            "pro": true
+          },
+          "nested-rows": {
+            "title": "Nested rows",
             "pro": true
           },
           "nested-headers": {
@@ -260,9 +222,6 @@
           },
           "disabled-editing": {
             "title": "Disabled editing"
-          },
-          "copy-paste": {
-            "title": "Copy & Paste"
           }
         }
       },
@@ -315,6 +274,9 @@
           "comments": {
             "title": "Comments"
           },
+          "copy-paste": {
+            "title": "Copy & Paste"
+          },
           "export-file": {
             "title": "Export to file",
             "pro": true
@@ -340,24 +302,6 @@
           },
           "mobiles-and-tablets": {
             "title": "Mobiles and tablets"
-          }
-        }
-      },
-      "integrations-demos": {
-        "title": "Integrations",
-        "demo": true,
-        "children": {
-          "jquery": {
-            "title": "jQuery"
-          },
-          "graphael-charts": {
-            "title": "gRaphaël charts"
-          },
-          "chromajs": {
-            "title": "ChromaJS"
-          },
-          "bootstrap": {
-            "title": "Bootstrap"
           }
         }
       }

@@ -5,6 +5,7 @@
   "plugins": [
     "node_modules/grunt-jsdoc/node_modules/jsdoc/plugins/markdown",
     "plugins/pluginTag",
+    "plugins/experimentalTag",
     "plugins/utilTag",
     "plugins/proTag"
   ],

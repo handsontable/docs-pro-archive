@@ -20,9 +20,17 @@ function find(spec) {
   return helper.find(data, spec);
 }
 
+function resolveCanonicalTags(str, path) {
+  if (typeof path === 'string') {
+    path = path.replace('generated', '');
+  }
+
+  return str.replace(/\{@canonical\}/, htmlsafe(path));
+};
+
 function tutoriallink(node) {
   if (node.external) {
-    return '<a class="external" href="' + node.external + '">' + node.title + '</a>';
+    return '<a class="external" target="_blank" href="' + node.external + '">' + node.title + '</a>';
 
   } else if(node.demo || (node.parent && node.parent.demo)) {
     return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Demo: ' }).replace('tutorial-','demo-');
@@ -136,6 +144,7 @@ function generate(title, docs, filename, resolveLinks) {
   if (resolveLinks) {
     // turn {@link foo} into <a href="foodoc.html">foo</a>
     html = helper.resolveLinks(html);
+    html = resolveCanonicalTags(html, outpath);
   }
 
   fs.writeFileSync(outpath, html, 'utf8');
@@ -205,6 +214,7 @@ function buildNav(members) {
       nav = {
         core: [],
         plugins: {},
+        experimentals: {},
         utils: []
       },
       registeredNames = [],
@@ -217,11 +227,19 @@ function buildNav(members) {
     registeredNames.push(object.longname);
 
     if ( object.isPlugin ) {
-      if (!nav.plugins[object.plugin]) {
-        nav.plugins[object.plugin] = [];
+      if (object.isExperimental) {
+        if (!nav.experimentals[object.plugin]) {
+          nav.experimentals[object.plugin] = [];
+        }
+        nav.experimentals[object.plugin].push(object);
+        
+      } else {
+        if (!nav.plugins[object.plugin]) {
+          nav.plugins[object.plugin] = [];
+        }
+        nav.plugins[object.plugin].push(object);
       }
-      nav.plugins[object.plugin].push(object);
-
+      
     } else if ( object.isUtil ) {
       nav.utils.push(object);
     } else {
@@ -232,6 +250,7 @@ function buildNav(members) {
   if (members.namespaces.length) {
     _.each(members.namespaces, function (v) {
       push({
+        isExperimental: v.experimental ? 1 : 0,
         isPlugin: v.plugin ? 1 : 0,
         plugin: v.plugin,
         isUtil: v.util ? 1 : 0,
@@ -262,6 +281,7 @@ function buildNav(members) {
   if (members.classes.length) {
     _.each(members.classes, function (v) {
       push({
+        isExperimental: v.experimental ? 1 : 0,
         isPlugin: v.plugin ? 1 : 0,
         plugin: v.plugin,
         isPro: v.pro ? 1 : 0,
@@ -297,6 +317,15 @@ function buildNav(members) {
   // Sort plugins alphabetically
   Object.keys(plugins).sort().forEach(function(pluginName) {
     nav.plugins[pluginName] = plugins[pluginName];
+  });
+
+  var experimentals = nav.experimentals;
+
+  nav.experimentals = {};
+
+  // Sort experimentals alphabetically
+  Object.keys(experimentals).sort().forEach(function(pluginName) {
+    nav.experimentals[pluginName] = experimentals[pluginName];
   });
 
   return nav;
@@ -571,6 +600,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     if (tutorial.demo || (tutorial.parent && tutorial.parent.demo)) {
       tutorialPath = tutorialPath.replace('tutorial-', 'demo-');
     }
+    html = resolveCanonicalTags(html, tutorialPath);
+    
     fs.writeFileSync(tutorialPath, html, 'utf8');
   }
 

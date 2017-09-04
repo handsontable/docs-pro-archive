@@ -9,6 +9,7 @@
 <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
 <?js } ?>
 
+<link rel="canonical" href="//docs.handsontable.com{@canonical}" />
 <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
 <script src="/pro/<?js= env.opts.query.version ?>/scripts/prettify/prettify.js"></script>
@@ -26,7 +27,8 @@
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script data-jsfiddle="common" src="/pro/<?js= env.opts.query.version ?>/bower_components/handsontable-pro/dist/handsontable.full.min.js"></script>
-<script src="/pro/<?js= env.opts.query.version ?>/scripts/identity-checker.js"></script>
+
+<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
 <link type="text/css" rel="stylesheet" href="/pro/<?js= env.opts.query.version ?>/bower_components/highlightjs/styles/github.css">
 <link type="text/css" rel="stylesheet" href="/pro/<?js= env.opts.query.version ?>/bower_components/handsontable-pro/dist/handsontable.full.min.css" data-jsfiddle="common">
@@ -41,3 +43,10 @@
     var hotVersion = "<?js= env.opts.query.version ?>";
     var hotLatestVersion = "<?js= env.opts.query.latestVersion ?>";
 </script>
+<script>
+    var HW_config = {
+        selector: ".news",
+        account: "xaD6ry"
+    };
+</script>
+<script src="//cdn.headwayapp.co/widget.js"></script>

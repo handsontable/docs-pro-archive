@@ -160,10 +160,6 @@
             "title": "Collapsing columns",
             "pro": true
           },
-          "nested-rows": {
-            "title": "Nested rows",
-            "pro": true
-          },
           "nested-headers": {
             "title": "Nested headers",
             "pro": true
@@ -189,10 +185,6 @@
           },
           "filtering": {
             "title": "Filtering",
-            "pro": true
-          },
-          "formula-support": {
-            "title": "Formula support",
             "pro": true
           },
           "summary-calculations": {
@@ -280,10 +272,6 @@
           "export-file": {
             "title": "Export to file",
             "pro": true
-          },
-          "gantt-chart": {
-            "title": "Gantt Chart",
-            "pro": true
           }
         }
       },
@@ -302,6 +290,24 @@
           },
           "mobiles-and-tablets": {
             "title": "Mobiles and tablets"
+          }
+        }
+      },
+      "experimental-demos": {
+        "title": "Experimental features",
+        "demo": true,
+        "children": {
+          "gantt-chart": {
+            "title": "Gantt Chart",
+            "pro": true
+          },
+          "formula-support": {
+            "title": "Formula support",
+            "pro": true
+          },
+          "nested-rows": {
+            "title": "Nested rows",
+            "pro": true
           }
         }
       }

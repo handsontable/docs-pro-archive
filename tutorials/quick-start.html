@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="index-list">
-    <p>Follow these steps to install Handsontable CE:</p>
+    <p>Follow these steps to install Handsontable Pro:</p>
     <ol>
       <li><a href="#page-install">Install</a></li>
       <li><a href="#page-create">Create</a></li>
@@ -13,13 +13,13 @@
   <div class="example-container clearfix" name="install">
     <h3 id="page-install">Step 1: Install</h3>
     <p>
-      <a href="//handsontable.com/community-download.html">There are many ways</a> to install Handsontable CE but we suggest using
-      <a href="https://www.npmjs.com/package/handsontable" target="_blank">npm</a>.
+      <a href="//handsontable.com/pro-download.html">There are many ways</a> to install Handsontable Pro
+      but we suggest using
+      <a href="https://www.npmjs.com/package/handsontable-pro" target="_blank">npm</a>.
       Just type in the following command:
     </p>
-    <p><code>bower install handsontable --save</code></p>
-    <p><strong>npm</strong> manages all dependencies so just sit back and relax. After it's done, embed the code inside
-        your HTML file:
+    <p><code>npm install handsontable-pro</code></p>
+    <p>After the installation process is finished, embed this code inside your HTML file:
     </p>
     <p><code>&lt;script src="/dist/handsontable.full.js"&gt;&lt;/script&gt;</code></p>
     <p><code>&lt;link rel="stylesheet" media="screen" href="/dist/handsontable.full.css"&gt;</code></p>
@@ -51,13 +51,15 @@ var container = document.getElementById('example');
 var hot = new Handsontable(container, {
   data: data,
   rowHeaders: true,
-  colHeaders: true
+  colHeaders: true,
+  filters: true,
+  dropdownMenu: true
 });</code></pre>
   </div>
 
   <div class="example-container clearfix" name="result">
     <h3 id="page-result">Step 4: The result</h3>
-    <p>That's it, now your Handsontable CE is up and ready to use:</p>
+    <p>That's it, now your Handsontable Pro is up and ready to use:</p>
 
     <div data-jsfiddle="example">
       <div id="example" class="hot"></div>
@@ -75,13 +77,15 @@ var hot = new Handsontable(container, {
       var hot = new Handsontable(container, {
         data: data,
         rowHeaders: true,
-        colHeaders: true
+        colHeaders: true,
+        filters: true,
+        dropdownMenu: true
       });
     </script>
 
     <p>
       You are probably wondering how to not only bind the data source but also save the changes made
-      in Handsontable CE? Head to
+      in Handsontable Pro? Head to
       <a href="/<?js= version ?>/tutorial-data-binding.html">Binding data</a> page to learn more about it.
     </p>
   </div>
@@ -89,7 +93,7 @@ var hot = new Handsontable(container, {
   <div class="example-container clearfix" name="alternative">
     <h3 id="page-alternative">Alternative installation</h3>
     <p>Find all the available installation options on the <a href="//handsontable.com/community-download.html">
-      Download Handsontable CE
+      Download Handsontable Pro
       </a> page.
     </p>
   </div>

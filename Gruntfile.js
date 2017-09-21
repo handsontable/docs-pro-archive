@@ -228,28 +228,39 @@ module.exports = function (grunt) {
   // });
   
   grunt.registerTask('update-hot', 'Update Handsontable Pro repository', function () {
+    var done = this.async();
     var hotProBranch = getHotProBranch();
 
     grunt.config.set('gitclone.handsontablePro.options.branch', hotProBranch);
     grunt.log.write('Cloning Handsontable Pro v.' + hotProBranch);
 
-    grunt.task.run('clean:sourcePro', 'gitclone:handsontablePro');
-    
-    
-    var timer = setInterval(function() {
-      if (!grunt.file.isFile(HOT_PRO_SRC_PATH + '/package.json')) {
-        return;
-      }
-      clearInterval(timer);
+    setTimeout(function() {
+      grunt.task.run('clean:sourcePro');
+      grunt.task.run('gitclone:handsontablePro');
       
-      var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
-      
-      grunt.config.set('gitclone.handsontable.options.branch', hotPackage.dependencies.handsontable);
-      grunt.log.write('Cloning Handsontable v' + hotPackage.dependencies.handsontable);
-
-      grunt.task.run('clean:source');
-      grunt.task.run('gitclone:handsontable');
-    }, 50);
+      var timer = setInterval(function() {
+        if (!grunt.file.isFile(HOT_PRO_SRC_PATH + '/package.json')) {
+          return;
+        }
+        clearInterval(timer);
+        
+        var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
+        
+        grunt.config.set('gitclone.handsontable.options.branch', hotPackage.dependencies.handsontable);
+        grunt.log.write('Cloning Handsontable v' + hotPackage.dependencies.handsontable);
+        
+        grunt.task.run('clean:source');
+        grunt.task.run('gitclone:handsontable');
+        
+        var timer2 = setInterval(function() {
+          if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
+            return;
+          }
+          clearInterval(timer2);
+          done();
+        }, 50);
+      }, 50);
+    }, 50);  
   });
 
   grunt.registerTask('generate-doc-versions', ['authenticate-git', 'generate-doc-versions-internal']);

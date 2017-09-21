@@ -194,76 +194,80 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('server', [
-    'connect',
-    'open',
-    'watch'
-  ]);
-
-  grunt.registerTask('default', ['env:build', 'authenticate-git', 'generate-disallow-for-robots-internal', 'update-hot-pro', 'update-hot', 'generate-docs']);
-
-  grunt.registerTask('build', ['env:build', 'authenticate-git', 'build-docs']);
-
-  // grunt.registerTask('authenticate-git', ['env:build', 'authenticate-git-internal']);
-  grunt.registerTask('authenticate-git', 'Authenticate Github', function() {
+  grunt.registerTask('authenticate-git', ['env:build', 'authenticate-git-internal']);
+  grunt.registerTask('authenticate-git-internal', 'Authenticate Github', function() {
     gitHelper.setupGitApi(process.env.GITHUB_TOKEN);
   });
 
-  grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
-    var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
+  grunt.registerTask('default', 'Create documentation for Handsontable', function() {
+    var timer;
 
-    grunt.config.set('gitclone.handsontable.options.branch', hotPackage.compatibleHotVersion);
-    grunt.log.write('Cloning Handsontable v.' + hotPackage.compatibleHotVersion);
+    grunt.task.run('authenticate-git');
+    // grunt.task.run('update-hot-pro');
+    grunt.task.run('update-hot');
 
-    grunt.task.run('clean:source');
-    grunt.task.run('gitclone:handsontable');
+    timer = setInterval(function() {
+      if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json') || !grunt.file.isFile(HOT_PRO_SRC_PATH + '/package.json')) {
+        return;
+      }
+      clearInterval(timer);
+      grunt.task.run('generate-doc-versions');
+      grunt.task.run('generate-disallow-for-robots');
+      grunt.task.run('build');
+    }, 50);
   });
 
-  grunt.registerTask('update-hot-pro', 'Update Handsontable Pro repository', function () {
+  // grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
+  //   var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
+  //   
+  //   grunt.config.set('gitclone.handsontable.options.branch', hotPackage.dependencies.handsontable);
+  //   grunt.log.write('Cloning Handsontable v' + hotPackage.dependencies.handsontable);
+  // 
+  //   grunt.task.run('clean:source');
+  //   grunt.task.run('gitclone:handsontable');
+  // });
+  
+  grunt.registerTask('update-hot', 'Update Handsontable Pro repository', function () {
     var hotProBranch = getHotProBranch();
 
     grunt.config.set('gitclone.handsontablePro.options.branch', hotProBranch);
     grunt.log.write('Cloning Handsontable Pro v.' + hotProBranch);
 
-    grunt.task.run('clean:sourcePro');
-    grunt.task.run('gitclone:handsontablePro');
-  });
-
-  grunt.registerTask('generate-docs', 'Generate the documentation', function () {
-    var timer;
-    var done = this.async();
-
-    timer = setInterval(function() {
-
-      if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json') || !grunt.file.isFile(HOT_PRO_SRC_PATH + '/package.json')) {
+    grunt.task.run('clean:sourcePro', 'gitclone:handsontablePro');
+    
+    
+    var timer = setInterval(function() {
+      if (!grunt.file.isFile(HOT_PRO_SRC_PATH + '/package.json')) {
         return;
       }
-
       clearInterval(timer);
-      grunt.task.run('build');
-      grunt.task.run('generate-doc-versions');
-      grunt.task.run('generate-disallow-for-robots');
+      
+      var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
+      
+      grunt.config.set('gitclone.handsontable.options.branch', hotPackage.dependencies.handsontable);
+      grunt.log.write('Cloning Handsontable v' + hotPackage.dependencies.handsontable);
 
-      done();
+      grunt.task.run('clean:source');
+      grunt.task.run('gitclone:handsontable');
     }, 50);
   });
 
   grunt.registerTask('generate-doc-versions', ['authenticate-git', 'generate-doc-versions-internal']);
-  grunt.registerTask('generate-doc-versions-internal', 'Generate version list for Handsontable Pro', function () {
+  grunt.registerTask('generate-doc-versions-internal', 'Generate documentation for Handsontable', function () {
     var done = this.async();
 
     gitHelper.getDocsVersions().then(function(branches) {
       branches = branches.filter(function(branch) {
         return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch);
       });
-      
+
       var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
 
       grunt.log.write('The following versions found: ' + branches.join(', '));
       fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);
     });
   });
-  
+
   grunt.registerTask('generate-disallow-for-robots', ['authenticate-git', 'generate-disallow-for-robots-internal']);
   grunt.registerTask('generate-disallow-for-robots-internal', 'Generate disallowed paths for web crawler robots', function () {
     var done = this.async();
@@ -272,7 +276,7 @@ module.exports = function (grunt) {
       branches.pop(); // Remove the newest version of the docs
 
       var content = '\n' + branches.map(function(branch) {
-        return 'Disallow: /pro/' + branch;
+        return 'Disallow: /' + branch;
       }).join('\n') + '\n';
 
       grunt.log.write('The following versions added to disallow: ' + branches.join(', '));
@@ -280,31 +284,24 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('build-docs', 'Generate the documentation', function () {
+  grunt.registerTask('build', ['authenticate-git', 'build-internal']);
+  grunt.registerTask('build-internal', 'Generate documentation for Handsontable', function () {
     var done = this.async();
     var hotPackage;
 
-    if (argv['hot-pro-version']) {
+    gitHelper.getHotLatestRelease().then(function(info) {
+      grunt.task.run('sass', 'copy', 'bowercopy');
+
+      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-        version: getHotProBranch(),
-        latestVersion: getHotProBranch()
+        version: hotPackage.version,
+        latestVersion: info.tag_name
       }));
 
-      grunt.task.run('sass', 'copy', 'bowercopy', 'jsdoc', 'sitemap');
+      grunt.task.run('jsdoc');
+      grunt.task.run('sitemap');
       done();
-
-    } else {
-      gitHelper.getHotLatestRelease().then(function(info) {
-        hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');
-        grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-          version: hotPackage.version,
-          latestVersion: info.name
-        }));
-
-        grunt.task.run('sass', 'copy', 'bowercopy', 'jsdoc', 'sitemap');
-        done();
-      });
-    }
+    });
   });
 
   grunt.loadNpmTasks('grunt-bowercopy');

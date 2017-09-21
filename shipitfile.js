@@ -54,10 +54,22 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && cp ../../../web.env .env.json');
 
     }).then(function() {
-      return shipit.remote('cd ' + path + ' && grunt --hot-pro-version=' + gitInfo.branch);
+      return shipit.remote('cd ' + path + ' && bower install --config.interactive=false -F');
 
     }).then(function() {
-      gitHelper.setupGitApi(env.GITHUB_TOKEN, env.GITLAB_TOKEN);
+      return shipit.remote('cd ' + path + ' && grunt update-hot --hot-pro-version=' + gitInfo.branch);
+
+    }).then(function() {
+      return shipit.remote('cd ' + path + ' && grunt build');
+
+    }).then(function() {
+      return shipit.remote('cd ' + path + ' && grunt generate-doc-versions');
+
+    }).then(function() {
+      return shipit.remote('cd ' + path + ' && grunt generate-disallow-for-robots');
+
+    }).then(function() {
+      gitHelper.setupGitApi(env.GITHUB_TOKEN);
 
       return gitHelper.getHotLatestRelease();
 

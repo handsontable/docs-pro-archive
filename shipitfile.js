@@ -68,7 +68,7 @@ module.exports = function (shipit) {
         return;
       }
 
-      return shipit.remote('cd ' + shipit.config.deployTo + '/../ && echo "' + objectInfo.name + '" > latestHot');
+      return shipit.remote('cd ' + shipit.config.deployTo + '/../ && echo "' + objectInfo.tag_name + '" > latestHot');
 
     }).then(function() {
       shipit.start(['deploy:publish', 'deploy:clean']);

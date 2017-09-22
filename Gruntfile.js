@@ -251,8 +251,8 @@ module.exports = function(grunt) {
         branches.pop(); // Remove the newest version of the docs
 
         var content = '\n' + branches.map(function(branch) {
-          return 'Disallow: /pro/' + branch;
-        }).join('\n') + '\n';
+          return 'Disallow: /pro/' + branch + '/';
+        }).join('\n') + '\n\n';
 
         grunt.log.write('The following versions added to disallow: ' + branches.join(', '));
         fs.writeFile(path.join(DOCS_PATH, 'robots_disallow'), content, done);

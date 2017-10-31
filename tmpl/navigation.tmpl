@@ -64,6 +64,7 @@
           <?js coreHeader = true; ?>
           <p class="subheader">Core</p>
         <?js } ?>
+        <!-- Core: Hooks -->
         <?js if (item.longname === 'Hooks') { ?>
           <li class="item" data-name="<?js= item.longname ?>">
             <span class="title extensible" data-list-id="<?js= item.longname ?>">
@@ -81,17 +82,22 @@
               <?js if (item.members.length) { ?>
                 <span class="subtitle">Members</span>
                 <?js item.members.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
-                  <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                  <li data-name="<?js= v.longname ?>">
+                    <?js= self.linkto(v.longname, v.name) ?>
+                    <?js if (v.pro) { ?>
+                      <sup>PRO</sup>
+                    <?js } ?>
                 <?js }); ?>
+                  </li>
               <?js } ?>
             </ul>
             <ul class="typedefs itemMembers" data-list-id="<?js= item.longname ?>">
               <?js if (item.typedefs.length) { ?>
                 <span class="subtitle">Typedefs</span>
                 <?js item.typedefs.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
-                  <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                  <li data-name="<?js= v.longname ?>">
+                    <?js= self.linkto(v.longname, v.name) ?>
+                  </li>
                 <?js }); ?>
               <?js } ?>
             </ul>
@@ -99,8 +105,12 @@
               <?js if (item.events.length) { ?>
                 <span class="subtitle">Events</span>
                 <?js item.events.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
-                  <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                  <li data-name="<?js= v.longname ?>">
+                    <?js= self.linkto(v.longname, v.name) ?>
+                    <?js if (v.pro) { ?>
+                      <sup>PRO</sup>
+                    <?js } ?>
+                  </li>
                 <?js }); ?>
               <?js } ?>
             </ul>
@@ -108,13 +118,13 @@
               <?js if (item.methods.length) { ?>
                 <span class="subtitle">Methods</span>
                 <?js item.methods.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
                   <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
                 <?js }); ?>
               <?js } ?>
             </ul>
           </li>
         <?js } else { ?>
+          <!-- Core: Core -->
           <li class="item" data-name="<?js= item.longname ?>">
             <span class="title extensible" data-list-id="<?js= item.longname ?>">
               <a class="link-header" href="#"><?js= item.longname ?></a>
@@ -131,8 +141,12 @@
               <?js if (item.members.length) { ?>
                 <span class="subtitle">Members</span>
                 <?js item.members.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
-                  <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                  <li data-name="<?js= v.longname ?>">
+                    <?js= self.linkto(v.longname, v.name) ?>
+                    <?js if (v.pro) { ?>
+                      <sup>PRO</sup>
+                    <?js } ?>
+                  </li>
                 <?js }); ?>
               <?js } ?>
             </ul>
@@ -140,7 +154,6 @@
               <?js if (item.typedefs.length) { ?>
                 <span class="subtitle">Typedefs</span>
                 <?js item.typedefs.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
                   <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
                 <?js }); ?>
               <?js } ?>
@@ -149,7 +162,6 @@
               <?js if (item.methods.length) { ?>
                 <span class="subtitle">Methods</span>
                 <?js item.methods.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
                   <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
                 <?js }); ?>
               <?js } ?>
@@ -158,8 +170,12 @@
               <?js if (item.events.length) { ?>
                 <span class="subtitle">Events</span>
                 <?js item.events.forEach(function (v) { ?>
-                  <?js if (v.pro) { return } ?>
-                  <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                  <li data-name="<?js= v.longname ?>">
+                    <?js= self.linkto(v.longname, v.name) ?>
+                    <?js if (v.pro) { ?>
+                      <sup>PRO</sup>
+                    <?js } ?>
+                  </li>
                 <?js }); ?>
               <?js } ?>
             </ul>

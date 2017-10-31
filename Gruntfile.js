@@ -18,8 +18,12 @@
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 var path = require('path');
+var semver = require('semver');
 var gitHelper = require('./git-helper');
 
+if (semver.gt(process.versions.node, '6.11.5')) {
+  throw Error('This project supports Node.js <= 6, please downgrade your Node.js version and try again. You have currently installed version ' + process.versions.node + '.');
+}
 
 module.exports = function(grunt) {
   var

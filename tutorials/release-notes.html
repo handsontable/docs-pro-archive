@@ -1,6 +1,54 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>1.15.0</h3>
+    <p>Released on 6th of December, 2017</p>
+    <strong>New feature:</strong>
+    <p>
+      From now on you will able to translate messages and elements of the UI to your specific language. <a href="https://docs.handsontable.com/pro/tutorial-internationalization.html">Read more</a> about this new feature.
+    </p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>
+        We have renamed our locale and language-related configuration options to free the namespace required for multi-language support introduced within this release.
+      </li>
+    </ul>
+    <p>
+      What used to be defined as:
+    <pre><code class="lang-js">{
+  format: '0,0.00 $',
+  language: 'de-DE'
+}</code></pre>
+
+    will now look like this:
+
+    <pre><code class="lang-js">{
+  numericFormat: {
+    pattern: '0,0.00 $',
+    culture: 'de-DE'
+  }
+}</code></pre>
+    Take a look at our documentation for more insight:
+    <ul>
+      <li><a href="https://docs.handsontable.com/pro/1.14.3/demo-numeric.html" target="_blank">to version 1.14.3</a></li>
+      <li><a href="https://docs.handsontable.com/pro/1.15.0/demo-numeric.html" target="_blank">from version 1.15.0</a></li>
+    </ul>
+    </p>
+
+    <strong>Other changes:</strong>
+    <ul>
+      <li>Removed unwanted dependencies. (<a href="https://github.com/handsontable/handsontable-pro/issues/13" target="_blank">#13</a>)</li>
+      <li>Fixed problems in test cases for the <code>Filters</code> plugin. (<a href="https://github.com/handsontable/handsontable-pro/issues/12" target="_blank">#12</a>)</li>
+      <li>Added multi-language support for the table. Please, take a look at https://docs.handsontable.com/tutorial-internationalization.html for more information. (<a href="https://github.com/handsontable/handsontable-pro/issues/6" target="_blank">#6</a>)</li>
+      <li>Added a <code>weekHeaderGenerator</code> option for the <code>GanttChart</code> plugin. (<a href="https://github.com/handsontable/handsontable-pro/issues/19" target="_blank">#19</a>)</li>
+      <li>Fixed a bug, where formulas did not work on nested coordinates. (<a href="https://github.com/handsontable/handsontable-pro/issues/15" target="_blank">#15</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/tag/0.35.0">0.35.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>1.14.3</h3>
     <p>Released on 12th of October, 2017</p>
 

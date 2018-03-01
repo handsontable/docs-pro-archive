@@ -1,6 +1,40 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>1.17.0</h3>
+    <p>Released on 1st of March, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li><p>The Merge Cells plugin has been rewritten to ES6 and completely refactored. Before <code>0.37.0</code> (<code>1.17.0</code> with Handsontable Pro) the plugin was accessible from the <code>mergeCells</code> property in the main instance. After the refactor, you can access it just like every other plugin, which is with <code>hot.getPlugin(‘mergeCells’)</code>. (<a href="https://github.com/handsontable/handsontable/issues/4214" target="_blank">#4214</a>, <a href="https://github.com/handsontable/handsontable/issues/4858" target="_blank">#4858</a>, <a href="https://github.com/handsontable/handsontable/issues/4870" target="_blank">#4870</a>)
+
+      <table>
+      <tr><td><b>Pre-<code>0.37.0</code></b></td><td><b>Post-<code>0.37.0</code></b></td></tr>
+      <tr><td><code>hot.mergeCells</code></td><td><code>hot.getPlugin('mergeCells')</code></td></tr>
+      <tr><td><code>hot.mergeCells.mergedCellInfoCollection</code></td><td><code>hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells</code></td></tr>
+      </table>
+
+      This update introduces new API (more information in the documentation) and four new hooks:
+
+      <ul>
+      <li><b>beforeMergeCells</b></li>
+      <li><b>afterMergeCells</b></li>
+      <li><b>beforeUnmergeCells</b></li>
+      <li><b>afterUnmergeCells</b></li>
+      </ul></p>
+      </li>
+      <li>The merged cells are now cleared (filled with <code>null</code>s). The only value that remains, is the top-left corner cell's value, which is the visible one. (<a href="https://github.com/handsontable/handsontable/issues/2958" target="_blank">#2958</a>)</li>
+    </ul>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Added the <code>common.css</code> file, necessary for tests added to Handsontable CE.(<a href="https://github.com/handsontable/handsontable-pro/issues/40" target="_blank">#40</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/tag/0.37.0">0.37.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>1.16.0</h3>
     <p>Released on 16th of February, 2018</p>
 

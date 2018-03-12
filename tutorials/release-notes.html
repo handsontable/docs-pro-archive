@@ -1,6 +1,62 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>1.16.0</h3>
+    <p>Released on 16th of February, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <p>- Rewritten the <code>PersistentState</code> plugin to ES6. (<a href="https://github.com/handsontable/handsontable/issues/4618" target="_blank">#4618</a>)
+      From this version onward you can access the plugin like all regular plugins (<code>hot.getPlugin('persistentState')</code>), not from the main instance (the <code>hot.storage</code> object is now accesible from <code>hot.getPlugin('persistentState').storage</code>)</p>
+    <p>- Added support for selecting non-contiguous cells or ranges (<a href="https://github.com/handsontable/handsontable/issues/4708" target="_blank">#4708</a>). That required some changes - some of them are backward incompatible:</p>
+    <b>New API</b>
+    <ul>
+      <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (<code>[row, col, rowEnd, colEnd]</code>). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
+      <li><code>hot.getSelectedRangeLast()</code> Returns a <code>CellRange</code> object containing the last selection coordinates applied to the table. This method behaves as <code>hot.getSelectedRange()</code> before the braking change.</li>
+      <li><code>hot.alter('remove_row', [[1, 4], [10, 1]])</code> Supports removing non-contiguous rows. Instead of passing the row index, we can pass an array of arrays, where the first item is the index of the row and at the second item is the amount of rows to be removed;</li>
+      <li><code>hot.alter('remove_col', [[1, 4], [10, 1]])</code> Same as above, but for the columns. Only "remove" actions support that new feature.</li>
+    </ul>
+    <b>Backward-incompatible changes</b>
+    <ul>
+      <li><code>hot.getSelected()</code> Returns an array of arrays with the coordinates of all layers (<code>[[row, col, rowEnd, colEnd], [row, col, rowEnd, colEnd] ...]</code>);</li>
+      <li><code>hot.getSelectedRange()</code> Returns an array of <code>CellRange</code> objects with the coordinates of all layers (<code>[{CellRange}, {CellRange} ...]</code>);</li>
+      <li>Previously <code>hot.selection.empty()</code>, now <code>hot.emptySelectedCells()</code>;</li>
+      <li>Changed selection colors:<br>
+        - area borders, was <code>#89aff9</code> -> is <code>#4b89ff</code><br>
+        - area background, was <code>#b5d1ff</code> -> is <code>#005eff</code><br>
+        - current selection border, was <code>#5292f7</code> -> is <code>#4b89ff</code>
+      </li>
+      <li>Removed the <code>multiSelect</code> setting and replaced it with <code>selectionMode: 'single'</code>;</li>
+      <li>Added a new <code>selectionMode</code> option, which can be set either as <code>'single'</code> (previously as <code>multiSelect: false</code>), <code>'range'</code> (previously as <code>multiSelect: true</code>) or <code>'multiple'</code> (new non-contiguous mode);</li>
+    </ul>
+    <b>Backward-compatible changes</b>
+    <ul>
+      <li><code>afterSelection</code><br>
+        - <i>previously</i>: <code>afterSelection(row, column, rowEnd, columnEnd, preventScrolling)</code><br>
+        - <i>now</i>: <code>afterSelection(row, column, rowEnd, columnEnd, preventScrolling, selectionLayerLevel)</code>
+      </li><li><code>afterSelectionByProp</code><br>
+      - <i>previously</i>: <code>afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling)</code><br>
+      - <i>now</i>: <code>afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling, selectionLayerLevel)</code>
+    </li><li><code>afterSelectionEnd</code><br>
+      - <i>previously</i>: <code>afterSelectionEnd(row, column, rowEnd, columnEnd)</code><br>
+      - <i>now</i>: <code>afterSelectionEnd(row, column, rowEnd, columnEnd, selectionLayerLevel)</code>
+    </li><li><code>afterSelectionEndByProp</code><br>
+      - <i>previously</i>: <code>afterSelectionEndByProp(row, prop, rowEnd, propEnd)</code><br>
+      - <i>now</i>: <code>afterSelectionEndByProp(row, prop, rowEnd, propEnd, selectionLayerLevel)</code>
+    </li>
+    </ul>
+    <p>
+      We've added a <code>selectionLayerLevel</code> argument for all the hooks listed above. The <code>selectionLayerLevel</code> is a number indicating which selection layer is currently being modified. For the first selection, this value is <code>0</code>, with the new added layers this number increases.
+    </p>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a problem with unneeded rows being added when using Filters along with minRows or minSpareRows. (<a href="https://github.com/handsontable/handsontable-pro/issues/24" target="_blank">#24</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/tag/0.36.0">0.36.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>1.15.1</h3>
     <p>Released on 25th of January, 2018</p>
 

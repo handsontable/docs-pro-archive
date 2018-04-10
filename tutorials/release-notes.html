@@ -1,6 +1,133 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>1.18.1</h3>
+    <p>Released on 20th of March, 2018</p>
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a bug with duplicate fill handles on the edges of the table's overlays. (<a href="https://github.com/handsontable/handsontable/issues/4920" target="_blank">CE#4920</a>)</li>
+      <li>Fixed a problem, where the <code>MergeCells</code> class was added under <code>Core</code> in the docs. (<a href="https://github.com/handsontable/handsontable/issues/4941" target="_blank">CE#4941</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/0.38.1" target="_blank">0.38.1</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3>1.18.0</h3>
+    <p>Released on 14th of March, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>We removed the mobile editor from the repository. After this version, a standard editor will be used when using mobile devices. (<a href="https://github.com/handsontable/handsontable/issues/4911" target="_blank">CE#4911</a>)</li>
+    </ul>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a bug, where merged cells declared outside of the table were still partially rendered. (<a href="https://github.com/handsontable/handsontable/issues/4887" target="_blank">CE#4887</a>)</li>
+      <li>Added tests for mobile devices. (<a href="https://github.com/handsontable/handsontable/issues/4868" target="_blank">CE#4868</a>)</li>
+      <li>Fixed a bug, where rows were not being rendered, when scrolling the table on a mobile device. (<a href="https://github.com/handsontable/handsontable/issues/4856" target="_blank">CE#4856</a>)</li>
+      <li>Added some missing API for the non-contiguous selection feature. (<a href="https://github.com/handsontable/handsontable/issues/4811" target="_blank">CE#4811</a>)</li>
+      <li>Change the <code>isObjectEquals</code> function to <code>isObjectEqual</code>. (<a href="https://github.com/handsontable/handsontable/issues/4387" target="_blank">CE#4387</a>)</li>
+      <li>Fixed a problem with scrolling on Microsoft Edge. (<a href="https://github.com/handsontable/handsontable/issues/4320" target="_blank">CE#4320</a>)</li>
+      <li>Added a proper <code>source</code> argument value for removing data from the table using the <code>Backspace</code> and <code>Delete</code> keys. (<a href="https://github.com/handsontable/handsontable/issues/3916">CE#3916</a>, <a href="https://github.com/handsontable/handsontable/issues/3539">CE#3539</a>)</li>
+      <li>Added a <code>cellProperties</code> argument for the <code>beforeValueRender</code> hook. (<a href="https://github.com/handsontable/handsontable/issues/4543" target="_blank">CE#4543</a>)</li>
+      <li>Fixed a problem, where the Filters dropdown contained misaligned elements. (<a href="https://github.com/handsontable/handsontable-pro/issues/33" target="_blank">#33</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/tag/0.38.0">0.38.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3>1.17.0</h3>
+    <p>Released on 1st of March, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li><p>The Merge Cells plugin has been rewritten to ES6 and completely refactored. Before <code>0.37.0</code> (<code>1.17.0</code> with Handsontable Pro) the plugin was accessible from the <code>mergeCells</code> property in the main instance. After the refactor, you can access it just like every other plugin, which is with <code>hot.getPlugin(‘mergeCells’)</code>. (<a href="https://github.com/handsontable/handsontable/issues/4214" target="_blank">#4214</a>, <a href="https://github.com/handsontable/handsontable/issues/4858" target="_blank">#4858</a>, <a href="https://github.com/handsontable/handsontable/issues/4870" target="_blank">#4870</a>)
+
+      <table>
+      <tr><td><b>Pre-<code>0.37.0</code></b></td><td><b>Post-<code>0.37.0</code></b></td></tr>
+      <tr><td><code>hot.mergeCells</code></td><td><code>hot.getPlugin('mergeCells')</code></td></tr>
+      <tr><td><code>hot.mergeCells.mergedCellInfoCollection</code></td><td><code>hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells</code></td></tr>
+      </table>
+
+      This update introduces new API (more information in the documentation) and four new hooks:
+
+      <ul>
+      <li><b>beforeMergeCells</b></li>
+      <li><b>afterMergeCells</b></li>
+      <li><b>beforeUnmergeCells</b></li>
+      <li><b>afterUnmergeCells</b></li>
+      </ul></p>
+      </li>
+      <li>The merged cells are now cleared (filled with <code>null</code>s). The only value that remains, is the top-left corner cell's value, which is the visible one. (<a href="https://github.com/handsontable/handsontable/issues/2958" target="_blank">#2958</a>)</li>
+    </ul>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Added the <code>common.css</code> file, necessary for tests added to Handsontable CE.(<a href="https://github.com/handsontable/handsontable-pro/issues/40" target="_blank">#40</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/tag/0.37.0">0.37.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3>1.16.0</h3>
+    <p>Released on 16th of February, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <p>- Rewritten the <code>PersistentState</code> plugin to ES6. (<a href="https://github.com/handsontable/handsontable/issues/4618" target="_blank">#4618</a>)
+      From this version onward you can access the plugin like all regular plugins (<code>hot.getPlugin('persistentState')</code>), not from the main instance (the <code>hot.storage</code> object is now accesible from <code>hot.getPlugin('persistentState').storage</code>)</p>
+    <p>- Added support for selecting non-contiguous cells or ranges (<a href="https://github.com/handsontable/handsontable/issues/4708" target="_blank">#4708</a>). That required some changes - some of them are backward incompatible:</p>
+    <b>New API</b>
+    <ul>
+      <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (<code>[row, col, rowEnd, colEnd]</code>). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
+      <li><code>hot.getSelectedRangeLast()</code> Returns a <code>CellRange</code> object containing the last selection coordinates applied to the table. This method behaves as <code>hot.getSelectedRange()</code> before the braking change.</li>
+      <li><code>hot.alter('remove_row', [[1, 4], [10, 1]])</code> Supports removing non-contiguous rows. Instead of passing the row index, we can pass an array of arrays, where the first item is the index of the row and at the second item is the amount of rows to be removed;</li>
+      <li><code>hot.alter('remove_col', [[1, 4], [10, 1]])</code> Same as above, but for the columns. Only "remove" actions support that new feature.</li>
+    </ul>
+    <b>Backward-incompatible changes</b>
+    <ul>
+      <li><code>hot.getSelected()</code> Returns an array of arrays with the coordinates of all layers (<code>[[row, col, rowEnd, colEnd], [row, col, rowEnd, colEnd] ...]</code>);</li>
+      <li><code>hot.getSelectedRange()</code> Returns an array of <code>CellRange</code> objects with the coordinates of all layers (<code>[{CellRange}, {CellRange} ...]</code>);</li>
+      <li>Previously <code>hot.selection.empty()</code>, now <code>hot.emptySelectedCells()</code>;</li>
+      <li>Changed selection colors:<br>
+        - area borders, was <code>#89aff9</code> -> is <code>#4b89ff</code><br>
+        - area background, was <code>#b5d1ff</code> -> is <code>#005eff</code><br>
+        - current selection border, was <code>#5292f7</code> -> is <code>#4b89ff</code>
+      </li>
+      <li>Removed the <code>multiSelect</code> setting and replaced it with <code>selectionMode: 'single'</code>;</li>
+      <li>Added a new <code>selectionMode</code> option, which can be set either as <code>'single'</code> (previously as <code>multiSelect: false</code>), <code>'range'</code> (previously as <code>multiSelect: true</code>) or <code>'multiple'</code> (new non-contiguous mode);</li>
+    </ul>
+    <b>Backward-compatible changes</b>
+    <ul>
+      <li><code>afterSelection</code><br>
+        - <i>previously</i>: <code>afterSelection(row, column, rowEnd, columnEnd, preventScrolling)</code><br>
+        - <i>now</i>: <code>afterSelection(row, column, rowEnd, columnEnd, preventScrolling, selectionLayerLevel)</code>
+      </li><li><code>afterSelectionByProp</code><br>
+      - <i>previously</i>: <code>afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling)</code><br>
+      - <i>now</i>: <code>afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling, selectionLayerLevel)</code>
+    </li><li><code>afterSelectionEnd</code><br>
+      - <i>previously</i>: <code>afterSelectionEnd(row, column, rowEnd, columnEnd)</code><br>
+      - <i>now</i>: <code>afterSelectionEnd(row, column, rowEnd, columnEnd, selectionLayerLevel)</code>
+    </li><li><code>afterSelectionEndByProp</code><br>
+      - <i>previously</i>: <code>afterSelectionEndByProp(row, prop, rowEnd, propEnd)</code><br>
+      - <i>now</i>: <code>afterSelectionEndByProp(row, prop, rowEnd, propEnd, selectionLayerLevel)</code>
+    </li>
+    </ul>
+    <p>
+      We've added a <code>selectionLayerLevel</code> argument for all the hooks listed above. The <code>selectionLayerLevel</code> is a number indicating which selection layer is currently being modified. For the first selection, this value is <code>0</code>, with the new added layers this number increases.
+    </p>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a problem with unneeded rows being added when using Filters along with minRows or minSpareRows. (<a href="https://github.com/handsontable/handsontable-pro/issues/24" target="_blank">#24</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable CE version is <a href="https://github.com/handsontable/handsontable/releases/tag/0.36.0">0.36.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>1.15.1</h3>
     <p>Released on 25th of January, 2018</p>
 

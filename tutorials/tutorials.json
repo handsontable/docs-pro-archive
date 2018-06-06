@@ -22,6 +22,10 @@
           },
           "licensing": {
             "title": "Licensing"
+          },
+          "license-key": {
+            "title": "License key",
+            "pro": true
           }
         }
       },

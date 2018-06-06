@@ -198,8 +198,10 @@ module.exports = function(grunt) {
     grunt.registerTask('update-hot', 'Update Handsontable repository', function() {
       var hotPackage = grunt.file.readJSON(HOT_PRO_SRC_PATH + '/package.json');;
 
-      grunt.config.set('gitclone.handsontable.options.branch', hotPackage.dependencies.handsontable);
-      grunt.log.write('Cloning Handsontable v.' + hotPackage.dependencies.handsontable);
+      var cleanHotBranch = hotPackage.dependencies.handsontable.replace('github:', '').replace('handsontable/handsontable#', '');
+
+      grunt.config.set('gitclone.handsontable.options.branch', cleanHotBranch);
+      grunt.log.write('Cloning Handsontable v.' + cleanHotBranch);
 
       grunt.task.run('clean:source');
       grunt.task.run('gitclone:handsontable');

@@ -42,6 +42,7 @@
   "scripts": {
     "test": "",
     "start": "grunt",
+    "start:develop": "grunt --hot-pro-version=develop",
     "build": "grunt build",
     "deploy": "shipit production deploy"
   },

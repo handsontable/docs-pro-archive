@@ -379,7 +379,7 @@ function buildBreadcrumbs() {
       + makeSpan($activeLink.text());
   }
   
-  breadcrumbs += '<span class="right switcher"><a href="//docs.handsontable.com/latest">Switch to CE</a></span>';
+  breadcrumbs += '<span class="right switcher"><a href="/latest">Switch to CE</a></span>';
 
   return breadcrumbs;
 }

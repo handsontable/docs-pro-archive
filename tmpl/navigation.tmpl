@@ -26,7 +26,11 @@
             <ul class="members itemMembers" data-list-id="<?js= child.longname ?>">
               <?js child.children.forEach(function (c) { ?>
                 <?js if (c.disabled) { return; } ?>
-                <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c)?></li>
+                <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c)?>
+                  <?js if (c.pro) { ?>
+                  <sup>PRO</sup>
+                  <?js } ?>
+                </li>
               <?js }); ?>
             </ul>
           </li>

@@ -22,7 +22,7 @@ var semver = require('semver');
 var gitHelper = require('./git-helper');
 
 if (semver.gt(process.versions.node, '6.11.5')) {
-  throw Error('This project supports Node.js <= 6, please downgrade your Node.js version and try again. You have currently installed version ' + process.versions.node + '.');
+  throw Error('This project supports Node.js <= 6.11.5, please downgrade your Node.js version and try again. You have currently installed version ' + process.versions.node + '.');
 }
 
 module.exports = function(grunt) {
@@ -240,7 +240,7 @@ module.exports = function(grunt) {
 
       gitHelper.getDocsVersions().then(function(branches) {
         branches = branches.filter(function(branch) {
-          return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch);
+          return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch) && semver.gte(branch, '1.11.0');
         });
       
         var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';

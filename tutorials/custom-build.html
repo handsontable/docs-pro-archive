@@ -36,8 +36,8 @@
       <li>
         <code>npm run test</code> - runs several tasks in this order:
         <ul>
-          <li><code>npm run lint</code> - check if changes applied into source code are valid with our code style (we mostly follow
-            the <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript</a> code style).</li>
+          <li><code>npm run lint</code> - check if changes applied into source code are valid with <a href="https://github.com/handsontable/handsontable/blob/master/.eslintrc" target="_blank">our code style</a> (inspired by
+            <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript Style</a>).</li>
           <li><code>npm run test:unit</code> - runs the test suite in node environment. It uses <a href="https://facebook.github.io/jest/" target="_blank">Jest</a> as a test runner.</li>
           <li><code>npm run test:handsontable</code> - runs a single build of Handsontable CE followed by Jasmine test suite and executes in <a href="https://github.com/GoogleChrome/puppeteer" target="_blank">Puppeteer</a>.</li>
           <li><code>npm run test:e2e</code> - runs a single build followed by Jasmine test suite and by using the generated bundle <code>/dist/handsontable.js</code> executes it in Puppeteer.</li>
@@ -64,7 +64,7 @@
     <p>To run your own build, follow the below steps:</p>
     <ol>
       <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
-        handles all the dependencies. Handsontable requires <strong>Node.js >=6</strong> and <strong>npm >=3</strong> for building and testing.
+        handles all the dependencies. Handsontable requires <strong>Node.js >=8</strong> and <strong>npm >=5</strong> for building and testing.
       </li>
       <li>Clone the Handsontable repository on your local disk and go to the directory where you cloned it.</li>
       <li>Run <code>npm install</code> to download all the dependencies defined in <code>package.json</code>. The

@@ -84,11 +84,17 @@ module.exports = function(grunt) {
       copy: {
         dist: {
           files: [{
-            expand: true,
-            cwd: 'src',
-            dest: 'generated',
-            src: ['static/**']
-          }]
+              expand: true,
+              cwd: 'src',
+              dest: 'generated',
+              src: ['static/**']
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/numbro',
+              dest: 'generated/bower_components/numbro',
+              src: ['**']
+            }]
         }
       },
 
@@ -117,7 +123,6 @@ module.exports = function(grunt) {
             "chroma-js": "chroma-js",
             "raphael": "raphael",
             "bootstrap": "bootstrap",
-            "numbro": "numbro",
             "font-awesome": "font-awesome",
             "lodash": "lodash",
             "promise-polyfill": "promise-polyfill",
@@ -242,14 +247,14 @@ module.exports = function(grunt) {
         branches = branches.filter(function(branch) {
           return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch) && semver.gte(branch, '1.11.0');
         });
-      
+
         var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
 
         grunt.log.write('The following versions found: ' + branches.join(', '));
         fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);
       });
     });
-    
+
     grunt.registerTask('generate-disallow-for-robots', 'Generate disallowed paths for web crawler robots', function () {
       var done = this.async();
 

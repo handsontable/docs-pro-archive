@@ -320,6 +320,30 @@
             "pro": true
           }
         }
+      },
+      "react-wrappers": {
+        "title": "React",
+        "wrapper": true,
+        "children": {
+          "react-overview": {
+            "title": "Overview"
+          },
+          "react-examples": {
+            "title": "Examples"
+          }
+        }
+      },
+      "vue-wrappers": {
+        "title": "Vue",
+        "wrapper": true,
+        "children": {
+          "vue-overview": {
+            "title": "Overview"
+          },
+          "vue-examples": {
+            "title": "Examples"
+          }
+        }
       }
     }
   }

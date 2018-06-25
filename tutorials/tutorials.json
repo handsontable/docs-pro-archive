@@ -50,9 +50,6 @@
           "using-callbacks": {
             "title": "Using callbacks"
           },
-          "styling": {
-            "title": "Styling"
-          },
           "keyboard-navigation": {
             "title": "Keyboard navigation"
           },
@@ -183,9 +180,6 @@
         "children": {
           "sorting": {
             "title": "Sorting"
-          },
-          "paginating": {
-            "title": "Paginating"
           },
           "searching": {
             "title": "Searching"

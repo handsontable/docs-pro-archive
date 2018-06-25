@@ -50,8 +50,7 @@
           ['Pellentesque', 'vulputate', 'leo', 'semper', '10/23/2015', 26],
           ['diam', 'et', 'malesuada', 'libero', '12/1/2014', 98],
           ['orci', 'et', 'dignissim', 'hendrerit', '12/1/2016', 8.5]
-        ];
-      </script>
+        ];</script>
       <script data-jsfiddle="example1">
         var example1 = document.getElementById('example1');
 
@@ -69,9 +68,7 @@
           rowHeaders: true,
           dropdownMenu: true,
           filters: true
-        });
-
-      </script>
+        });</script>
     </div>
 
     <h3 id="dropdown">Custom dropdown menu</h3>
@@ -105,8 +102,7 @@
           ['Pellentesque', 'vulputate', 'leo', 'semper', '10/23/2015', 26],
           ['diam', 'et', 'malesuada', 'libero', '12/1/2014', 98],
           ['orci', 'et', 'dignissim', 'hendrerit', '12/1/2016', 8.5]
-        ];
-      </script>
+        ];</script>
       <script data-jsfiddle="example2">
         var example1 = document.getElementById('example2');
 
@@ -124,19 +120,18 @@
           rowHeaders: true,
           filters: true,
           dropdownMenu: ['filter_by_condition', 'filter_action_bar']
-        });
-      </script>
+        });</script>
     </div>
 
     <h3 id="custom-implementations">Custom implementations</h3>
     <p>
-      The examples below will give you a good idea on how to adjust the Filter plugin to your needs. 
+      The examples below will give you a good idea on how to adjust the Filter plugin to your needs.
       That includes customizing the UI components, changing the default behavior and using filters from the outside of the table.
     </p>
     <h4>Filter as you type</h4>
     <p>
-      We placed a basic <code>input</code> element inside a column’s header (A, B, C…), right below the label of the column. 
-      For a better visibility it is separated with a horizontal line. The data is being filtered as you type - with a 200 ms delay. 
+      We placed a basic <code>input</code> element inside a column’s header (A, B, C…), right below the label of the column.
+      For a better visibility it is separated with a horizontal line. The data is being filtered as you type - with a 200 ms delay.
       The filter element has been excluded from the selection event so when you click on it, the column doesn’t get selected.
     </p>
     <p>
@@ -184,14 +179,13 @@
           ['Pellentesque', 'vulputate', 'leo', 'semper', '10/23/2015', 26],
           ['diam', 'et', 'malesuada', 'libero', '12/1/2014', 98],
           ['orci', 'et', 'dignissim', 'hendrerit', '12/1/2016', 8.5]
-        ];
-      </script>
+        ];</script>
       <script data-jsfiddle="example3">
-      
+
       // Event for `keydown` event. Add condition after delay of 200 ms which is counted from time of last pressed key.
       var debounceFn = Handsontable.helper.debounce(function (colIndex, event) {
         var filtersPlugin = hot.getPlugin('filters');
-      
+
         filtersPlugin.removeConditions(colIndex);
         filtersPlugin.addCondition(colIndex, 'contains', [event.realTarget.value]);
         filtersPlugin.filter();
@@ -248,15 +242,15 @@
         beforeOnCellMouseDown: doNotSelectColumn
       });</script>
     </div>
-    
+
     <h4>Filter from the outside the table</h4>
     <p>
-      The external Filter component is controlling the main table by passing values for particular columns. 
-      Only a fraction of the code is related with Handsontable API (e.g. <code>addConditionsByValue</code>, <code>filter</code>, <code>removeConditions</code>). 
+      The external Filter component is controlling the main table by passing values for particular columns.
+      Only a fraction of the code is related with Handsontable API (e.g. <code>addConditionsByValue</code>, <code>filter</code>, <code>removeConditions</code>).
       A significantly more glue code handles the Filter component itself.
     </p>
     <p>
-      Please mind that selecting a column in the Filter component resets the state of the table. 
+      Please mind that selecting a column in the Filter component resets the state of the table.
       This implementation can filter only one column at a time.
     </p>
 
@@ -315,11 +309,11 @@
         #externalFilter > .button-holder {
           position: relative;
         }
-        
+
         #externalFilter > .button-holder .buttons {
           left: 5px;
         }
-        
+
         #externalFilter > .demo-columnChoose,
         #externalFilter > .demo-columnChoose > select,
         #externalFilter > .demo-filterSelect {
@@ -343,11 +337,11 @@
           background-color: rgb(243, 243, 243);
           padding: 2px 0px;
         }
-        
+
         #externalFilter > .demo-filterSelect > .demo-controllers {
           padding: 5px;
         }
-        
+
         #externalFilter > .demo-filterSelect > .demo-items {
           padding: 5px;
         }
@@ -368,8 +362,7 @@
           ['Pellentesque', 'vulputate', 'leo', 'semper', '10/23/2015', 26],
           ['diam', 'et', 'malesuada', 'libero', '12/1/2014', 98],
           ['orci', 'et', 'dignissim', 'hendrerit', '12/1/2016', 8.5]
-        ];
-      </script>
+        ];</script>
       <script data-jsfiddle="example4">
         const table = document.getElementById('example4');
         const arrayEach = Handsontable.helper.arrayEach;
@@ -627,8 +620,7 @@
               removeConditions: (column) => filtersPlugin.removeConditions(column)
             });
           }
-        });
-      </script>
+        });</script>
     </div>
 
   </div>

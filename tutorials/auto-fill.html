@@ -3,7 +3,7 @@
   <div class="index-list">
     <ul>
       <li><a href="#page-default">Auto fill in all directions</a></li>
-      <li><a href="#page-vertical-without-creating-rows">Auto fill in vertical direction only without creating new rows</a></li>
+      <li><a href="#page-vertical-without-creating-rows">Auto fill in vertical direction only with creating new rows</a></li>
     </ul>
   </div>
 
@@ -47,16 +47,16 @@
           colHeaders: true,
           fillHandle: true // possible values: true, false, "horizontal", "vertical"
         });
-        hot1.loadData(data);
-      </script>
+        hot1.loadData(data);</script>
 
     </div>
   </div>
 
   <div class="example-container clearfix head-gap">
-    <h3 id="page-vertical-without-creating-rows">Auto fill in vertical direction only without creating new rows</h3>
-    <p>In this configuration fill handle is restricted to move only vertically. Additionally when it comes to the edge of
-      the table bottom it preserves creating new rows.
+    <h3 id="page-vertical-without-creating-rows">Auto fill in vertical direction only with creating new rows</h3>
+    <p>In this configuration fill handle is restricted to move only vertically. Additionally, to adding new rows when it comes to the edge of the table bottom
+      we need change <strong>autoInsertRow</strong> to <strong>true</strong>.
+    </p>
     </p>
 
     <div data-jsfiddle="example2">
@@ -94,10 +94,9 @@
           colHeaders: true,
           fillHandle: {
             direction: 'vertical',
-            autoInsertRow: false,
+            autoInsertRow: true
           }
-        });
-      </script>
+        });</script>
 
     </div>
   </div>

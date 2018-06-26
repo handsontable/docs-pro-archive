@@ -17,9 +17,41 @@
     <ul>
       <li>the amount of cells,</li>
       <li>the amount of custom renderers,</li>
-      <li>the number of features in use,</li>
+      <li>the number of features (options) in use,</li>
       <li>the end-user's machine and browser performance.</li>
     </ul>
+    <p>
+      This demo below shows a table of 1 million cells (1000 x 1000):
+    </p>
+
+    <div data-jsfiddle="example1" class="scroll-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var example = document.getElementById('example1');
+        var hot1 = new Handsontable(example, {
+          data: Handsontable.helper.createSpreadsheetData(1000, 1000),
+          width: 584,
+          height: 320,
+          colWidths: 100,
+          rowHeights: 23,
+          rowHeaders: true,
+          colHeaders: true
+        });</script>
+    </div>
   </div>
   <p class="gap-top-xsmall">
     <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/scrolling.html" class="edit-doc" target="_blank">
@@ -27,4 +59,3 @@
     </a>
   </p>
 </div>
-

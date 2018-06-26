@@ -152,13 +152,13 @@ function ajax(url, method, params, callback) {
           throw new Error("Edit in jsFiddle button does not contain runfiddle data");
         }
         var link = element.getAttribute('data-link');
-        
+
         if (link) {
           window.open(link);
-          
+
           return;
         }
-        
+
         keys.push(runfiddle);
 
         var baseUrl = location.protocol + '//' + location.host;
@@ -190,9 +190,13 @@ function ajax(url, method, params, callback) {
               tag = dataFiddle[x].outerHTML;
             }
             else if (dataFiddle[x].nodeName === 'SCRIPT') {
-              js += trimCodeBlock(dataFiddle[x].innerHTML, 2).join('\n') + '\n';
-              jsPanel = dataFiddle[x].getAttribute('data-jsfiddle-panel_js');
-              jsWrap = dataFiddle[x].getAttribute('data-jsfiddle-js_wrap');
+              if (dataFiddle[x].getAttribute('type') === 'text/x-hot-html') {
+                html += trimCodeBlock(dataFiddle[x].innerHTML).join('\n');
+              } else {
+                js += trimCodeBlock(dataFiddle[x].innerHTML, 2).join('\n') + '\n';
+                jsPanel = dataFiddle[x].getAttribute('data-jsfiddle-panel_js');
+                jsWrap = dataFiddle[x].getAttribute('data-jsfiddle-js_wrap');
+              }
             }
             else if (dataFiddle[x].nodeName === 'STYLE') {
               css += trimCodeBlock(dataFiddle[x].innerHTML).join('\n') + '\n';

@@ -18,14 +18,12 @@
     <h3 id="quick-setup">Quick Setup</h3>
     <p>To enable the plugin, simply set the <code>nestedRows</code> property to <code>true</code>.</p>
 
-    <pre><code>
-hot = new Handsontable(container, {
+    <pre><code class="lang-js hljs javascript">var hot = new Handsontable(container, {
   data: sourceDataObject,
   rowHeaders: true,
   nestedRows: true,
   contextMenu: true
-});
-    </code></pre>
+});</code></pre>
 
     <p>
       Note that using all the functionalities provided by the plugin requires setting <code>rowHeaders</code> (enables the row headers)
@@ -225,4 +223,3 @@ hot = new Handsontable(container, {
     </a>
   </p>
 </div>
-

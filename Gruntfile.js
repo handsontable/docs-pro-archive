@@ -83,41 +83,58 @@ module.exports = function(grunt) {
 
       copy: {
         dist: {
-          files: [{
+          files: [
+            {
               expand: true,
               cwd: 'src',
               dest: 'generated',
-              src: ['static/**']
+              src: [
+                'static/**'
+              ],
             },
             {
               expand: true,
               cwd: 'node_modules/numbro',
-              dest: 'generated/bower_components/numbro',
-              src: ['**']
-            }]
-        }
-      },
-
-      bowercopy: {
-        options: {
-          srcPrefix: 'bower_components'
-        },
-        scripts: {
-          options: {
-            destPrefix: 'generated/bower_components'
-          },
-          files: {
-            'axios': 'axios/dist/axios.min.js',
-            'fastclick': 'fastclick',
-            'handsontable-pro': 'handsontable-pro',
-            'jquery/jquery.min.js': 'jquery/dist/jquery.min.js',
-            'modernizr': 'modernizr',
-            'pikaday': 'pikaday',
-            "font-awesome": "font-awesome",
-            "highlightjs": "highlightjs",
-            "moment": "moment",
-            "promise-polyfill": "promise-polyfill",
-          }
+              dest: 'generated/components/numbro',
+              src: ['**'],
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/axios',
+              src: ['dist/axios.min.js'],
+              dest: 'generated/components/axios/',
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/fastclick',
+              src: ['lib/fastclick.js'],
+              dest: 'generated/components/fastclick/',
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/handsontable-pro',
+              src: ['dist/handsontable.*', 'dist/languages/*.js'],
+              dest: 'generated/components/handsontable-pro/',
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/font-awesome',
+              src: ['css/**', 'fonts/**'],
+              dest: 'generated/components/font-awesome/',
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/highlightjs',
+              dest: 'generated/components/highlightjs',
+              src: ['**'],
+            },
+            {
+              expand: true,
+              cwd: 'node_modules/promise-polyfill',
+              src: ['dist/polyfill.min.js'],
+              dest: 'generated/components/promise-polyfill/',
+            },
+          ]
         }
       },
 
@@ -271,7 +288,7 @@ module.exports = function(grunt) {
           latestVersion: getHotProBranch()
         }));
 
-        grunt.task.run('sass', 'copy', 'bowercopy', 'jsdoc', 'sitemap');
+        grunt.task.run('sass', 'copy', 'jsdoc', 'sitemap');
         done();
 
       } else {
@@ -282,13 +299,12 @@ module.exports = function(grunt) {
               latestVersion: info.name
           }));
 
-          grunt.task.run('sass', 'copy', 'bowercopy', 'jsdoc', 'sitemap');
+          grunt.task.run('sass', 'copy', 'jsdoc', 'sitemap');
           done();
         });
       }
     });
 
-    grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');

@@ -54,13 +54,19 @@ module.exports = function(grunt) {
       jsdoc: {
         docs: {
           src: [
-          HOT_SRC_PATH + '/src/**/*.js', '!' + HOT_SRC_PATH + '/src/**/*.spec.js', '!' + HOT_SRC_PATH + '/src/**/*.unit.js', '!' + HOT_SRC_PATH + '/src/**/*.e2e.js', '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/**/*.js',
-          // Pro package
-          HOT_PRO_SRC_PATH + '/src/**/*.js',
-          // '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
-          '!' + HOT_PRO_SRC_PATH + '/src/**/*.spec.js', '!' + HOT_PRO_SRC_PATH + '/src/**/*.unit.js', '!' + HOT_PRO_SRC_PATH + '/src/**/*.e2e.js',
-          // '!' + HOT_PRO_SRC_PATH + '/src/plugins/ganttChart/dateCalculator.js',
-          '!' + HOT_PRO_SRC_PATH + '/src/3rdparty/walkontable/**/*.js', ],
+            HOT_SRC_PATH + '/src/**/*.js',
+            '!' + HOT_SRC_PATH + '/src/**/*.spec.js',
+            '!' + HOT_SRC_PATH + '/src/**/*.unit.js',
+            '!' + HOT_SRC_PATH + '/src/**/*.e2e.js',
+            '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/**/*.js',
+            HOT_SRC_PATH + '/src/3rdparty/walkontable/src/cell/*.js',
+            // Pro package
+            HOT_PRO_SRC_PATH + '/src/**/*.js',
+            // '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
+            '!' + HOT_PRO_SRC_PATH + '/src/**/*.spec.js', '!' + HOT_PRO_SRC_PATH + '/src/**/*.unit.js', '!' + HOT_PRO_SRC_PATH + '/src/**/*.e2e.js',
+            // '!' + HOT_PRO_SRC_PATH + '/src/plugins/ganttChart/dateCalculator.js',
+            '!' + HOT_PRO_SRC_PATH + '/src/3rdparty/walkontable/**/*.js',
+          ],
           jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
           options: {
             verbose: true,
@@ -283,9 +289,11 @@ module.exports = function(grunt) {
       var hotPackage;
 
       if (argv['hot-pro-version']) {
+        var isDraftNext = argv['hot-pro-version'] === 'next';
+
         grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-          version: getHotProBranch(),
-          latestVersion: getHotProBranch()
+          version: isDraftNext ? 'next' : getHotProBranch(),
+          latestVersion: isDraftNext ? 'next' : getHotProBranch(),
         }));
 
         grunt.task.run('sass', 'copy', 'jsdoc', 'sitemap');

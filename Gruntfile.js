@@ -253,7 +253,7 @@ module.exports = function(grunt) {
 
       gitHelper.getDocsVersions().then(function(branches) {
         branches = branches.filter(function(branch) {
-          return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch) && semver.gte(branch, '1.11.0');
+          return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch) && semver.gte(branch, '1.14.0');
         });
 
         var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';

@@ -11,22 +11,21 @@
     <hr>
 
     <h3 id="overview">Overview</h3>
-    <p>The <i>ExportFile</i> plugin allows exporting the table content to a <code>file</code>, <code>blob</code> or <code>string</code>.<br>
-      The plugin is always enabled, so there is no additional configuration involved. See the <a href="#how-it-works">How it works</a>
-      section to learn more about how it works under the hood.</p>
+    <p>The <i>ExportFile</i> plugin allows you to export table content to a <code>file</code>, <code>blob</code> or <code>string</code>.<br>
+      The plugin is always enabled, so there is no additional configuration involved. Learn more about
+      <a href="#how-it-works"></a>how it works</a> under the hood.</p>
 
     <h3 id="how-it-works">How it works</h3>
-    <p>The plugin allows you to export data from Handsontable in one of available format.<br/>
-      Currently we have only one predefined strategy. You can export file as in the <code>CSV</code> format.</p>
-    <p>See <a href="#methods">available methods</a> to learn which will help you in exporting data from Handsontable.</p>
+    <p>The plugin allows you to export data from Handsontable into a <code>CSV</code> file.</p>
+    <p>For the list of methods you can use to accomplish this, see <a href="#methods">available methods</a>.</p>
 
     <h3 id="methods">Available methods</h3>
-    <p>The plugin exposes three public methods to export data.</p>
+    <p>The plugin exposes the following methods to export data.</p>
     <ul>
       <li><a href="/pro/<?js= version ?>/ExportFile.html#downloadFile"><strong>downloadFile(format, options)</strong></a> - allows you to
-        generate downloadable file, directly in user browser.</li>
+        generate a downloadable file, directly in your browser.</li>
       <li><a href="/pro/<?js= version ?>/ExportFile.html#exportAsBlob"><strong>exportAsBlob(format, options)</strong></a> - allows you to
-        export JavaScript Blob object.</li>
+        export a JavaScript Blob object.</li>
       <li><a href="/pro/<?js= version ?>/ExportFile.html#exportAsString"><strong>exportAsString(format, options)</strong></a> - allows you
         to export data as a string.</li>
     </ul>
@@ -34,14 +33,14 @@
     <dl>
       <dt>
         <h4 class="name">format <span class="type-signature type string">String</span></h4>
-        <p>Format is required to prepare predefine settings object. Currently we implemented only <code>'csv'</code> format.</p>
+        <p>This is required to prepare a predefined settings object. We currently allow for only <code>'csv'</code> to be used.</p>
       </dt>
     </dl>
     <dl>
       <dt>
         <h4 class="name">options <span class="type-signature type object">Object</span></h4>
-        <p>It's a optional argument. Contains set of supported option and extends predefined <code>CSV</code> configuration. See
-          <a href="#options">available options</a> to learn what options you can use.</p>
+        <p>This is an optional argument. It contains a set of supported options and extends the predefined <code>CSV</code> configuration.
+          For the complete list of options that you can use, see <a href="#options">available options</a>.</p>
       </dt>
     </dl>
 
@@ -50,10 +49,10 @@
     <dl>
       <dt>
         <h4 class="name">bom <span class="type-signature type boolean">Boolean</span></h4>
-        <p>Allows to export data with BOM signature.</p>
+        <p>Allows you to export data with a BOM signature.</p>
         <div class="notification info">
-          <strong>Please note:</strong> This property will prepend content by UTF-16BE BOM signature (<em>FE FF</em>).
-          Browser will convert signature to UTF-8 value (<em>EF BB BF</em>) automatically.
+          <strong>Please note:</strong> This property will prepend content with the UTF-16BE BOM signature (<em>FE FF</em>).
+          The browser will convert the signature to the UTF-8 value (<em>EF BB BF</em>) automatically.
         </div>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>true</code></p>
@@ -62,7 +61,7 @@
     <dl>
       <dt>
         <h4 class="name">columnDelimiter <span class="type-signature type string">String</span></h4>
-        <p>Allows to define columns delimiter.</p>
+        <p>Allows you to define the columns delimiter.</p>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>','</code></p>
       </dt>
@@ -78,7 +77,7 @@
     <dl>
       <dt>
         <h4 class="name">exportHiddenColumns <span class="type-signature type boolean">Boolean</span></h4>
-        <p>Allows to export data from hidden columns.</p>
+        <p>Allows you to export data from hidden columns.</p>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>false</code></p>
       </dt>
@@ -86,7 +85,7 @@
     <dl>
       <dt>
         <h4 class="name">exportHiddenRows <span class="type-signature type boolean">Boolean</span></h4>
-        <p>Allows to export data from hidden rows.</p>
+        <p>Allows you to export data from hidden rows.</p>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>false</code></p>
       </dt>
@@ -94,32 +93,32 @@
     <dl>
       <dt>
         <h4 class="name">fileExtension <span class="type-signature type string">String</span></h4>
-        <p>Allows to define file extension.</p>
-        <p>You can use this property in <strong>downloadFile</strong> method.</p>
+        <p>Allows you to define the file extension.</p>
+        <p>You can use this property in the <strong>downloadFile</strong> method.</p>
         <p>Default value: <code>'csv'</code></p>
       </dt>
     </dl>
     <dl>
       <dt>
         <h4 class="name">filename <span class="type-signature type string">String</span></h4>
-        <p>Allows to define file name.</p>
-        <p>You can use predefined placeholders, which will be replaced by date.</p>
-        <p>You can use this property in <strong>downloadFile</strong> method.</p>
+        <p>Allows you to define the file name.</p>
+        <p>You can use predefined placeholders, which will be replaced by the date.</p>
+        <p>You can use this property in the <strong>downloadFile</strong> method.</p>
         <p>Default value: <code>'Handsontable [YYYY]-[MM]-[DD]'</code></p>
       </dt>
     </dl>
     <dl>
       <dt>
         <h4 class="name">mimeType <span class="type-signature type string">String</span></h4>
-        <p>Allows to define MIME type.</p>
-        <p>You can use this property in <strong>downloadFile</strong> and <strong>exportAsBlob</strong> methods.</p>
+        <p>Allows you to define the MIME type.</p>
+        <p>You can use this property in the <strong>downloadFile</strong> and <strong>exportAsBlob</strong> methods.</p>
         <p>Default value: <code>'text/csv'</code></p>
       </dt>
     </dl>
     <dl>
       <dt>
         <h4 class="name">range <span class="type-signature type array">Array</span></h4>
-        <p>Allows to define range of dataset to export. It's represented by an array of numeric, visual indexes
+        <p>Allows you to define a range of dataset to export. It's represented by an array of numeric, visual indexes
           <code>[startRow, startColumn, endRow, endColumn]</code>.</p>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>'text/csv'</code></p>
@@ -128,7 +127,7 @@
     <dl>
       <dt>
         <h4 class="name">rowDelimiter <span class="type-signature type string">String</span></h4>
-        <p>Allows to define rows delimiter.</p>
+        <p>Allows you to define rows delimiter.</p>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>'\r\n'</code></p>
       </dt>
@@ -136,7 +135,7 @@
     <dl>
       <dt>
         <h4 class="name">rowHeaders <span class="type-signature type boolean">Boolean</span></h4>
-        <p>Allows to export data with their row header.</p>
+        <p>Allows you to export data with their row header.</p>
         <p>You can use this property in all of the <a href="#methods">available methods</a>.</p>
         <p>Default value: <code>false</code></p>
       </dt>
@@ -191,7 +190,7 @@
 
     <h4>Export as a JavaScript Blob object</h4>
     <div data-jsfiddle="example2">
-      <p>Open your console in browser developer tools to see an result.</p>
+      <p>Open a console in browser developer tools to see the result for above example.</p>
       <div id="example2" class="hot"></div>
       <button id="export-blob" class="intext-btn">Export as a Blob</button>
     </div>
@@ -238,7 +237,7 @@
 
     <h4>Export as a string</h4>
     <div data-jsfiddle="example3">
-      <p>Open your console in browser developer tools to see an result.</p>
+      <p>Open a console in browser developer tools to see the result for above example.</p>
       <div id="example3" class="hot"></div>
       <button id="export-string" class="intext-btn">Export as a string</button>
     </div>

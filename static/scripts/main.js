@@ -22,7 +22,7 @@ function isIE() { return ((navigator.appName == 'Microsoft Internet Explorer') |
 
 $(function () {
   jQuery.fx.off = true;
-  
+
   // Anchor fix
   if (!isIE()) {
     $(window).on('popstate', function(event) {
@@ -50,8 +50,8 @@ $(function () {
   // END: Anchor fix
 
   // Search Items
-  $('#search').on('keyup', onSearchKeyUp);
-  document.querySelector('#search').focus();
+  $('#search-form').on('keyup', onSearchKeyUp);
+  document.querySelector('#search-form').focus();
 
   // Toggle when click an item element
   $('.navigation').on('click', '.title', function (event) {
@@ -114,7 +114,7 @@ $(function () {
       document.getElementsByTagName('BODY')[0].appendChild(s);
     });
   }
-  
+
   // mobile hamburger
   $('#mobile-nav-menu').on('ontouchstart' in window ? 'touchstart' : 'click', function(event) {
     var element = $('#mobile-nav-menu').parent();
@@ -149,7 +149,7 @@ $(function () {
       callback(data);
     });
   }
-  
+
   var STORAGE_KEY = 'dynamic-variables';
   var variables = localStorage.getItem(STORAGE_KEY);
 
@@ -254,7 +254,7 @@ function onSearchKeyUp() {
 
     $el.find('.list li').each(function (i, v) {
       var $item = $(v);
-      
+
       if ($item.hasClass('tutorial')) {
         return;
       }
@@ -387,7 +387,7 @@ function buildBreadcrumbs() {
       + makeSpan($item.text())
       + makeSpan($activeLink.text());
   }
-  
+
   breadcrumbs += '<span class="right switcher"><a href="//docs.handsontable.com/latest">Switch to CE</a></span>';
 
   return breadcrumbs;

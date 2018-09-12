@@ -1,6 +1,57 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>5.0.2</h3>
+    <p>Released on 12th of September, 2018</p>
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a bug where editor focusing caused the window to scroll. (<a href="https://github.com/handsontable/handsontable/issues/5220" target="_blank">#5220</a>)</li>
+      <li>Fixed a problem where double-clicking the fill handle filled the cells towards the left instead of down. (<a href="https://github.com/handsontable/handsontable/issues/5023" target="_blank">#5023</a>)</li>
+      <li>Fixed a bug where editing a cell showed improper values after sorting and using the <code>setDataAtRowProp</code> method. (<a href="https://github.com/handsontable/handsontable/issues/4289" target="_blank">#4289</a>)</li>
+      <li>Fixed a problem with editing <code>autocomplete</code>-typed cells after using similar cells in a different Handsontable instance. (<a href="https://github.com/handsontable/handsontable/issues/3374" target="_blank">#3374</a>)</li>
+      <li>Corrected a typo in <code>AutoColumnSize</code> typescript definition file. (<a href="https://github.com/handsontable/handsontable/issues/5364" target="_blank">#5364</a>)</li>
+      <li>Fixed a bug with calculating how many rows/columns need to be rendered. (<a href="https://github.com/handsontable/handsontable/issues/5365" target="_blank">#5365</a>)</li>
+      <li>Fixed a bug with column headers improperly rendering after expanding a previously-collapsed column. (<a href="https://github.com/handsontable/handsontable-pro/issues/105" target="_blank">#105</a>)</li>
+      <li>Finished the ESLint warning correction task (<a href="https://github.com/handsontable/handsontable-pro/issues/107" target="_blank">#107</a>, <a href="https://github.com/handsontable/handsontable-pro/issues/137" target="_blank">#137</a>), which included resolving problems with:
+        <ul>
+          <li><code>arrow-parens</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/108" target="_blank">#108</a>)</li>
+          <li><code>eqeqeq</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/114" target="_blank">#114</a>)</li>
+          <li><code>no-extra-semi</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/115" target="_blank">#115</a>)</li>
+          <li><code>newline-per-chained-call</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/112" target="_blank">#112</a>)</li>
+          <li><code>linebreak-style</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/110" target="_blank">#110</a>)</li>
+          <li><code>no-constant-condition</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/113" target="_blank">#113</a>)</li>
+          <li><code>no-unused-vars</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/116" target="_blank">#116</a>)</li>
+          <li><code>prefer-template</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/119" target="_blank">#119</a>)</li>
+          <li><code>consistent-return</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/109" target="_blank">#109</a>)</li>
+          <li><code>object-curly-spacing</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/118" target="_blank">#118</a>)</li>
+          <li><code>prefer-arrow-callback</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/117" target="_blank">#117</a>)</li>
+          <li><code>max-depth</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/111" target="_blank">#111</a>)</li>
+          <li><code>prefer-spread</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/122" target="_blank">#122</a>)</li>
+          <li><code>prefer-const</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/125" target="_blank">#125</a>)</li>
+          <li><code>no-unneeded-ternary</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/126" target="_blank">#126</a>)</li>
+          <li><code>object-shorthand</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/121" target="_blank">#121</a>)</li>
+          <li><code>space-before-function-paren</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/124" target="_blank">#124</a>)</li>
+          <li><code>prefer-rest-params</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/127" target="_blank">#127</a>)</li>
+          <li><code>no-plusplus</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/123" target="_blank">#123</a>)</li>
+          <li><code>no-eq-null</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/120" target="_blank">#120</a>)</li>
+          <li><code>one-var</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/128" target="_blank">#128</a>)</li>
+          <li><code>no-var</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/129" target="_blank">#129</a>)</li>
+          <li><code>no-undef</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/130" target="_blank">#130</a>)</li>
+          <li><code>vars-on-top</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/131" target="_blank">#131</a>)</li>
+          <li><code>no-use-before-define</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/132" target="_blank">#132</a>)</li>
+          <li><code>no-restricted-properties</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/133" target="_blank">#133</a>)</li>
+          <li><code>no-restricted-syntax</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/134" target="_blank">#134</a>)</li>
+          <li><code>no-param-reassign</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/136" target="_blank">#136</a>)</li>
+          <li><code>no-shadow</code> (<a href="https://github.com/handsontable/handsontable-pro/issues/135" target="_blank">#135</a>)</li>
+        </ul>
+      </li>
+
+    </ul>
+
+    <p>The corresponding Handsontable version is <a href="https://github.com/handsontable/handsontable/releases/5.0.2" target="_blank">5.0.2</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>5.0.1</h3>
     <p>Released on 16th of August, 2018</p>
     <strong>Changes</strong>

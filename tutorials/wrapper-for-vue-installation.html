@@ -1,9 +1,9 @@
 <div class="static-content">
   <div class="example-container clearfix">
       <p>
-          <strong>Handsontable for Vue</strong> is the official wrapper for Handsontable, a JavaScript data grid
-          component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of
-          useful features like data binding, validation, sorting or powerful context menu.
+        <strong>Handsontable for Vue</strong> is the official wrapper for Handsontable, a JavaScript data grid
+        component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of
+        useful features like data binding, validation, sorting or powerful context menu.
       </p>
 
       <h3>Installation</h3>
@@ -11,7 +11,7 @@
         This component needs the Handsontable library to work. We suggest using <a href="https://www.npmjs.com/">npm</a> to install the package.
       </p>
       <p>
-        <code>npm install handsontable-pro @handsontable-pro/vue</code>
+        <code>npm install handsontable @handsontable-provue</code>
       </p>
 
       <h3>Basic usage</h3>
@@ -25,7 +25,7 @@
 &lt;/template&gt;
 
 &lt;script&gt;
-  import HotTable from '@handsontable-pro/vue';
+  import { HotTable } from '@handsontable-pro/vue';
   import Vue from 'vue';
 
   export default {
@@ -42,7 +42,7 @@
       }
     },
     components: {
-      HotTable
+      'hottable': Handsontable.vue.HotTable
     }
   }
 &lt;/script&gt;
@@ -68,7 +68,7 @@
       </p>
   </div>
     <p>
-      <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/vue-overview.html"
+      <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/wrapper-for-vue-installation.html"
          class="edit-doc" target="_blank">Help us improve this page</a>
     </p>
 </div>

@@ -38,7 +38,7 @@
   <div class="example-container clearfix">
     <h3 id="basic-plugin-configuration">Basic plugin configuration</h3>
     <p>
-      The simplest way to enable the plugin is to just set the <code>columnSorting</code> key to <code>true</code>. You will then be able to <b>use <a href="#api">the API methods</a></b> and <b>click on the header to sort</b>, as you can see in the example below. What's more, by default:
+      The simplest way to enable the plugin is to just set the <code>multiColumnSorting</code> key to <code>true</code>. You will then be able to <b>use <a href="#api">the API methods</a></b> and <b>click on the header to sort</b>, as you can see in the example below. What's more, by default:
     </p>
 
     <p>
@@ -73,7 +73,7 @@
         new Handsontable(exampleContainer1, {
           data: arrayOfArrays,
           colHeaders: true,
-          columnSorting: true
+          multiColumnSorting: true
         });</script>
     </div>
   </div>
@@ -126,7 +126,7 @@
         new Handsontable(exampleContainer2, {
           data: arrayOfArrays,
           colHeaders: true,
-          columnSorting: {
+          multiColumnSorting: {
             indicator: true,
             sortEmptyCells: true,
             initialConfig: {
@@ -136,7 +136,7 @@
           }
         });</script>
 
-      <p>Please keep in mind that options defined by the <code>columnSorting</code> key in the main Handsontable settings apply to the entire table. Most of them can also be set for a particular column, as described in <a href="#column-options">this section</a>.</p>
+      <p>Please keep in mind that options defined by the <code>multiColumnSorting</code> key in the main Handsontable settings apply to the entire table. Most of them can also be set for a particular column, as described in <a href="#column-options">this section</a>.</p>
     </div>
 
     <div class="example-container clearfix">
@@ -197,7 +197,7 @@
               format: '$ 0,0.00'
             }],
             colWidths: 120,
-            columnSorting: true
+            multiColumnSorting: true
           });</script>
       </div>
 
@@ -249,7 +249,7 @@
               columns: function(visualColumnIndex) {
                 if (visualColumnIndex === 0) {
                   return {
-                    columnSorting: {
+                    multiColumnSorting: {
                       indicator: false,
                       headerAction: false,
                       compareFunctionFactory: function compareFunctionFactory() {
@@ -280,7 +280,7 @@
             Please take a look at the custom sort implementation in the snippet below.
           </p>
           <pre><code class="lang-js">beforeColumnSort: function(currentSortConfig, destinationSortConfigs) {
-  const columnSortPlugin = this.getPlugin('columnSorting');
+  const columnSortPlugin = this.getPlugin('multiColumnSorting');
 
   columnSortPlugin.setSortConfig(destinationSortConfigs);
 
@@ -318,17 +318,17 @@
           <p>List of methods exposed by the plugin:</p>
           <p>
           <ul>
-            <li><code><a href="/pro/<?js= version ?>/columnSorting.html#clearSort">clearSort</a></code></li>
-            <li><code><a href="/pro/<?js= version ?>/columnSorting.html#getSortConfig">getSortConfig</a></code></li>
-            <li><code><a href="/pro/<?js= version ?>/columnSorting.html#isSorted">isSorted</a></code></li>
-            <li><code><a href="/pro/<?js= version ?>/columnSorting.html#setSortConfig">setSortConfig</a></code></li>
-            <li><code><a href="/pro/<?js= version ?>/columnSorting.html#sort">sort</a></code></li>
+            <li><code><a href="/pro/<?js= version ?>/MultiColumnSorting.html#clearSort">clearSort</a></code></li>
+            <li><code><a href="/pro/<?js= version ?>/MultiColumnSorting.html#getSortConfig">getSortConfig</a></code></li>
+            <li><code><a href="/pro/<?js= version ?>/MultiColumnSorting.html#isSorted">isSorted</a></code></li>
+            <li><code><a href="/pro/<?js= version ?>/MultiColumnSorting.html#setSortConfig">setSortConfig</a></code></li>
+            <li><code><a href="/pro/<?js= version ?>/MultiColumnSorting.html#sort">sort</a></code></li>
           </ul>
           </p>
         </div>
 
         <p class="gap-top-xsmall">
-          <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/sorting.html" class="edit-doc" target="_blank">
+          <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/multi-sorting.html" class="edit-doc" target="_blank">
             Help us improve this page
           </a>
         </p>

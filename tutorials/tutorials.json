@@ -181,6 +181,10 @@
           "sorting": {
             "title": "Sorting"
           },
+          "multi-sorting": {
+            "title": "Multi-column sorting",
+            "pro": true
+          },
           "searching": {
             "title": "Searching"
           },

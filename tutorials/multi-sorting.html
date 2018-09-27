@@ -220,7 +220,7 @@
       <div class="example-container clearfix">
         <h3 id="column-options">Plugin options for certain columns only</h3>
         <p>
-          The plugin's options, such as <code>compareFunctionFactory</code>, <code>sortEmptyCells</code>, <code>headerAction</code>, <code>indicator</code> may be set just for a particular column. This can be done through the use of the <a href="/pro/<?js= version ?>/Options.html#columns">columns</a> option. The example below demonstrates how to disable the indicator and completely block sorting action <b>for the first column</b>.
+          The plugin's options, such as <code>compareFunctionFactory</code>, <code>sortEmptyCells</code>, <code>headerAction</code>, <code>indicator</code> may be set just for a particular column. This can be done through the use of the <a href="/pro/<?js= version ?>/Options.html#columns">columns</a> option. The example below demonstrates how to disable the indicator and <b>completely block sorting action for the first column</b>.
         </p>
 
         <div data-jsfiddle="example4">
@@ -262,7 +262,8 @@
                 }
 
                 return {};
-              }
+              },
+              multiColumnSorting: true
             });</script>
         </div>
 
@@ -333,4 +334,6 @@
           </a>
         </p>
       </div>
-
+    </div>
+  </div>
+</div>

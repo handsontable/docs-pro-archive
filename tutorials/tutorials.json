@@ -181,7 +181,7 @@
           "sorting": {
             "title": "Sorting"
           },
-          "multi-sorting": {
+          "multicolumn-sorting": {
             "title": "Multi-column sorting",
             "pro": true
           },
